@@ -58,7 +58,8 @@ html, body {
   z-index: 1;
 }
 
-[data-s=intro] #c {
+[data-s=intro] #c,
+[data-s=card] #c {
   cursor: pointer;
 }
 
@@ -605,7 +606,10 @@ h1 {
 }
 
 /* ==========================================================================
-   Stage 3: Luxury Crystal Frosted-Glass Greeting Card (Dễ thương & Nhìn xuyên nhẹ)
+   Stage 3: Luxury Crystal Frosted-Glass Greeting Card
+   - Có nút ✕ ở góc phải trên (vị trí khoanh đỏ)
+   - Nút "Ngắm vườn hoa ✨" ở cuối bảng luôn hiển thị rõ trên điện thoại
+   - Chạm ra ngoài vùng thiệp cũng tự động đóng thiệp
    ========================================================================== */
 .card {
   position: fixed;
@@ -617,9 +621,8 @@ h1 {
   max-height: 88dvh;
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: 24px 28px 22px;
+  padding: 20px 26px 18px;
   text-align: center;
-  /* Hiệu ứng kính mờ pha lê nhìn xuyên qua nhẹ nhàng thấy vườn hoa phía sau */
   background: linear-gradient(
     145deg,
     rgba(62, 32, 88, 0.42) 0%,
@@ -647,7 +650,6 @@ h1 {
   z-index: 40;
 }
 
-/* Viền chỉ mảnh ánh hồng kim lấp lánh bên trong khung thiệp */
 .card::before {
   content: '';
   position: absolute;
@@ -666,6 +668,42 @@ h1 {
   transform: translate(50%, -50%) scale(1);
 }
 
+/* Nút Đóng (✕) ở góc phải trên của thiệp (ngay vị trí khoanh đỏ) */
+.card-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 180, 215, 0.22);
+  border: 1px solid rgba(255, 225, 242, 0.65);
+  color: #fff6fb;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 12;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.card-close-btn:hover {
+  transform: scale(1.1) rotate(90deg);
+  background: rgba(245, 110, 160, 0.65);
+}
+
+.card-close-btn:active {
+  transform: scale(0.92);
+}
+
+[data-s=garden] .card-close-btn {
+  display: none;
+}
+
 /* Hoa văn trang trí 4 góc thiệp */
 .card-corner {
   position: absolute;
@@ -676,22 +714,21 @@ h1 {
   filter: drop-shadow(0 0 6px rgba(255, 160, 205, 0.6));
 }
 .card-corner.tl { top: 13px; left: 13px; }
-.card-corner.tr { top: 13px; right: 13px; transform: scaleX(-1); }
+.card-corner.tr { top: 13px; right: 13px; transform: scaleX(-1); opacity: 0.35; }
 .card-corner.bl { bottom: 13px; left: 13px; transform: scaleY(-1); }
 .card-corner.br { bottom: 13px; right: 13px; transform: scale(-1, -1); }
 
-/* Cụm bé mèo trắng đội hoa anh đào dễ thương ở đầu thiệp */
 .card-cute-header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
   position: relative;
 }
 
 .card-kitty-svg {
-  width: 136px;
-  height: 58px;
+  width: 126px;
+  height: 52px;
   filter: drop-shadow(0 4px 10px rgba(255, 120, 175, 0.38));
   animation: floatCat 3.2s infinite ease-in-out;
 }
@@ -724,7 +761,7 @@ h1 {
   transform: none !important;
 }
 
-/* Khi ở garden: Thiệp thu nhỏ về góc phải trên, nằm dưới khung nhạc + chỉnh âm lượng */
+/* Khi ở garden: Thiệp thu nhỏ về góc phải trên */
 [data-s=garden] .card {
   opacity: 0.95;
   visibility: visible;
@@ -755,9 +792,39 @@ h1 {
   display: none;
 }
 
+/* Tối ưu kích thước chữ & khoảng cách trên điện thoại để nút cuối bảng luôn hiện rõ không cần cuộn! */
 @media (max-width: 600px) {
   .card {
-    padding: 20px 20px 18px;
+    padding: 15px 18px 14px;
+    max-height: 86dvh;
+  }
+  .card-kitty-svg {
+    width: 108px;
+    height: 44px;
+  }
+  .to {
+    font-size: 20px !important;
+  }
+  h2 {
+    font-size: 20.5px !important;
+    margin: 4px 0 6px !important;
+  }
+  .card-divider {
+    margin: 0 auto 8px !important;
+  }
+  .card p {
+    font-size: 14.5px !important;
+    line-height: 1.50 !important;
+    margin-bottom: 8px !important;
+  }
+  .card .sign {
+    font-size: 20px !important;
+    margin-top: 4px !important;
+    margin-bottom: 10px !important;
+  }
+  #view {
+    padding: 8px 24px !important;
+    font-size: 14.5px !important;
   }
   [data-s=garden] .card {
     top: calc(env(safe-area-inset-top, 0px) + 144px);
@@ -783,7 +850,7 @@ h1 {
 
 .to {
   font-family: 'Caveat', cursive;
-  font-size: clamp(22px, 5vw, 25.5px);
+  font-size: clamp(21px, 5vw, 25px);
   color: #ffb8d2;
   font-weight: 700;
   letter-spacing: 0.3px;
@@ -791,21 +858,20 @@ h1 {
 }
 
 h2 {
-  margin: 6px 0 8px;
+  margin: 5px 0 7px;
   font-weight: 700;
-  font-size: clamp(22px, 5.4vw, 27.5px);
+  font-size: clamp(21px, 5.2vw, 27px);
   line-height: 1.22;
   color: #ffffff;
   text-shadow: 0 2px 12px rgba(15, 5, 28, 0.9), 0 0 20px rgba(255, 160, 205, 0.5);
 }
 
-/* Dải phân cách trái tim lấp lánh dưới tiêu đề */
 .card-divider {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin: 0 auto 12px;
+  margin: 0 auto 10px;
   width: 75%;
 }
 .card-divider::before,
@@ -822,13 +888,12 @@ h2 {
 }
 
 .card p {
-  margin-bottom: 11px;
-  font-size: clamp(15.5px, 3.6vw, 17.8px);
-  line-height: 1.62;
+  margin-bottom: 10px;
+  font-size: clamp(15px, 3.6vw, 17.5px);
+  line-height: 1.58;
   text-align: justify;
   text-align-last: center;
   color: #fff6fb;
-  /* Đổ bóng chữ mịn để trên nền kính trong suốt chữ vẫn nổi bật, sắc nét 100% */
   text-shadow: 0 1px 8px rgba(12, 5, 24, 0.92), 0 2px 14px rgba(12, 5, 24, 0.75);
 }
 
@@ -837,10 +902,10 @@ h2 {
 }
 
 .card .sign {
-  margin-top: 8px;
-  margin-bottom: 14px;
+  margin-top: 6px;
+  margin-bottom: 12px;
   font-family: 'Caveat', cursive;
-  font-size: clamp(22px, 5vw, 25.5px);
+  font-size: clamp(21px, 5vw, 25px);
   color: #ffb3cf;
   font-weight: 700;
   text-shadow: 0 2px 10px rgba(15, 5, 28, 0.9), 0 0 16px rgba(255, 115, 170, 0.55);
@@ -855,15 +920,18 @@ button {
 }
 
 #view {
-  padding: 10px 30px;
+  position: sticky;
+  bottom: 0;
+  z-index: 8;
+  padding: 10px 28px;
   border-radius: 99px;
-  background: linear-gradient(135deg, rgba(255, 140, 180, 0.92) 0%, rgba(225, 85, 135, 0.92) 100%);
-  border: 1px solid rgba(255, 230, 242, 0.75);
+  background: linear-gradient(135deg, rgba(255, 135, 178, 0.96) 0%, rgba(225, 80, 132, 0.96) 100%);
+  border: 1.5px solid rgba(255, 235, 245, 0.85);
   color: var(--btnink);
   font-family: 'Quicksand', sans-serif;
   font-size: 15.5px;
   font-weight: 700;
-  box-shadow: 0 8px 22px rgba(220, 80, 130, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 22px rgba(15, 5, 28, 0.65), 0 0 18px rgba(245, 110, 160, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.6);
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -1010,8 +1078,11 @@ body::after{content:'';position:fixed;inset:0;z-index:3;pointer-events:none;back
   <span>Từ một vì sao ước nguyện, cả khu vườn thức giấc vì Minh Anh...</span>
 </div>
 
-<!-- Stage 3 Greeting Card (Hiệu ứng Kính Mờ Pha Lê Nhìn Xuyên Nhẹ + Mèo Trắng Dễ Thương) -->
+<!-- Stage 3 Greeting Card (Có nút ✕ ở góc phải trên + Chạm ra ngoài để tắt + Nút cuối bảng luôn hiện) -->
 <section class="card" id="card" aria-hidden="true" title="Chạm để đọc lại thiệp chúc mừng gửi Minh Anh ♡">
+  <!-- Nút ✕ đóng nhanh ở góc phải trên của thiệp -->
+  <button type="button" class="card-close-btn" id="closeCardBtn" aria-label="Đóng thiệp để ngắm vườn hoa" title="Đóng thiệp (hoặc chạm ra ngoài thiệp)">✕</button>
+
   <!-- 4 Góc Hoa Văn Pha Lê Hồng Kim -->
   <svg class="card-corner tl" viewBox="0 0 28 28" fill="none">
     <path d="M2 22V8C2 4.686 4.686 2 8 2H22" stroke="#FFB8D4" stroke-width="1.8" stroke-linecap="round"/>
@@ -1021,7 +1092,6 @@ body::after{content:'';position:fixed;inset:0;z-index:3;pointer-events:none;back
   <svg class="card-corner tr" viewBox="0 0 28 28" fill="none">
     <path d="M2 22V8C2 4.686 4.686 2 8 2H22" stroke="#FFB8D4" stroke-width="1.8" stroke-linecap="round"/>
     <circle cx="8" cy="8" r="2.2" fill="#FFE699"/>
-    <path d="M14 5L15 7L17 8L15 9L14 11L13 9L11 8L13 7L14 5Z" fill="#FFD1E6"/>
   </svg>
   <svg class="card-corner bl" viewBox="0 0 28 28" fill="none">
     <path d="M2 22V8C2 4.686 4.686 2 8 2H22" stroke="#FFB8D4" stroke-width="1.8" stroke-linecap="round"/>
@@ -1032,13 +1102,11 @@ body::after{content:'';position:fixed;inset:0;z-index:3;pointer-events:none;back
     <circle cx="8" cy="8" r="2.2" fill="#FFE699"/>
   </svg>
 
-  <!-- Hình vẽ Bé Mèo Trắng Đội Hoa Anh Đào & Dấu Chân Hồng Phấn -->
+  <!-- Hình vẽ Bé Mèo Trắng Đội Hoa Anh Đào -->
   <div class="card-cute-header stagger-item">
     <svg class="card-kitty-svg" viewBox="0 0 150 62" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Đường lượn sóng phát sáng hai bên -->
       <path d="M12 48Q34 42 52 48" stroke="#FFB8D4" stroke-width="1.5" stroke-linecap="round" opacity="0.75"/>
       <path d="M98 48Q116 42 138 48" stroke="#FFB8D4" stroke-width="1.5" stroke-linecap="round" opacity="0.75"/>
-      <!-- Hoa anh đào bên trái -->
       <g transform="translate(26, 36) rotate(-12)">
         <circle cx="0" cy="-4.5" r="3.4" fill="#FFB3CE"/>
         <circle cx="4.3" cy="-1.4" r="3.4" fill="#FFB3CE"/>
@@ -1047,7 +1115,6 @@ body::after{content:'';position:fixed;inset:0;z-index:3;pointer-events:none;back
         <circle cx="-4.3" cy="-1.4" r="3.4" fill="#FFB3CE"/>
         <circle cx="0" cy="0" r="2" fill="#FFE885"/>
       </g>
-      <!-- Hoa anh đào bên phải -->
       <g transform="translate(124, 36) rotate(15)">
         <circle cx="0" cy="-4.5" r="3.4" fill="#FFB3CE"/>
         <circle cx="4.3" cy="-1.4" r="3.4" fill="#FFB3CE"/>
@@ -1056,30 +1123,24 @@ body::after{content:'';position:fixed;inset:0;z-index:3;pointer-events:none;back
         <circle cx="-4.3" cy="-1.4" r="3.4" fill="#FFB3CE"/>
         <circle cx="0" cy="0" r="2" fill="#FFE885"/>
       </g>
-      <!-- Bé mèo trắng kem lấp ló ở giữa -->
       <path d="M56 26L52 10L66 19Z" fill="#FFF9FC" stroke="#F4A2C0" stroke-width="1.6" stroke-linejoin="round"/>
       <path d="M56.5 23L54.5 13.5L63.5 19.5Z" fill="#FFB3CC"/>
       <path d="M94 26L98 10L84 19Z" fill="#FFF9FC" stroke="#F4A2C0" stroke-width="1.6" stroke-linejoin="round"/>
       <path d="M93.5 23L95.5 13.5L86.5 19.5Z" fill="#FFB3CC"/>
       <ellipse cx="75" cy="34" rx="22" ry="17" fill="#FFF9FC" stroke="#F4A2C0" stroke-width="1.6"/>
-      <!-- Mắt Boba long lanh -->
       <circle cx="66.5" cy="33" r="3.1" fill="#3B1D2E"/>
       <circle cx="65.4" cy="31.8" r="1.2" fill="#FFFFFF"/>
       <circle cx="83.5" cy="33" r="3.1" fill="#3B1D2E"/>
       <circle cx="82.4" cy="31.8" r="1.2" fill="#FFFFFF"/>
-      <!-- Má hồng & Miệng :3 -->
       <ellipse cx="61" cy="36.8" rx="3.6" ry="2" fill="#FF94B8" opacity="0.8"/>
       <ellipse cx="89" cy="36.8" rx="3.6" ry="2" fill="#FF94B8" opacity="0.8"/>
       <ellipse cx="75" cy="35.5" rx="1.8" ry="1.3" fill="#FF7aa2"/>
       <path d="M72 37.5C73.5 39.2 75 38.4 75 36.8C75 38.4 76.5 39.2 78 37.5" stroke="#3B1D2E" stroke-width="1.4" stroke-linecap="round" fill="none"/>
-      <!-- Hai đệm chân măng cụt hồng bám mép thiệp & ôm trái tim -->
       <ellipse cx="63" cy="48" rx="5.5" ry="3.8" fill="#FFF9FC" stroke="#F4A2C0" stroke-width="1.4"/>
       <circle cx="63" cy="48.5" r="1.5" fill="#FF94B8"/>
       <ellipse cx="87" cy="48" rx="5.5" ry="3.8" fill="#FFF9FC" stroke="#F4A2C0" stroke-width="1.4"/>
       <circle cx="87" cy="48.5" r="1.5" fill="#FF94B8"/>
-      <!-- Trái tim hồng phát sáng ở ngực mèo -->
       <path d="M75 53C75 53 67 47.5 67 43C67 40.2 69.3 38.5 71.6 38.5C73.3 38.5 74.5 39.5 75 40.8C75.5 39.5 76.7 38.5 78.4 38.5C80.7 38.5 83 40.2 83 43C83 47.5 75 53 75 53Z" fill="#FF5C8D"/>
-      <!-- Bông hoa nhỏ trên tai mèo -->
       <g transform="translate(87, 17) rotate(18)">
         <circle cx="0" cy="-3.2" r="2.4" fill="#FFB3CE"/>
         <circle cx="3" cy="-1" r="2.4" fill="#FFB3CE"/>
@@ -1407,6 +1468,7 @@ setInterval(spawnMusicNotes, 1600);
    ========================================================================== */
 const cardEl = $('card');
 const viewBtn = $('view');
+const closeCardBtn = $('closeCardBtn');
 const staggerItems = Array.from(cardEl.querySelectorAll('.stagger-item'));
 let staggerTimers = [];
 let isRevealingCard = false;
@@ -1445,55 +1507,150 @@ function startCardStaggerReveal() {
         isRevealingCard = false;
         cardHasRevealedOnce = true;
       }
-    }, 140 + idx * 270);
+    }, 140 + idx * 250);
     staggerTimers.push(tId);
   });
 }
 
 /* ==========================================================================
-   3D Gyroscope & Pointer Parallax System (Nghiêng điện thoại tạo chiều sâu 3D)
+   3D Gyroscope Tilt + Phone Shake Detector (Nghiêng 3D & Lắc Điện Thoại)
+   - Hỗ trợ cả deviceorientation VÀ devicemotion (chạy tốt trên cả Brave / Android / iOS)
+   - Khi LẮC ĐIỆN THOẠI: Gió thổi rạp hoa, mưa cánh hoa & sao băng, mèo nhảy thả tim!
    ========================================================================== */
 let parallax = {
   tx: 0, ty: 0,
   x: 0, y: 0,
-  gyroActive: false,
+  orientationActive: false,
+  motionActive: false,
   baseBeta: null,
   baseGamma: null,
+  baseAccX: null,
+  baseAccY: null,
   permissionAsked: false
+};
+
+let shakeState = {
+  lastX: null,
+  lastY: null,
+  lastZ: null,
+  lastShakeT: 0
 };
 
 function handleOrientation(e) {
   if (e.gamma === null || e.beta === null) return;
-  parallax.gyroActive = true;
+  if (e.gamma === 0 && e.beta === 0) return;
+  parallax.orientationActive = true;
   if (parallax.baseBeta === null) {
     parallax.baseBeta = e.beta;
     parallax.baseGamma = e.gamma;
   }
   const dGamma = e.gamma - parallax.baseGamma;
   const dBeta  = e.beta  - parallax.baseBeta;
-  parallax.tx = clamp(dGamma / 24, -1.2, 1.2);
-  parallax.ty = clamp(dBeta  / 24, -1.2, 1.2);
+  parallax.tx = clamp(dGamma / 15, -1.8, 1.8);
+  parallax.ty = clamp(dBeta  / 15, -1.8, 1.8);
+}
+
+function triggerPhoneShakeEffect() {
+  const nowS = performance.now() / 1000;
+  if (nowS - shakeState.lastShakeT < 1.3) return;
+  shakeState.lastShakeT = nowS;
+
+  autoStartMusic();
+
+  // Nếu đang ở màn hình mở đầu (Intro) mà lắc điện thoại -> Kích hoạt ngôi sao ước nguyện nở hoa luôn!
+  if (state === 'intro' && starPos.ready) {
+    spawnWishBurst(starPos.cx, starPos.cy);
+    startBloom('card');
+    return;
+  }
+
+  // Nếu đang ở Vườn hoa hoặc Thiệp -> Nổi gió lớn, mưa cánh hoa, sao băng, mèo nhảy tưng tưng & chuông gió!
+  const dir = Math.random() < 0.5 ? 1 : -1;
+  windGust.active = true;
+  windGust.t0 = now();
+  windGust.dur = 2.6;
+  windGust.dir = dir;
+  windGust.strength = 28;
+  windGust.env = 1.0;
+
+  triggerWindChaos(dir, rr(-0.3, 0.3));
+  spawnShootingStar();
+  spawnShootingStar();
+  playWindChimeArpeggio(dir);
+
+  if (loafEyesNormal && loafEyesWindy) {
+    loafEyesNormal.style.display = 'none';
+    loafEyesWindy.style.display = 'block';
+    catLoafBox.classList.add('wind-happy');
+  }
+
+  catSquad.forEach((cat, i) => {
+    setTimeout(() => {
+      cat.jumpV = -145;
+      cat.jumpY = -3;
+    }, i * 70);
+  });
+
+  catBubble.innerHTML = 'Oa~ Minh Anh vừa lắc điện thoại kìa! Mưa hoa & sao băng rơi ngập trời luôn 😻🌸🌠';
+  lovePop(W * 0.5 + rr(-60, 60), H * 0.45, 'Mưa sao băng tặng Minh Anh ✨♡');
+}
+
+function handleMotion(e) {
+  const acc = e.accelerationIncludingGravity || e.acceleration;
+  if (!acc || acc.x === null) return;
+  parallax.motionActive = true;
+
+  // 1. Dùng gia tốc trọng trường làm 3D Parallax dự phòng nếu trình duyệt (như Brave) chặn deviceorientation
+  if (!parallax.orientationActive) {
+    if (parallax.baseAccX === null) {
+      parallax.baseAccX = acc.x;
+      parallax.baseAccY = acc.y;
+    }
+    const dx = -(acc.x - parallax.baseAccX);
+    const dy =  (acc.y - parallax.baseAccY);
+    parallax.tx = clamp(dx / 3.5, -1.8, 1.8);
+    parallax.ty = clamp(dy / 3.5, -1.8, 1.8);
+  }
+
+  // 2. Nhận diện LẮC ĐIỆN THOẠI (Shake Detection)
+  if (shakeState.lastX !== null) {
+    const deltaX = Math.abs(acc.x - shakeState.lastX);
+    const deltaY = Math.abs(acc.y - shakeState.lastY);
+    const deltaZ = Math.abs((acc.z || 0) - shakeState.lastZ);
+    if (deltaX + deltaY + deltaZ > 18.5) {
+      triggerPhoneShakeEffect();
+    }
+  }
+  shakeState.lastX = acc.x;
+  shakeState.lastY = acc.y;
+  shakeState.lastZ = acc.z || 0;
 }
 
 function initGyroscope() {
   if (parallax.permissionAsked) return;
   parallax.permissionAsked = true;
+
   if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
     DeviceOrientationEvent.requestPermission()
       .then(res => {
-        if (res === 'granted') {
-          window.addEventListener('deviceorientation', handleOrientation, true);
-        }
+        if (res === 'granted') window.addEventListener('deviceorientation', handleOrientation, true);
       })
       .catch(() => {});
-  } else if (typeof DeviceOrientationEvent !== 'undefined') {
-    window.addEventListener('deviceorientation', handleOrientation, true);
+  }
+  if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
+    DeviceMotionEvent.requestPermission()
+      .then(res => {
+        if (res === 'granted') window.addEventListener('devicemotion', handleMotion, true);
+      })
+      .catch(() => {});
   }
 }
+
 window.addEventListener('deviceorientation', handleOrientation, true);
+window.addEventListener('devicemotion', handleMotion, true);
 
 function updateParallax(dt) {
-  const k = Math.min(1, dt * 6.5);
+  const k = Math.min(1, dt * 7.5);
   parallax.x += (parallax.tx - parallax.x) * k;
   parallax.y += (parallax.ty - parallax.y) * k;
 }
@@ -1786,8 +1943,8 @@ function drawRealisticMoon(dt, t) {
   if (!moonSprite) buildMoonSprite();
   if (moonPulseBoost > 0) moonPulseBoost = Math.max(0, moonPulseBoost - dt * 1.2);
 
-  const mx = moonWorld.x - parallax.x * 16;
-  const my = moonWorld.y - parallax.y * 12;
+  const mx = moonWorld.x - parallax.x * 28;
+  const my = moonWorld.y - parallax.y * 20;
   const renderScale = moonWorld.r / 240;
   const pulse = 0.96 + 0.04 * Math.sin(t * 1.4) + moonPulseBoost * 0.25;
 
@@ -1850,8 +2007,8 @@ const CANCER_LINES = [
 function drawCancerConstellation(dt, t) {
   if (cancerPulseBoost > 0) cancerPulseBoost = Math.max(0, cancerPulseBoost - dt * 1.1);
 
-  const cx = (mobile ? W * 0.36 : W * 0.53) - parallax.x * 12;
-  const cy = (mobile ? H * 0.30 : H * 0.21) - parallax.y * 8;
+  const cx = (mobile ? W * 0.36 : W * 0.53) - parallax.x * 22;
+  const cy = (mobile ? H * 0.30 : H * 0.21) - parallax.y * 15;
   const sc = mobile ? 0.74 : 1.08;
 
   cancerWorldCenter = { x: cx, y: cy, r: 68 * sc };
@@ -1929,7 +2086,7 @@ function drawCancerConstellation(dt, t) {
 }
 
 function drawSeamlessGalaxySky(dt, t) {
-  const px = -parallax.x * 10, py = -parallax.y * 7;
+  const px = -parallax.x * 18, py = -parallax.y * 12;
   const nebulae = [
     { x: W * 0.28, y: H * 0.32, rx: W * 0.48, ry: H * 0.34, col: '160, 70, 245', a: 0.22, drift: 0.06 },
     { x: W * 0.55, y: H * 0.22, rx: W * 0.52, ry: H * 0.32, col: '235, 85, 180', a: 0.20, drift: -0.05 },
@@ -2046,7 +2203,7 @@ function spawnShootingStar() {
 function updateAndDrawStars(dt, t, d) {
   drawSeamlessGalaxySky(dt, t);
 
-  const px = -parallax.x * 10, py = -parallax.y * 7;
+  const px = -parallax.x * 18, py = -parallax.y * 12;
   stars.forEach(st => {
     const twinkle = 0.32 + 0.68 * (0.5 + 0.5 * Math.sin(t * st.sp + st.ph));
     const alpha = (d ? 0.94 : 0.85) * twinkle;
@@ -2562,9 +2719,9 @@ let breezeWaves = [];
 let cursorTrail = [];
 
 function onPointerMove(px, py) {
-  if (!parallax.gyroActive && W > 0 && H > 0) {
-    parallax.tx = ((px / W) - 0.5) * 1.4;
-    parallax.ty = ((py / H) - 0.5) * 1.4;
+  if (!parallax.orientationActive && !parallax.motionActive && W > 0 && H > 0) {
+    parallax.tx = ((px / W) - 0.5) * 1.5;
+    parallax.ty = ((py / H) - 0.5) * 1.5;
   }
 
   const [cx, cy] = s2c(px, py);
@@ -2938,7 +3095,7 @@ function drawMiniMeadowBlossom(c, x, y, mf, sway) {
 
 function drawLushMeadowBack(t, baseHillY, growAlpha) {
   if (growAlpha <= 0.01) return;
-  const px = parallax.x * 20, py = parallax.y * 10;
+  const px = parallax.x * 32, py = parallax.y * 16;
 
   ctx.save();
   ctx.globalAlpha = growAlpha;
@@ -2966,7 +3123,7 @@ function drawLushMeadowBack(t, baseHillY, growAlpha) {
 
 function drawLushMeadowFront(t, baseHillY, gustOffset, growAlpha) {
   if (growAlpha <= 0.01) return;
-  const px = parallax.x * 26, py = parallax.y * 13;
+  const px = parallax.x * 44, py = parallax.y * 22;
   const hillY = baseHillY + py;
 
   ctx.save();
@@ -3347,7 +3504,7 @@ function updateAndDrawCats(dt, t, baseHillY, bloomTimeElapsed) {
   const runDuration = 2.1;
   const runProg = clamp((bloomTimeElapsed - runStartTime) / runDuration, 0, 1);
   const easeRun = 1 - Math.pow(1 - runProg, 3);
-  const px = parallax.x * 26, py = parallax.y * 13;
+  const px = parallax.x * 44, py = parallax.y * 22;
 
   catSquad.forEach((cat, idx) => {
     const ratio = mobile ? [0.11, 0.30, 0.50, 0.68][idx] : [0.13, 0.30, 0.66, 0.80][idx];
@@ -3388,7 +3545,7 @@ const catGuide = $('catGuide');
 const catBubble = $('catBubble');
 
 const catSpeechList = [
-  'Meow~ Nàng thơ Minh Anh chạm vào vì sao lấp lánh kìa! ✨⭐',
+  'Meow~ Lắc nhẹ điện thoại hoặc lướt tay qua hoa xem điều kỳ diệu kìa! 📱✨',
   'Lướt nhẹ tay qua hoa nghe tiếng hộp nhạc Kalimba ngân vang kìa~ 🎶🌸',
   'Nhìn lên bầu trời kìa, có chòm sao Cự Giải 24/06 của Minh Anh đó! 🦀✨',
   'Thiện Tâm chuẩn bị cả bầu trời ngân hà này dành tặng riêng Minh Anh đó! 😻💗'
@@ -3440,10 +3597,10 @@ function setState(s) {
     catBubble.innerHTML = 'Oa... khung cảnh từ Mặt Trăng mở rộng ra cả khu vườn ngân hà vì Minh Anh kìa! 😻🌸';
   } else if (s === 'card') {
     startCardStaggerReveal();
-    catBubble.innerHTML = 'Bức thư ngọt ngào Thiện Tâm gửi riêng nàng thơ Minh Anh ♡';
+    catBubble.innerHTML = 'Chạm nút ✕ hoặc chạm ra ngoài thiệp để ngắm vườn hoa nha ♡';
   } else if (s === 'garden') {
     showFullCardInstantly();
-    catBubble.innerHTML = 'Lướt nhẹ tay qua hoa nghe tiếng hộp nhạc Kalimba ngân vang kìa~ 🎶🌸';
+    catBubble.innerHTML = 'Lắc nhẹ điện thoại hoặc lướt tay qua hoa nghe tiếng đàn Kalimba nha~ 📱🎶';
   }
 }
 
@@ -3546,8 +3703,8 @@ function drawFlower(f, t, windGustOffset = 0, stemRootY = H - 25) {
   if (g <= 0) return;
 
   const depthFactor = f.layer === 2 ? 1.0 : (f.layer === 1 ? 0.72 : 0.48);
-  const px = parallax.x * 22 * depthFactor;
-  const py = parallax.y * 11 * depthFactor;
+  const px = parallax.x * 38 * depthFactor;
+  const py = parallax.y * 18 * depthFactor;
 
   const gs = eoc(clamp(g / .75)), b = clamp((g - .4) / .6);
   const targetFlowerY = f.y + py;
@@ -3632,7 +3789,7 @@ function drawIntroStar(t) {
   drawWishStar(ctx, x, y, size, t, 0);
 
   if (k >= 1) {
-    if (!arrived) { arrived = true; catBubble.innerHTML = 'Meow~ <span class="spark-txt">Chạm vào vì sao lấp lánh</span> ở giữa kìa Minh Anh ơi! ✨'; }
+    if (!arrived) { arrived = true; catBubble.innerHTML = 'Meow~ <span class="spark-txt">Chạm vào vì sao</span> hoặc lắc nhẹ điện thoại kìa Minh Anh ơi! ✨'; }
     const e = clamp((tt - FLY) / 1.2);
     ctx.save(); ctx.translate(x, y);
     ctx.strokeStyle = '#ffd1e4'; ctx.lineWidth = 1.5 / camS;
@@ -3714,8 +3871,8 @@ function updateAndDrawMagic(dt, t, gain) {
   ctx.globalCompositeOperation = 'lighter';
 
   for (const f of fireflies) {
-    const x = (f.x + Math.sin(t * f.sp + f.ph) * .03) * W + parallax.x * 18;
-    const y = (f.y + Math.cos(t * f.sp * .8 + f.ph) * .03) * H + parallax.y * 10;
+    const x = (f.x + Math.sin(t * f.sp + f.ph) * .03) * W + parallax.x * 28;
+    const y = (f.y + Math.cos(t * f.sp * .8 + f.ph) * .03) * H + parallax.y * 14;
     const a = gain * (.30 + .58 * Math.max(0, Math.sin(t * 1.6 + f.ph * 3))), R = f.r * 6;
     const g = ctx.createRadialGradient(x, y, 0, x, y, R);
     g.addColorStop(0, `rgba(255,232,145,${a})`); g.addColorStop(1, 'rgba(255,190,100,0)');
@@ -3726,8 +3883,8 @@ function updateAndDrawMagic(dt, t, gain) {
     ctx.globalAlpha = gain;
     butterflies.forEach(bf => {
       const ang = t * bf.sp + bf.ph;
-      const bx = bf.cx * W + Math.cos(ang) * bf.rx + windGust.env * windGust.dir * 25 + parallax.x * 20;
-      const by = bf.cy * H + Math.sin(ang * 2) * bf.ry + parallax.y * 10;
+      const bx = bf.cx * W + Math.cos(ang) * bf.rx + windGust.env * windGust.dir * 25 + parallax.x * 32;
+      const by = bf.cy * H + Math.sin(ang * 2) * bf.ry + parallax.y * 15;
       const dx = -Math.sin(ang) * bf.rx * bf.sp;
       const dy = Math.cos(ang * 2) * bf.ry * bf.sp * 2;
       const heading = Math.atan2(dy, dx) + Math.PI * 0.5;
@@ -3824,8 +3981,8 @@ function frame(ts) {
     // 2. Mây trôi dịu nhẹ
     ctx.globalAlpha = d ? .14 : .45;
     for (const c of clouds) {
-      const cy = c.ny * H - parallax.y * 8;
-      ctx.drawImage(cloud, ((c.nx * W + t * c.v) % (W + 520)) - 260 - parallax.x * 12, cy, 420 * c.s, 160 * c.s);
+      const cy = c.ny * H - parallax.y * 14;
+      ctx.drawImage(cloud, ((c.nx * W + t * c.v) % (W + 520)) - 260 - parallax.x * 20, cy, 420 * c.s, 160 * c.s);
     }
     ctx.globalAlpha = 1;
 
@@ -3839,7 +3996,7 @@ function frame(ts) {
       ctx.save();
       ctx.globalAlpha = easeGrow * 0.94;
       const canopySway = Math.sin(t * 1.1) * 0.015 + gustOffset * 0.0012;
-      ctx.translate(parallax.x * 12, parallax.y * 6);
+      ctx.translate(parallax.x * 22, parallax.y * 11);
       ctx.rotate(canopySway);
       ctx.scale(0.85 + 0.15 * easeGrow, 0.85 + 0.15 * easeGrow);
       ctx.drawImage(sakuraCanopyCanvas, -sakuraCanopyPad, -sakuraCanopyPad, sakuraCanopyW, sakuraCanopyH);
@@ -3867,7 +4024,7 @@ function frame(ts) {
     if (state === 'intro') {
       drawIntroStar(t);
     } else {
-      const pxHero = parallax.x * 18, pyHero = parallax.y * 9;
+      const pxHero = parallax.x * 30, pyHero = parallax.y * 15;
       const heroFlutter = windGust.active ? Math.sin(t * 8.5 + 1.2) * (hero.R * 0.10) * windGust.env : 0;
       const heroSway = Math.sin(t * hero.sp + hero.ph) * hero.sw + (hero.physX || 0) + gustOffset * 0.82 + heroFlutter;
       const heroBendDip = Math.min(18, (heroSway * heroSway) * 0.0055);
@@ -3944,6 +4101,14 @@ cv.addEventListener('pointerdown', e => {
   autoStartMusic();
   onPointerMove(e.clientX, e.clientY);
 
+  // Khi đang mở bảng thiệp mà người dùng chạm ra ngoài vùng thiệp -> Tự động đóng thiệp thu nhỏ về góc!
+  if (state === 'card') {
+    showFullCardInstantly();
+    setState('garden');
+    playKalimbaNote(KALIMBA_SCALE[5], 0.06, 1.0);
+    return;
+  }
+
   if (state === 'garden') {
     const [wx, wy] = s2c(e.clientX, e.clientY);
 
@@ -3959,8 +4124,8 @@ cv.addEventListener('pointerdown', e => {
     }
 
     // 2. Kiểm tra chạm vào Mặt Trăng
-    const mx = moonWorld.x - parallax.x * 16;
-    const my = moonWorld.y - parallax.y * 12;
+    const mx = moonWorld.x - parallax.x * 28;
+    const my = moonWorld.y - parallax.y * 20;
     if (Math.hypot(wx - mx, wy - my) < moonWorld.r * 1.2) {
       moonPulseBoost = 1.0;
       spawnWishBurst(mx, my);
@@ -4001,6 +4166,15 @@ cv.addEventListener('pointerdown', e => {
     spawnWishBurst(starPos.cx, starPos.cy);
     startBloom('card');
   }
+});
+
+// Nút ✕ ở góc phải trên của thiệp
+closeCardBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  showFullCardInstantly();
+  setState('garden');
+  autoStartMusic();
+  playKalimbaNote(KALIMBA_SCALE[6], 0.07, 1.0);
 });
 
 cardEl.addEventListener('click', e => {
