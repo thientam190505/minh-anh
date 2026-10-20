@@ -1,0 +1,4045 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gửi Minh Anh · Nàng Thơ Của Thiện Tâm</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --s1: #040314; /* Deep rich galactic night */
+  --s2: #0f0829; /* Vivid cosmic indigo-violet */
+  --s3: #1e0f3d; /* Saturated twilight purple */
+  --s4: #2d144b; /* Rich magenta-dusk horizon */
+  --ink: #fff8fc;
+  --soft: #e2c8da;
+  --line: rgba(255, 225, 242, 0.48);
+  --pill: rgba(28, 18, 48, 0.86);
+  --glow: rgba(210, 130, 250, 0.65);
+  --btn: #eb6892;
+  --btnink: #fff;
+  --shadow: rgba(8, 3, 22, 0.55);
+  color-scheme: dark;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  position: fixed;
+  inset: 0;
+  background: var(--s1);
+  color: var(--ink);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 500;
+  touch-action: none;
+}
+
+#c {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: linear-gradient(180deg, var(--s1) 0%, var(--s2) 40%, var(--s3) 76%, var(--s4) 100%);
+  z-index: 1;
+}
+
+[data-s=intro] #c {
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Header: Title & Social Profile Pills (Viền 7 màu chuyển động liên tục)
+   ========================================================================== */
+.top-left-header {
+  position: fixed;
+  top: calc(env(safe-area-inset-top, 0px) + 10px);
+  left: 14px;
+  z-index: 28;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.tag {
+  font-style: italic;
+  font-size: clamp(13.5px, 3.5vw, 17px);
+  color: #ffe8f2;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.75), 0 0 16px rgba(255, 140, 200, 0.8);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.tag .heart {
+  color: #ff4d7e;
+  display: inline-block;
+  animation: heartPulse 1.8s infinite ease-in-out;
+  flex-shrink: 0;
+}
+
+@keyframes heartPulse {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.35); }
+  45% { transform: scale(1); }
+}
+
+.social-links-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+  pointer-events: auto;
+}
+
+@keyframes rainbowFlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.social-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px 5px 6px;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(rgba(14, 11, 28, 0.90), rgba(14, 11, 28, 0.90)) padding-box,
+    linear-gradient(90deg, #ff2a5f, #ff8800, #ffee00, #00e676, #00e5ff, #7c4dff, #ff2a9d, #ff2a5f) border-box;
+  background-size: 100% 100%, 200% 100%;
+  animation: rainbowFlow 3.2s linear infinite;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 12px rgba(255, 120, 210, 0.28);
+  text-decoration: none;
+  color: #f6f7ff;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  transition: transform 0.22s cubic-bezier(0.18, 0.9, 0.3, 1.3), box-shadow 0.22s ease;
+}
+
+.social-pill:hover {
+  transform: translateX(3px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 18px rgba(255, 150, 230, 0.55);
+}
+
+.social-pill:active {
+  transform: scale(0.96);
+}
+
+.social-icon-fb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #1877F2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(24, 119, 242, 0.5);
+}
+
+.social-icon-fb svg {
+  width: 14px;
+  height: 14px;
+  fill: #ffffff;
+}
+
+.social-icon-tt {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: #141418;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.social-icon-tt svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ==========================================================================
+   Top-Right Music Player & Dual Volume Mixer (Nhạc nền + Đàn Kalimba)
+   ========================================================================== */
+.music-cluster {
+  position: fixed;
+  top: calc(env(safe-area-inset-top, 0px) + 10px);
+  right: 14px;
+  z-index: 27;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.music-player-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  background: rgba(25, 16, 42, 0.68);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 4px 11px 4px 5px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 210, 235, 0.5);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.38);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.music-player-wrap:hover {
+  transform: scale(1.03);
+  background: rgba(40, 24, 62, 0.82);
+}
+
+.music-player-wrap:active {
+  transform: scale(0.97);
+}
+
+.vinyl-disc {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #2b2b2b 0%, #151515 65%, #000 100%);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.45), inset 0 0 0 2px rgba(255, 255, 255, 0.15);
+  animation: spinVinyl 3.6s linear infinite;
+  animation-play-state: paused;
+  flex-shrink: 0;
+}
+
+.music-player-wrap.playing .vinyl-disc {
+  animation-play-state: running;
+}
+
+.vinyl-disc::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.25);
+}
+
+.vinyl-center {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ff94af 0%, #e05c84 100%);
+  border: 1.5px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 7px;
+  color: #fff;
+}
+
+@keyframes spinVinyl {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.music-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.music-title {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  white-space: nowrap;
+}
+
+.music-sub {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 9.5px;
+  font-weight: 500;
+  color: #ffdce6;
+  white-space: nowrap;
+}
+
+.audio-mixer {
+  background: rgba(22, 14, 38, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 210, 235, 0.38);
+  border-radius: 14px;
+  padding: 6px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  width: 162px;
+}
+
+.mixer-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mixer-btn {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: #ffe6f0;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  width: 48px;
+  flex-shrink: 0;
+  cursor: pointer;
+  text-align: left;
+  opacity: 0.95;
+}
+
+.mixer-btn.muted {
+  opacity: 0.45;
+  text-decoration: line-through;
+}
+
+.mixer-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.22);
+  outline: none;
+  cursor: pointer;
+}
+
+.mixer-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff85b3;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.mixer-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.mixer-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff85b3;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.note-particle {
+  position: absolute;
+  font-size: 13px;
+  color: #ffd1df;
+  pointer-events: none;
+  animation: floatNote 2s forwards ease-out;
+  z-index: 40;
+}
+
+@keyframes floatNote {
+  0% { opacity: 1; transform: translate(0, 0) scale(0.8); }
+  100% { opacity: 0; transform: translate(-20px, -45px) scale(1.3); }
+}
+
+@media (max-width: 600px) {
+  .top-left-header {
+    top: calc(env(safe-area-inset-top, 0px) + 6px);
+    left: 10px;
+    gap: 6px;
+  }
+  .tag {
+    font-size: 13.5px;
+  }
+  .social-links-stack {
+    gap: 5px;
+  }
+  .social-pill {
+    padding: 4px 11px 4px 5px;
+    font-size: 11.5px;
+    gap: 6px;
+  }
+  .social-icon-fb, .social-icon-tt {
+    width: 20px;
+    height: 20px;
+  }
+  .social-icon-fb svg, .social-icon-tt svg {
+    width: 12px;
+    height: 12px;
+  }
+  .music-cluster {
+    top: calc(env(safe-area-inset-top, 0px) + 30px);
+    right: 10px;
+    gap: 5px;
+  }
+  .music-player-wrap {
+    padding: 3px 9px 3px 4px;
+    gap: 6px;
+  }
+  .vinyl-disc {
+    width: 28px;
+    height: 28px;
+  }
+  .music-title {
+    font-size: 11px;
+  }
+  .music-sub {
+    font-size: 8.5px;
+  }
+  .audio-mixer {
+    width: 144px;
+    padding: 5px 8px;
+    gap: 4px;
+  }
+  .mixer-btn {
+    font-size: 10px;
+    width: 44px;
+  }
+}
+
+/* ==========================================================================
+   Cat Guide / Narrator (Mèo cam béo ngồi dáng bánh mì)
+   ========================================================================== */
+.cat-guide-wrap {
+  position: fixed;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 12px);
+  right: 16px;
+  z-index: 22;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  cursor: pointer;
+  pointer-events: none;
+}
+
+.cat-speech-bubble {
+  pointer-events: auto;
+  background: rgba(255, 250, 252, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid #ff9ec0;
+  border-radius: 18px 18px 4px 18px;
+  padding: 7px 13px;
+  box-shadow: 0 8px 24px rgba(20, 8, 25, 0.45);
+  margin-bottom: 5px;
+  max-width: 235px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #4a2535;
+  line-height: 1.35;
+  text-align: right;
+  position: relative;
+  animation: floatBubble 3s infinite ease-in-out;
+  transition: all 0.35s ease;
+}
+
+.cat-speech-bubble .spark-txt {
+  color: #e64978;
+  font-weight: 700;
+}
+
+@keyframes floatBubble {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.cat-loaf-container {
+  pointer-events: auto;
+  width: 108px;
+  height: 76px;
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.18, 0.9, 0.3, 1.3);
+}
+
+.cat-loaf-container:hover {
+  transform: scale(1.08) translateY(-2px);
+}
+
+.cat-loaf-container:active {
+  transform: scale(0.95) translateY(2px);
+}
+
+.cat-loaf-container.wind-happy {
+  animation: catWindBreeze 0.48s infinite ease-in-out;
+}
+
+@keyframes catWindBreeze {
+  0%, 100% { transform: rotate(0deg) scale(1.04); }
+  50% { transform: rotate(-4deg) scale(1.08) translateY(-2px); }
+}
+
+.cat-loaf-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 6px 14px rgba(10, 20, 15, 0.55));
+}
+
+@media (max-width: 760px) {
+  .cat-guide-wrap {
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 58px);
+    right: 10px;
+  }
+  .cat-loaf-container {
+    width: 86px;
+    height: 60px;
+  }
+  .cat-speech-bubble {
+    max-width: 195px;
+    font-size: 11.5px;
+    padding: 6px 11px;
+  }
+}
+
+/* Stage 1: Intro Title */
+.title {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: calc(env(safe-area-inset-top, 0px) + 17%);
+  padding: 0 24px;
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .9s ease, transform .9s ease;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.75), 0 0 26px rgba(255, 190, 225, 0.65);
+  z-index: 5;
+}
+
+[data-s=intro] .title {
+  opacity: 1;
+  transform: none;
+  transition-duration: 1.4s;
+  transition-delay: 3.4s;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: clamp(28px, min(7.2vw, 9vh), 56px);
+  line-height: 1.15;
+  letter-spacing: .01em;
+  color: #fff9fb;
+}
+
+.title p {
+  margin-top: 10px;
+  font-style: italic;
+  font-size: clamp(16px, 3.5vw, 23px);
+  color: #ffd8e6;
+}
+
+/* Stage 2: Blooming Status */
+.status {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 18px);
+  padding: 0 16px;
+  text-align: center;
+  font-style: italic;
+  font-size: clamp(15px, 3.2vw, 19px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .8s ease;
+  z-index: 25;
+}
+
+.status span {
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 99px;
+  background: var(--pill);
+  box-shadow: 0 8px 24px var(--shadow);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+[data-s=blooming] .status {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Stage 3: Luxury Crystal Frosted-Glass Greeting Card (Dễ thương & Nhìn xuyên nhẹ)
+   ========================================================================== */
+.card {
+  position: fixed;
+  top: 50%;
+  right: 50%;
+  width: 92%;
+  max-width: 468px;
+  max-height: 88vh;
+  max-height: 88dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 24px 28px 22px;
+  text-align: center;
+  /* Hiệu ứng kính mờ pha lê nhìn xuyên qua nhẹ nhàng thấy vườn hoa phía sau */
+  background: linear-gradient(
+    145deg,
+    rgba(62, 32, 88, 0.42) 0%,
+    rgba(28, 15, 48, 0.34) 52%,
+    rgba(72, 30, 82, 0.40) 100%
+  );
+  -webkit-backdrop-filter: blur(13px) saturate(165%);
+  backdrop-filter: blur(13px) saturate(165%);
+  border: 1.5px solid rgba(255, 220, 240, 0.52);
+  border-radius: 32px;
+  box-shadow:
+    0 24px 60px rgba(6, 2, 18, 0.52),
+    0 0 38px rgba(255, 130, 190, 0.24),
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.65),
+    inset 0 -1.5px 2px rgba(255, 175, 215, 0.30);
+  opacity: 0;
+  visibility: hidden;
+  transform-origin: top right;
+  transform: translate(50%, -46%) scale(0.95);
+  transition: opacity .55s cubic-bezier(0.16, 1, 0.3, 1),
+              transform .65s cubic-bezier(0.16, 1, 0.3, 1),
+              top .65s cubic-bezier(0.16, 1, 0.3, 1),
+              right .65s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow .3s ease;
+  z-index: 40;
+}
+
+/* Viền chỉ mảnh ánh hồng kim lấp lánh bên trong khung thiệp */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 9px;
+  border-radius: 24px;
+  border: 1px dashed rgba(255, 215, 235, 0.34);
+  pointer-events: none;
+}
+
+[data-s=card] .card {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%) scale(1);
+}
+
+/* Hoa văn trang trí 4 góc thiệp */
+.card-corner {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  opacity: 0.85;
+  filter: drop-shadow(0 0 6px rgba(255, 160, 205, 0.6));
+}
+.card-corner.tl { top: 13px; left: 13px; }
+.card-corner.tr { top: 13px; right: 13px; transform: scaleX(-1); }
+.card-corner.bl { bottom: 13px; left: 13px; transform: scaleY(-1); }
+.card-corner.br { bottom: 13px; right: 13px; transform: scale(-1, -1); }
+
+/* Cụm bé mèo trắng đội hoa anh đào dễ thương ở đầu thiệp */
+.card-cute-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 4px;
+  position: relative;
+}
+
+.card-kitty-svg {
+  width: 136px;
+  height: 58px;
+  filter: drop-shadow(0 4px 10px rgba(255, 120, 175, 0.38));
+  animation: floatCat 3.2s infinite ease-in-out;
+}
+
+@keyframes floatCat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.stagger-item {
+  opacity: 0;
+  filter: blur(7px);
+  transform: translateY(15px) scale(0.985);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, filter, transform;
+}
+
+.stagger-item.visible {
+  opacity: 1;
+  filter: blur(0px);
+  transform: translateY(0) scale(1);
+}
+
+.card.instant-reveal .stagger-item {
+  transition: none !important;
+  opacity: 1 !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+/* Khi ở garden: Thiệp thu nhỏ về góc phải trên, nằm dưới khung nhạc + chỉnh âm lượng */
+[data-s=garden] .card {
+  opacity: 0.95;
+  visibility: visible;
+  pointer-events: auto;
+  cursor: pointer;
+  top: calc(env(safe-area-inset-top, 0px) + 122px);
+  right: 14px;
+  transform-origin: top right;
+  transform: translate(0, 0) scale(0.26);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55), 0 0 22px rgba(255, 130, 185, 0.45), 0 0 0 2px rgba(255, 240, 248, 0.8);
+  overflow: hidden;
+  animation: floatMiniCard 4s infinite ease-in-out;
+  z-index: 26;
+}
+
+[data-s=garden] .card:hover {
+  animation: none;
+  transform: translate(0, -4px) scale(0.29);
+  box-shadow: 0 20px 50px rgba(235, 104, 146, 0.55), 0 0 28px rgba(255, 150, 190, 0.6), 0 0 0 2.5px rgba(255, 255, 255, 0.95);
+}
+
+@keyframes floatMiniCard {
+  0%, 100% { transform: translate(0, 0) scale(0.26); }
+  50% { transform: translate(0, -6px) scale(0.26); }
+}
+
+[data-s=garden] .card #view {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding: 20px 20px 18px;
+  }
+  [data-s=garden] .card {
+    top: calc(env(safe-area-inset-top, 0px) + 144px);
+    right: 10px;
+    transform: translate(0, 0) scale(0.21);
+  }
+  [data-s=garden] .card:hover {
+    transform: translate(0, -3px) scale(0.23);
+  }
+  @keyframes floatMiniCard {
+    0%, 100% { transform: translate(0, 0) scale(0.21); }
+    50% { transform: translate(0, -5px) scale(0.21); }
+  }
+}
+
+.card::-webkit-scrollbar {
+  width: 4px;
+}
+.card::-webkit-scrollbar-thumb {
+  background: rgba(255, 180, 210, 0.45);
+  border-radius: 4px;
+}
+
+.to {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(22px, 5vw, 25.5px);
+  color: #ffb8d2;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-shadow: 0 2px 10px rgba(15, 5, 28, 0.85), 0 0 14px rgba(255, 120, 175, 0.45);
+}
+
+h2 {
+  margin: 6px 0 8px;
+  font-weight: 700;
+  font-size: clamp(22px, 5.4vw, 27.5px);
+  line-height: 1.22;
+  color: #ffffff;
+  text-shadow: 0 2px 12px rgba(15, 5, 28, 0.9), 0 0 20px rgba(255, 160, 205, 0.5);
+}
+
+/* Dải phân cách trái tim lấp lánh dưới tiêu đề */
+.card-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 auto 12px;
+  width: 75%;
+}
+.card-divider::before,
+.card-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 195, 225, 0.7), transparent);
+}
+.card-divider span {
+  font-size: 12px;
+  color: #ff9ec4;
+  text-shadow: 0 0 8px rgba(255, 130, 185, 0.8);
+}
+
+.card p {
+  margin-bottom: 11px;
+  font-size: clamp(15.5px, 3.6vw, 17.8px);
+  line-height: 1.62;
+  text-align: justify;
+  text-align-last: center;
+  color: #fff6fb;
+  /* Đổ bóng chữ mịn để trên nền kính trong suốt chữ vẫn nổi bật, sắc nét 100% */
+  text-shadow: 0 1px 8px rgba(12, 5, 24, 0.92), 0 2px 14px rgba(12, 5, 24, 0.75);
+}
+
+.card .to {
+  margin-bottom: 0;
+}
+
+.card .sign {
+  margin-top: 8px;
+  margin-bottom: 14px;
+  font-family: 'Caveat', cursive;
+  font-size: clamp(22px, 5vw, 25.5px);
+  color: #ffb3cf;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(15, 5, 28, 0.9), 0 0 16px rgba(255, 115, 170, 0.55);
+}
+
+button {
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  border: 0;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+#view {
+  padding: 10px 30px;
+  border-radius: 99px;
+  background: linear-gradient(135deg, rgba(255, 140, 180, 0.92) 0%, rgba(225, 85, 135, 0.92) 100%);
+  border: 1px solid rgba(255, 230, 242, 0.75);
+  color: var(--btnink);
+  font-family: 'Quicksand', sans-serif;
+  font-size: 15.5px;
+  font-weight: 700;
+  box-shadow: 0 8px 22px rgba(220, 80, 130, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#view:hover, .pill:hover {
+  transform: translateY(-2px) scale(1.03);
+}
+
+#view:active, .pill:active {
+  transform: scale(.96);
+}
+
+/* Stage 4: Garden Action Pills */
+.pills {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 10px);
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: nowrap;
+  padding: 0 12px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity .8s ease, transform .8s ease, visibility 0s .8s;
+  z-index: 35;
+}
+
+[data-s=garden] .pills {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity .8s ease, transform .8s ease;
+}
+
+.pill {
+  pointer-events: auto;
+  padding: 9px 18px;
+  border-radius: 99px;
+  font-size: clamp(14px, 3.6vw, 16px);
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--pill);
+  border: 1px solid var(--line);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 6px 18px var(--shadow);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.pill.primary {
+  background: linear-gradient(135deg, rgba(245, 132, 163, 0.95) 0%, rgba(219, 91, 126, 0.95) 100%);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* ===== Vignette nhẹ nhàng & Hiệu ứng chữ ===== */
+body::after{content:'';position:fixed;inset:0;z-index:3;pointer-events:none;background:radial-gradient(ellipse at 50% 55%,transparent 62%,rgba(8,4,18,.40) 100%)}
+.card .days{font-family:'Caveat',cursive;font-size:clamp(20px,4.6vw,24px);color:#ff9fbe;text-align:center;margin-bottom:6px}
+.card .days b{font-size:1.3em;color:#ffc2d4}
+.love-pop{position:fixed;z-index:45;pointer-events:none;white-space:nowrap;font-family:'Caveat',cursive;font-weight:700;font-size:clamp(22px,5vw,30px);color:#ffe6ef;text-shadow:0 0 12px rgba(255,120,170,.95),0 2px 8px rgba(0,0,0,.5);transform:translate(-50%,-50%);animation:lovePop 2.8s ease-out forwards}
+@keyframes lovePop{0%{opacity:0;transform:translate(-50%,-30%) scale(.6)}15%{opacity:1;transform:translate(-50%,-70%) scale(1.1)}100%{opacity:0;transform:translate(-50%,-260%) scale(1)}}
+</style>
+</head>
+<body data-s="intro">
+<canvas id="c" aria-hidden="true"></canvas>
+
+<!-- Background Music Audio Element -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="music/nang-am-trong-tim.mp3" type="audio/mpeg">
+  <source src="music/NắngẤmTrongTim.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Top-Left Header & Minh Anh's Social Links (Viền 7 màu chuyển động liên tục) -->
+<div class="top-left-header">
+  <div class="tag">
+    <span>Dành tặng Minh Anh, em bé của anh</span>
+    <span class="heart">♥</span>
+  </div>
+  <div class="social-links-stack">
+    <!-- Facebook Link (Mih Ann) -->
+    <a class="social-pill" href="https://www.facebook.com/aiko.ayako.7?locale=vi_VN" target="_blank" rel="noopener noreferrer" title="Đến Facebook của Mih Ann">
+      <span class="social-icon-fb">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M15.12 5.32H17V2.14A26.11 26.11 0 0 0 14.26 2c-2.72 0-4.58 1.66-4.58 4.7v2.62H6.61v3.56h3.07V22h3.68v-9.12h3.06l.46-3.56h-3.52V6.65c0-1.05.29-1.73 1.76-1.73Z"/>
+        </svg>
+      </span>
+      <span>Mih Ann</span>
+    </a>
+    <!-- TikTok Link (minhanh_miuah) -->
+    <a class="social-pill" href="https://www.tiktok.com/@minhanh_miuah" target="_blank" rel="noopener noreferrer" title="Đến TikTok của Minh Anh">
+      <span class="social-icon-tt">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M16.6 5.82s.51.5 0 0A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48Z" fill="#ffffff"/>
+          <path d="M16.1 5.32A4.28 4.28 0 0 1 15.04 2.5h-2.59v12.4a2.59 2.59 0 0 1-2.59 2.5c-.62 0-1.19-.22-1.64-.58a2.58 2.58 0 0 0 2.14 1.08 2.59 2.59 0 0 0 2.59-2.5V3h3.09c.22 1.15.86 2.14 1.76 2.78V7.3c-1.36.09-2.8-.65-3.24-1.48Z" fill="#25F4EE" opacity="0.85"/>
+          <path d="M19.84 7.3v3.09a7.35 7.35 0 0 1-4.3-1.38v6.29c0 3.15-2.55 5.7-5.69 5.7-1.63 0-3.13-.66-4.18-1.78 1.04.92 2.42 1.48 3.98 1.48 3.14 0 5.69-2.55 5.69-5.7V8.71a7.35 7.35 0 0 0 4.3 1.38V7.3h.2Z" fill="#FE2C55" opacity="0.85"/>
+        </svg>
+      </span>
+      <span>minhanh_miuah</span>
+    </a>
+  </div>
+</div>
+
+<!-- Top-Right Music Player & Dual Volume Mixer (Nhạc nền + Đàn Kalimba) -->
+<div class="music-cluster" id="musicCluster">
+  <div class="music-player-wrap" id="musicPlayer" title="Nhấn để Bật/Dừng bài hát Nắng Ấm Trong Tim">
+    <div class="vinyl-disc">
+      <div class="vinyl-center">♫</div>
+    </div>
+    <div class="music-info">
+      <div class="music-title">Nắng Ấm Trong Tim</div>
+      <div class="music-sub" id="musicStatusText">Nhấn để nghe nhạc ♪</div>
+    </div>
+  </div>
+
+  <!-- Khung điều chỉnh âm thanh Nhạc nền & Đàn Kalimba khi lướt -->
+  <div class="audio-mixer" id="audioMixer">
+    <div class="mixer-row" title="Điều chỉnh âm lượng bài hát Nắng Ấm Trong Tim">
+      <button type="button" class="mixer-btn" id="muteMusicBtn">🎵 Nhạc</button>
+      <input type="range" class="mixer-slider" id="musicVolSlider" min="0" max="1" step="0.02" value="0.75">
+    </div>
+    <div class="mixer-row" title="Điều chỉnh âm lượng tiếng đàn Kalimba & Chuông gió khi lướt qua hoa">
+      <button type="button" class="mixer-btn" id="muteChimeBtn">🎐 Đàn</button>
+      <input type="range" class="mixer-slider" id="chimeVolSlider" min="0" max="1" step="0.02" value="0.80">
+    </div>
+  </div>
+</div>
+
+<!-- Stage 1 Intro Title -->
+<div class="title">
+  <h1>Từ một vì sao ước nguyện...</h1>
+  <p>Chạm vào vì sao, một điều dịu dàng sẽ nở rộ dành cho Minh Anh</p>
+</div>
+
+<!-- Stage 2 Blooming Status -->
+<div class="status">
+  <span>Từ một vì sao ước nguyện, cả khu vườn thức giấc vì Minh Anh...</span>
+</div>
+
+<!-- Stage 3 Greeting Card (Hiệu ứng Kính Mờ Pha Lê Nhìn Xuyên Nhẹ + Mèo Trắng Dễ Thương) -->
+<section class="card" id="card" aria-hidden="true" title="Chạm để đọc lại thiệp chúc mừng gửi Minh Anh ♡">
+  <!-- 4 Góc Hoa Văn Pha Lê Hồng Kim -->
+  <svg class="card-corner tl" viewBox="0 0 28 28" fill="none">
+    <path d="M2 22V8C2 4.686 4.686 2 8 2H22" stroke="#FFB8D4" stroke-width="1.8" stroke-linecap="round"/>
+    <circle cx="8" cy="8" r="2.2" fill="#FFE699"/>
+    <path d="M14 5L15 7L17 8L15 9L14 11L13 9L11 8L13 7L14 5Z" fill="#FFD1E6"/>
+  </svg>
+  <svg class="card-corner tr" viewBox="0 0 28 28" fill="none">
+    <path d="M2 22V8C2 4.686 4.686 2 8 2H22" stroke="#FFB8D4" stroke-width="1.8" stroke-linecap="round"/>
+    <circle cx="8" cy="8" r="2.2" fill="#FFE699"/>
+    <path d="M14 5L15 7L17 8L15 9L14 11L13 9L11 8L13 7L14 5Z" fill="#FFD1E6"/>
+  </svg>
+  <svg class="card-corner bl" viewBox="0 0 28 28" fill="none">
+    <path d="M2 22V8C2 4.686 4.686 2 8 2H22" stroke="#FFB8D4" stroke-width="1.8" stroke-linecap="round"/>
+    <circle cx="8" cy="8" r="2.2" fill="#FFE699"/>
+  </svg>
+  <svg class="card-corner br" viewBox="0 0 28 28" fill="none">
+    <path d="M2 22V8C2 4.686 4.686 2 8 2H22" stroke="#FFB8D4" stroke-width="1.8" stroke-linecap="round"/>
+    <circle cx="8" cy="8" r="2.2" fill="#FFE699"/>
+  </svg>
+
+  <!-- Hình vẽ Bé Mèo Trắng Đội Hoa Anh Đào & Dấu Chân Hồng Phấn -->
+  <div class="card-cute-header stagger-item">
+    <svg class="card-kitty-svg" viewBox="0 0 150 62" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Đường lượn sóng phát sáng hai bên -->
+      <path d="M12 48Q34 42 52 48" stroke="#FFB8D4" stroke-width="1.5" stroke-linecap="round" opacity="0.75"/>
+      <path d="M98 48Q116 42 138 48" stroke="#FFB8D4" stroke-width="1.5" stroke-linecap="round" opacity="0.75"/>
+      <!-- Hoa anh đào bên trái -->
+      <g transform="translate(26, 36) rotate(-12)">
+        <circle cx="0" cy="-4.5" r="3.4" fill="#FFB3CE"/>
+        <circle cx="4.3" cy="-1.4" r="3.4" fill="#FFB3CE"/>
+        <circle cx="2.6" cy="3.6" r="3.4" fill="#FFB3CE"/>
+        <circle cx="-2.6" cy="3.6" r="3.4" fill="#FFB3CE"/>
+        <circle cx="-4.3" cy="-1.4" r="3.4" fill="#FFB3CE"/>
+        <circle cx="0" cy="0" r="2" fill="#FFE885"/>
+      </g>
+      <!-- Hoa anh đào bên phải -->
+      <g transform="translate(124, 36) rotate(15)">
+        <circle cx="0" cy="-4.5" r="3.4" fill="#FFB3CE"/>
+        <circle cx="4.3" cy="-1.4" r="3.4" fill="#FFB3CE"/>
+        <circle cx="2.6" cy="3.6" r="3.4" fill="#FFB3CE"/>
+        <circle cx="-2.6" cy="3.6" r="3.4" fill="#FFB3CE"/>
+        <circle cx="-4.3" cy="-1.4" r="3.4" fill="#FFB3CE"/>
+        <circle cx="0" cy="0" r="2" fill="#FFE885"/>
+      </g>
+      <!-- Bé mèo trắng kem lấp ló ở giữa -->
+      <path d="M56 26L52 10L66 19Z" fill="#FFF9FC" stroke="#F4A2C0" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M56.5 23L54.5 13.5L63.5 19.5Z" fill="#FFB3CC"/>
+      <path d="M94 26L98 10L84 19Z" fill="#FFF9FC" stroke="#F4A2C0" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M93.5 23L95.5 13.5L86.5 19.5Z" fill="#FFB3CC"/>
+      <ellipse cx="75" cy="34" rx="22" ry="17" fill="#FFF9FC" stroke="#F4A2C0" stroke-width="1.6"/>
+      <!-- Mắt Boba long lanh -->
+      <circle cx="66.5" cy="33" r="3.1" fill="#3B1D2E"/>
+      <circle cx="65.4" cy="31.8" r="1.2" fill="#FFFFFF"/>
+      <circle cx="83.5" cy="33" r="3.1" fill="#3B1D2E"/>
+      <circle cx="82.4" cy="31.8" r="1.2" fill="#FFFFFF"/>
+      <!-- Má hồng & Miệng :3 -->
+      <ellipse cx="61" cy="36.8" rx="3.6" ry="2" fill="#FF94B8" opacity="0.8"/>
+      <ellipse cx="89" cy="36.8" rx="3.6" ry="2" fill="#FF94B8" opacity="0.8"/>
+      <ellipse cx="75" cy="35.5" rx="1.8" ry="1.3" fill="#FF7aa2"/>
+      <path d="M72 37.5C73.5 39.2 75 38.4 75 36.8C75 38.4 76.5 39.2 78 37.5" stroke="#3B1D2E" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+      <!-- Hai đệm chân măng cụt hồng bám mép thiệp & ôm trái tim -->
+      <ellipse cx="63" cy="48" rx="5.5" ry="3.8" fill="#FFF9FC" stroke="#F4A2C0" stroke-width="1.4"/>
+      <circle cx="63" cy="48.5" r="1.5" fill="#FF94B8"/>
+      <ellipse cx="87" cy="48" rx="5.5" ry="3.8" fill="#FFF9FC" stroke="#F4A2C0" stroke-width="1.4"/>
+      <circle cx="87" cy="48.5" r="1.5" fill="#FF94B8"/>
+      <!-- Trái tim hồng phát sáng ở ngực mèo -->
+      <path d="M75 53C75 53 67 47.5 67 43C67 40.2 69.3 38.5 71.6 38.5C73.3 38.5 74.5 39.5 75 40.8C75.5 39.5 76.7 38.5 78.4 38.5C80.7 38.5 83 40.2 83 43C83 47.5 75 53 75 53Z" fill="#FF5C8D"/>
+      <!-- Bông hoa nhỏ trên tai mèo -->
+      <g transform="translate(87, 17) rotate(18)">
+        <circle cx="0" cy="-3.2" r="2.4" fill="#FFB3CE"/>
+        <circle cx="3" cy="-1" r="2.4" fill="#FFB3CE"/>
+        <circle cx="1.9" cy="2.5" r="2.4" fill="#FFB3CE"/>
+        <circle cx="-1.9" cy="2.5" r="2.4" fill="#FFB3CE"/>
+        <circle cx="-3" cy="-1" r="2.4" fill="#FFB3CE"/>
+        <circle cx="0" cy="0" r="1.4" fill="#FFE885"/>
+      </g>
+    </svg>
+  </div>
+
+  <p class="to stagger-item">Gửi Minh Anh — nàng thơ dịu dàng của anh,</p>
+  <h2 class="stagger-item">Mong em luôn an yên giữa ngát hương đời.</h2>
+  <div class="card-divider stagger-item"><span>✦ ♡ ✦</span></div>
+  <p class="stagger-item">Có những ngày trời trong và gió biếc, anh chẳng mong gì hơn ngoài việc thấy em bình yên mỉm cười.</p>
+  <p class="stagger-item">Minh Anh à, em giống như một khúc ca mùa thu diệu ngọt và trong trẻo, êm đềm và khẽ khàng sưởi ấm thế giới của anh. Nhân ngày Phụ nữ Việt Nam 20/10, anh chẳng chúc em điều gì quá lớn lao, chỉ mong cô gái nhỏ của anh luôn được cuộc đời thương yêu, nâng niu; mỗi sớm mai thức dậy đều ngập tràn ánh nắng ấm, và tâm hồn luôn nhẹ bẫng tựa cánh hoa rơi.</p>
+  <p class="stagger-item">Cảm ơn em vì đã là nàng thơ đẹp đẽ nhất trong lòng anh. Dẫu ngoài kia thời gian có vội vã thế nào, hãy cứ an nhiên, rạng rỡ theo cách của riêng em nhé.</p>
+  <p class="days" id="loveDays" hidden></p>
+  <p class="sign stagger-item">Thương gửi em — Thiện Tâm ♡</p>
+  <button id="view" class="stagger-item">
+    <span>Ngắm vườn hoa</span>
+    <span>✨</span>
+  </button>
+</section>
+
+<!-- Stage 4 Action Buttons -->
+<div class="pills">
+  <button class="pill primary" id="reread">💌 Đọc lại lời chúc</button>
+  <button class="pill" id="regrow">🌱 Cho hoa nở lại</button>
+</div>
+
+<!-- Super Cute Meme Chonky Orange Cat Loaf (Bé Mèo Cam Béo Đội Hoa - Meme Guide) -->
+<div class="cat-guide-wrap" id="catGuide">
+  <div class="cat-speech-bubble" id="catBubble">
+    Meow~ Ngước lên nhìn xem... <span class="spark-txt">có một vì sao đang bay về phía em</span> ✨
+  </div>
+  <div class="cat-loaf-container" id="catLoafBox">
+    <svg class="cat-loaf-svg" viewBox="0 0 125 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="62" cy="78" rx="49" ry="9" fill="rgba(10,25,18,0.45)" />
+      <path d="M22 71C13 68 9 54 12 42C15 27 27 24 46 24C76 24 109 28 113 46C116 60 109 71 86 73C66 74 35 74 22 71Z" fill="#F79E38" stroke="#D97218" stroke-width="2.5" />
+      <path d="M50 25C49 30 47 36 48 40" stroke="#D97218" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M64 25C63 31 61 38 63 42" stroke="#D97218" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M78 26C77 32 76 39 77 43" stroke="#D97218" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M17 59C15 48 21 40 33 40C42 40 48 47 46 60C44 69 21 68 17 59Z" fill="#FFF7EE" />
+      <path d="M103 55C110 50 119 55 117 65C115 72 106 73 97 71" stroke="#F79E38" stroke-width="7" stroke-linecap="round" fill="none"/>
+      <path d="M103 55C110 50 119 55 117 65C115 72 106 73 97 71" stroke="#D97218" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+      <ellipse cx="22" cy="70" rx="5.5" ry="3.6" fill="#FFF7EE" stroke="#D97218" stroke-width="1.4"/>
+      <circle cx="22" cy="70.5" r="1.4" fill="#FF9EBB"/>
+      <ellipse cx="38" cy="71" rx="5.5" ry="3.6" fill="#FFF7EE" stroke="#D97218" stroke-width="1.4"/>
+      <circle cx="38" cy="71.5" r="1.4" fill="#FF9EBB"/>
+      <circle cx="34" cy="43" r="19.5" fill="#F79E38" stroke="#D97218" stroke-width="2.5"/>
+      <ellipse cx="19" cy="48" rx="6" ry="5" fill="#F79E38" />
+      <ellipse cx="49" cy="48" rx="6" ry="5" fill="#F79E38" />
+      <path d="M18 33L15 13L30 26Z" fill="#F79E38" stroke="#D97218" stroke-width="2.2" stroke-linejoin="round"/>
+      <path d="M19.5 30L18 18L27.5 26Z" fill="#FFB3C6" />
+      <path d="M38 26L50 13L50 33Z" fill="#F79E38" stroke="#D97218" stroke-width="2.2" stroke-linejoin="round"/>
+      <path d="M40 26L47.5 18L47.5 30Z" fill="#FFB3C6" />
+      <path d="M29 28L33.5 33L38 28" stroke="#D97218" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <g transform="translate(44, 22) rotate(15)">
+        <circle cx="0" cy="-4.2" r="3.2" fill="#FFB8D0"/>
+        <circle cx="4" cy="-1.2" r="3.2" fill="#FFB8D0"/>
+        <circle cx="2.5" cy="3.5" r="3.2" fill="#FFB8D0"/>
+        <circle cx="-2.5" cy="3.5" r="3.2" fill="#FFB8D0"/>
+        <circle cx="-4" cy="-1.2" r="3.2" fill="#FFB8D0"/>
+        <circle cx="0" cy="0" r="2" fill="#FFE680"/>
+      </g>
+      <g id="loafEyesNormal">
+        <circle cx="25.5" cy="42" r="3.7" fill="#2E1620"/>
+        <circle cx="24.2" cy="40.6" r="1.4" fill="#FFFFFF"/>
+        <circle cx="26.8" cy="43.2" r="0.7" fill="#FFFFFF"/>
+        <circle cx="42.5" cy="42" r="3.7" fill="#2E1620"/>
+        <circle cx="41.2" cy="40.6" r="1.4" fill="#FFFFFF"/>
+        <circle cx="43.8" cy="43.2" r="0.7" fill="#FFFFFF"/>
+      </g>
+      <g id="loafEyesWindy" style="display:none">
+        <path d="M22 38.5L28.5 42L22 45.5" stroke="#2E1620" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M46 38.5L39.5 42L46 45.5" stroke="#2E1620" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </g>
+      <ellipse cx="34" cy="46.5" rx="2.2" ry="1.5" fill="#FF7CA3" />
+      <path d="M34 48.5C34 51.5 36.5 51.5 36.5 48.8" fill="#FF85A8"/>
+      <path d="M30.2 48.2C32.2 50.5 34 49.5 34 47.6C34 49.5 35.8 50.5 37.8 48.2" stroke="#2E1620" stroke-width="1.7" stroke-linecap="round" fill="none"/>
+      <ellipse cx="21" cy="47.5" rx="4.2" ry="2.4" fill="#FF8DA8" opacity="0.82" />
+      <ellipse cx="47" cy="47.5" rx="4.2" ry="2.4" fill="#FF8DA8" opacity="0.82" />
+      <path d="M16 44L5 41M15 47L4 47M16 50L6 52" stroke="#FFF" stroke-width="1.3" stroke-linecap="round" opacity="0.92"/>
+      <path d="M52 44L63 41M53 47L64 47M52 50L62 52" stroke="#FFF" stroke-width="1.3" stroke-linecap="round" opacity="0.92"/>
+    </svg>
+  </div>
+</div>
+
+<script>
+(()=>{
+'use strict';
+
+const $ = id => document.getElementById(id), cv = $('c'), ctx = cv.getContext('2d');
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v)), rr = (a, b) => a + Math.random() * (b - a);
+const eob = t => { const c = 1.6; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };
+const eoc = t => 1 - Math.pow(1 - t, 3);
+const easeInOutCubic = x => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const mul = a => () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+
+// Ngăn sự kiện chạm vào link Facebook / TikTok hoặc thanh chỉnh âm lượng lan xuống Canvas
+document.querySelectorAll('.social-pill, #audioMixer').forEach(el => {
+  el.addEventListener('pointerdown', e => e.stopPropagation());
+  el.addEventListener('pointermove', e => e.stopPropagation());
+  el.addEventListener('click', e => e.stopPropagation());
+});
+
+/* ==========================================================================
+   Web Audio API Kalimba & Wind Chime Synthesizer + Volume Controls
+   ========================================================================== */
+let audioCtx = null;
+let lastChimeTime = 0;
+let chimeVolumeMultiplier = 0.80;
+let savedChimeVol = 0.80;
+
+const KALIMBA_SCALE = [
+  523.25, // C5
+  587.33, // D5
+  659.25, // E5
+  783.99, // G5
+  880.00, // A5
+  987.77, // B5
+  1046.50, // C6
+  1174.66, // D6
+  1318.51, // E6
+  1567.98  // G6
+];
+
+function ensureAudioContext() {
+  if (!audioCtx) {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (AC) audioCtx = new AC();
+  }
+  if (audioCtx && audioCtx.state === 'suspended') {
+    audioCtx.resume().catch(() => {});
+  }
+}
+
+function playKalimbaNote(freq, baseVolume = 0.08, duration = 1.25) {
+  try {
+    if (chimeVolumeMultiplier <= 0.01) return;
+    ensureAudioContext();
+    if (!audioCtx || audioCtx.state !== 'running') return;
+
+    const volume = baseVolume * chimeVolumeMultiplier * 1.35;
+    const nowT = audioCtx.currentTime;
+
+    const osc1 = audioCtx.createOscillator();
+    const gain1 = audioCtx.createGain();
+    osc1.type = 'sine';
+    osc1.frequency.setValueAtTime(freq, nowT);
+
+    gain1.gain.setValueAtTime(0.0001, nowT);
+    gain1.gain.linearRampToValueAtTime(volume, nowT + 0.012);
+    gain1.gain.exponentialRampToValueAtTime(0.0001, nowT + duration);
+
+    osc1.connect(gain1);
+    gain1.connect(audioCtx.destination);
+    osc1.start(nowT);
+    osc1.stop(nowT + duration + 0.05);
+
+    const osc2 = audioCtx.createOscillator();
+    const gain2 = audioCtx.createGain();
+    osc2.type = 'triangle';
+    osc2.frequency.setValueAtTime(freq * 3, nowT);
+
+    gain2.gain.setValueAtTime(0.0001, nowT);
+    gain2.gain.linearRampToValueAtTime(volume * 0.22, nowT + 0.006);
+    gain2.gain.exponentialRampToValueAtTime(0.0001, nowT + 0.18);
+
+    osc2.connect(gain2);
+    gain2.connect(audioCtx.destination);
+    osc2.start(nowT);
+    osc2.stop(nowT + 0.20);
+  } catch (e) {}
+}
+
+function playSwipeKalimba(xRatio) {
+  const nowMs = performance.now();
+  if (nowMs - lastChimeTime < 88) return;
+  lastChimeTime = nowMs;
+
+  const idx = clamp(Math.floor(xRatio * KALIMBA_SCALE.length), 0, KALIMBA_SCALE.length - 1);
+  const jitter = Math.floor(rr(-1, 2));
+  const noteIdx = clamp(idx + jitter, 0, KALIMBA_SCALE.length - 1);
+  playKalimbaNote(KALIMBA_SCALE[noteIdx], 0.065, 1.15);
+}
+
+function playWindChimeArpeggio(dir = 1) {
+  try {
+    if (chimeVolumeMultiplier <= 0.01) return;
+    ensureAudioContext();
+    if (!audioCtx || audioCtx.state !== 'running') return;
+
+    const baseIdx = Math.floor(rr(1, 5));
+    const count = 4;
+    for (let i = 0; i < count; i++) {
+      const step = dir > 0 ? i : (count - 1 - i);
+      const note = KALIMBA_SCALE[clamp(baseIdx + step, 0, KALIMBA_SCALE.length - 1)];
+      setTimeout(() => {
+        playKalimbaNote(note, 0.045, 1.45);
+      }, i * 115);
+    }
+  } catch (e) {}
+}
+
+/* ==========================================================================
+   Background Music & Dual Volume Mixer Controllers
+   ========================================================================== */
+const bgMusic = $('bgMusic');
+const musicPlayer = $('musicPlayer');
+const musicStatusText = $('musicStatusText');
+const musicVolSlider = $('musicVolSlider');
+const chimeVolSlider = $('chimeVolSlider');
+const muteMusicBtn = $('muteMusicBtn');
+const muteChimeBtn = $('muteChimeBtn');
+
+let isMusicPlaying = false;
+let savedMusicVol = 0.75;
+bgMusic.volume = savedMusicVol;
+
+musicVolSlider.addEventListener('input', e => {
+  const v = parseFloat(e.target.value);
+  bgMusic.volume = v;
+  if (v > 0) {
+    savedMusicVol = v;
+    muteMusicBtn.classList.remove('muted');
+  } else {
+    muteMusicBtn.classList.add('muted');
+  }
+});
+
+muteMusicBtn.addEventListener('click', () => {
+  if (bgMusic.volume > 0.01) {
+    savedMusicVol = bgMusic.volume;
+    bgMusic.volume = 0;
+    musicVolSlider.value = 0;
+    muteMusicBtn.classList.add('muted');
+  } else {
+    bgMusic.volume = savedMusicVol || 0.75;
+    musicVolSlider.value = bgMusic.volume;
+    muteMusicBtn.classList.remove('muted');
+    autoStartMusic();
+  }
+});
+
+chimeVolSlider.addEventListener('input', e => {
+  const v = parseFloat(e.target.value);
+  chimeVolumeMultiplier = v;
+  if (v > 0) {
+    savedChimeVol = v;
+    muteChimeBtn.classList.remove('muted');
+    playSwipeKalimba(v);
+  } else {
+    muteChimeBtn.classList.add('muted');
+  }
+});
+
+muteChimeBtn.addEventListener('click', () => {
+  if (chimeVolumeMultiplier > 0.01) {
+    savedChimeVol = chimeVolumeMultiplier;
+    chimeVolumeMultiplier = 0;
+    chimeVolSlider.value = 0;
+    muteChimeBtn.classList.add('muted');
+  } else {
+    chimeVolumeMultiplier = savedChimeVol || 0.80;
+    chimeVolSlider.value = chimeVolumeMultiplier;
+    muteChimeBtn.classList.remove('muted');
+    playKalimbaNote(KALIMBA_SCALE[6], 0.07, 1.1);
+  }
+});
+
+function toggleMusic() {
+  ensureAudioContext();
+  if (isMusicPlaying) {
+    bgMusic.pause();
+    isMusicPlaying = false;
+    musicPlayer.classList.remove('playing');
+    musicStatusText.textContent = 'Đã tạm dừng ♪';
+  } else {
+    bgMusic.play().then(() => {
+      isMusicPlaying = true;
+      musicPlayer.classList.add('playing');
+      musicStatusText.textContent = 'Đang phát ♪';
+      spawnMusicNotes();
+    }).catch(err => {
+      console.log('Autoplay prevented, will play on interaction', err);
+    });
+  }
+}
+
+musicPlayer.addEventListener('click', e => {
+  e.stopPropagation();
+  initGyroscope();
+  toggleMusic();
+});
+
+function autoStartMusic() {
+  initGyroscope();
+  ensureAudioContext();
+  if (!isMusicPlaying) {
+    bgMusic.play().then(() => {
+      isMusicPlaying = true;
+      musicPlayer.classList.add('playing');
+      musicStatusText.textContent = 'Đang phát ♪';
+    }).catch(() => {});
+  }
+}
+
+function spawnMusicNotes() {
+  if (!isMusicPlaying || bgMusic.volume <= 0.01) return;
+  const rect = musicPlayer.getBoundingClientRect();
+  const note = document.createElement('div');
+  note.className = 'note-particle';
+  note.textContent = Math.random() < 0.5 ? '♪' : '♫';
+  note.style.left = (rect.left + 15) + 'px';
+  note.style.top = (rect.top + 10) + 'px';
+  document.body.appendChild(note);
+  setTimeout(() => note.remove(), 2000);
+}
+setInterval(spawnMusicNotes, 1600);
+
+/* ==========================================================================
+   Smooth Staggered Paragraph Reveal & Instant Re-open Controller
+   ========================================================================== */
+const cardEl = $('card');
+const viewBtn = $('view');
+const staggerItems = Array.from(cardEl.querySelectorAll('.stagger-item'));
+let staggerTimers = [];
+let isRevealingCard = false;
+let cardHasRevealedOnce = false;
+
+function clearStaggerTimers() {
+  staggerTimers.forEach(id => clearTimeout(id));
+  staggerTimers = [];
+}
+
+function showFullCardInstantly() {
+  clearStaggerTimers();
+  isRevealingCard = false;
+  cardHasRevealedOnce = true;
+  cardEl.classList.add('instant-reveal');
+  staggerItems.forEach(el => el.classList.add('visible'));
+}
+
+function startCardStaggerReveal() {
+  cardEl.scrollTop = 0;
+
+  if (cardHasRevealedOnce) {
+    showFullCardInstantly();
+    return;
+  }
+
+  clearStaggerTimers();
+  isRevealingCard = true;
+  cardEl.classList.remove('instant-reveal');
+  staggerItems.forEach(el => el.classList.remove('visible'));
+
+  staggerItems.forEach((el, idx) => {
+    const tId = setTimeout(() => {
+      el.classList.add('visible');
+      if (idx === staggerItems.length - 1) {
+        isRevealingCard = false;
+        cardHasRevealedOnce = true;
+      }
+    }, 140 + idx * 270);
+    staggerTimers.push(tId);
+  });
+}
+
+/* ==========================================================================
+   3D Gyroscope & Pointer Parallax System (Nghiêng điện thoại tạo chiều sâu 3D)
+   ========================================================================== */
+let parallax = {
+  tx: 0, ty: 0,
+  x: 0, y: 0,
+  gyroActive: false,
+  baseBeta: null,
+  baseGamma: null,
+  permissionAsked: false
+};
+
+function handleOrientation(e) {
+  if (e.gamma === null || e.beta === null) return;
+  parallax.gyroActive = true;
+  if (parallax.baseBeta === null) {
+    parallax.baseBeta = e.beta;
+    parallax.baseGamma = e.gamma;
+  }
+  const dGamma = e.gamma - parallax.baseGamma;
+  const dBeta  = e.beta  - parallax.baseBeta;
+  parallax.tx = clamp(dGamma / 24, -1.2, 1.2);
+  parallax.ty = clamp(dBeta  / 24, -1.2, 1.2);
+}
+
+function initGyroscope() {
+  if (parallax.permissionAsked) return;
+  parallax.permissionAsked = true;
+  if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+    DeviceOrientationEvent.requestPermission()
+      .then(res => {
+        if (res === 'granted') {
+          window.addEventListener('deviceorientation', handleOrientation, true);
+        }
+      })
+      .catch(() => {});
+  } else if (typeof DeviceOrientationEvent !== 'undefined') {
+    window.addEventListener('deviceorientation', handleOrientation, true);
+  }
+}
+window.addEventListener('deviceorientation', handleOrientation, true);
+
+function updateParallax(dt) {
+  const k = Math.min(1, dt * 6.5);
+  parallax.x += (parallax.tx - parallax.x) * k;
+  parallax.y += (parallax.ty - parallax.y) * k;
+}
+
+/* ==========================================================================
+   Rich & Vibrant Botanical Roses (Đậm màu, tươi tắn trên màn hình điện thoại)
+   ========================================================================== */
+const palettes = {
+  pink:     ['#ffe3ee', '#ffaccb', '#f25c93', '#c92a68', '#8c1142'],
+  peach:    ['#ffece0', '#ffb894', '#f2784b', '#c7451e', '#872408'],
+  coral:    ['#ffe5e3', '#ffa19c', '#ed5550', '#bf2422', '#800d0d'],
+  butter:   ['#fff8d6', '#ffdf75', '#f2b724', '#c78506', '#8a5200'],
+  mint:     ['#dcfff0', '#8ef0c8', '#3ec491', '#188f63', '#08593a'],
+  sky:      ['#dff2ff', '#94d0fc', '#4299eb', '#1b64b8', '#0a3c7a'],
+  lavender: ['#f0e3ff', '#c9a6fc', '#935ce8', '#622bb8', '#3b1180']
+};
+const keys = Object.keys(palettes), PI = palettes.pink;
+const mq = matchMedia('(prefers-color-scheme: dark)');
+const isDark = () => { const t = document.documentElement.dataset.theme; return t ? t === 'dark' : mq.matches; };
+
+function silkPetal(c, len, w, innerCol, midCol, tipCol, ruffle) {
+  c.beginPath();
+  c.moveTo(0, 0);
+  c.bezierCurveTo(-w * 1.18, -len * 0.16, -w * 1.32, -len * 0.78, -w * 0.34, -len * 0.98);
+  c.quadraticCurveTo(0, -len * (0.94 + ruffle * 0.08), w * 0.34, -len * 0.98);
+  c.bezierCurveTo(w * 1.32, -len * 0.78, w * 1.18, -len * 0.16, 0, 0);
+  c.closePath();
+
+  const g = c.createRadialGradient(0, -len * 0.15, len * 0.04, 0, -len * 0.58, len * 0.94);
+  g.addColorStop(0, innerCol);
+  g.addColorStop(0.58, midCol);
+  g.addColorStop(1, tipCol);
+  c.fillStyle = g;
+  c.fill();
+
+  c.save();
+  c.beginPath();
+  c.moveTo(-w * 0.75, -len * 0.72);
+  c.quadraticCurveTo(-w * 0.34, -len * 0.99, 0, -len * (0.95 + ruffle * 0.08));
+  c.quadraticCurveTo(w * 0.34, -len * 0.99, w * 0.75, -len * 0.72);
+  c.strokeStyle = 'rgba(255, 255, 255, 0.38)';
+  c.lineWidth = Math.max(0.5, len * 0.024);
+  c.lineCap = 'round';
+  c.stroke();
+  c.restore();
+}
+
+function drawRose(c, x, y, R, pal, bloom, seed) {
+  const rnd = mul(seed || 7), L = 6, ga = c.globalAlpha;
+  c.save();
+  c.translate(x, y);
+
+  const h = c.createRadialGradient(0, 0, R * 0.2, 0, 0, R * 1.15);
+  h.addColorStop(0, pal[2] + '55');
+  h.addColorStop(1, pal[1] + '00');
+  c.globalAlpha = ga * 0.28 * clamp(bloom * 1.8);
+  c.fillStyle = h;
+  c.beginPath(); c.arc(0, 0, R * 1.15, 0, 6.2832); c.fill();
+  c.globalAlpha = ga;
+
+  for (let k = L - 1; k >= 0; k--) {
+    const f = k / (L - 1);
+    const lp = clamp(bloom * 1.5 - f * 0.48);
+    if (lp <= 0) continue;
+
+    const n = k === 0 ? 4 : (k < 3 ? 5 : 6 + (k % 2));
+    const len = R * (0.26 + 0.74 * Math.pow(f, 0.88)) * eob(lp);
+    const w = len * (0.44 + 0.16 * f);
+    const spin = k * 2.05 + rnd() * 0.45;
+
+    if (k > 0) {
+      const shG = c.createRadialGradient(0, 0, len * 0.1, 0, 0, len * 0.98);
+      shG.addColorStop(0, pal[4] + '42');
+      shG.addColorStop(0.7, pal[3] + '18');
+      shG.addColorStop(1, pal[3] + '00');
+      c.fillStyle = shG;
+      c.beginPath(); c.arc(0, 0, len * 0.98, 0, 6.2832); c.fill();
+    }
+
+    const innerCol = k < 2 ? pal[4] : (k < 4 ? pal[3] : pal[2]);
+    const midCol   = k < 2 ? pal[3] : (k < 4 ? pal[2] : pal[1]);
+    const tipCol   = k < 2 ? pal[1] : pal[0];
+
+    for (let j = 0; j < n; j++) {
+      c.save();
+      c.rotate(spin + (j * 6.2832) / n + (rnd() - 0.5) * 0.22);
+      const s = 0.92 + rnd() * 0.15;
+      const ruffle = (rnd() - 0.5) * 1.2;
+      silkPetal(c, len * s, w * s, innerCol, midCol, tipCol, ruffle);
+      c.restore();
+    }
+  }
+
+  const sp = clamp(bloom * 1.4);
+  if (sp > 0.25) {
+    const stamenCount = 7;
+    for (let s = 0; s < stamenCount; s++) {
+      const sa = s * (6.2832 / stamenCount) + rnd();
+      const sr = R * (0.04 + 0.06 * rnd()) * sp;
+      c.fillStyle = s % 2 === 0 ? '#fff2a6' : '#ffbe3d';
+      c.beginPath();
+      c.arc(Math.cos(sa) * sr, Math.sin(sa) * sr, Math.max(0.9, R * 0.020), 0, 6.2832);
+      c.fill();
+    }
+  }
+
+  c.restore();
+}
+
+let spr = {}, DPR = 1;
+const STG = [.45, .75, 1], SR = 64, SW = 152;
+function sprite(pi, st) {
+  const key = pi + '_' + st;
+  if (spr[key]) return spr[key];
+  const sc = DPR * 1.25, o = document.createElement('canvas');
+  o.width = o.height = Math.ceil(SW * sc);
+  const c = o.getContext('2d');
+  c.scale(sc, sc);
+  drawRose(c, SW / 2, SW / 2, SR, palettes[keys[pi]], STG[st], pi * 17 + 5);
+  return spr[key] = o;
+}
+
+const bez = (a, b, c, d, t) => {
+  const u = 1 - t;
+  return {
+    x: u * u * u * a.x + 3 * u * u * t * b.x + 3 * u * t * t * c.x + t * t * t * d.x,
+    y: u * u * u * a.y + 3 * u * u * t * b.y + 3 * u * t * t * c.y + t * t * t * d.y
+  };
+};
+
+function drawStem(p0, p1, p2, p3, f, gs) {
+  const stemGrad = ctx.createLinearGradient(p0.x, p0.y, p3.x, p3.y);
+  stemGrad.addColorStop(0, '#1e5238');
+  stemGrad.addColorStop(0.55, '#46a371');
+  stemGrad.addColorStop(1, '#7ce0a7');
+
+  ctx.strokeStyle = stemGrad;
+  ctx.lineWidth = Math.max(1.5, f.R * .058);
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+  ctx.moveTo(p0.x, p0.y);
+  ctx.bezierCurveTo(p1.x, p1.y, p2.x, p2.y, p3.x, p3.y);
+  ctx.stroke();
+
+  [.34, .58].forEach((t, i) => {
+    const a = bez(p0, p1, p2, p3, t), b = bez(p0, p1, p2, p3, t + .02), side = i % 2 ? 1 : -1;
+    const ang = Math.atan2(b.y - a.y, b.x - a.x) + side * .92, len = f.R * .72 * gs;
+    ctx.save(); ctx.translate(a.x, a.y); ctx.rotate(ang);
+    ctx.beginPath(); ctx.moveTo(0, 0);
+    ctx.quadraticCurveTo(len * .48, -len * .30, len, 0);
+    ctx.quadraticCurveTo(len * .48, len * .30, 0, 0);
+    const leafG = ctx.createLinearGradient(0, 0, len, 0);
+    leafG.addColorStop(0, '#3d9966');
+    leafG.addColorStop(1, '#98ebb8');
+    ctx.fillStyle = leafG; ctx.fill();
+    ctx.restore();
+  });
+}
+
+/* ==========================================================================
+   High-Res Realistic Crescent Moon
+   ========================================================================== */
+let moonSprite = null;
+let moonWorld = { x: 0, y: 0, r: 75 };
+let moonPulseBoost = 0;
+
+function buildMoonSprite() {
+  const size = 680;
+  const R = 240;
+  const cx = size / 2, cy = size / 2;
+  const off = document.createElement('canvas');
+  off.width = off.height = Math.round(size * DPR);
+  const c = off.getContext('2d');
+  c.scale(DPR, DPR);
+
+  c.save();
+  c.beginPath();
+  c.arc(cx, cy, R, 0, Math.PI * 2);
+  c.clip();
+
+  const earthGrad = c.createRadialGradient(cx - R * 0.25, cy - R * 0.2, R * 0.08, cx, cy, R);
+  earthGrad.addColorStop(0, 'rgba(130, 140, 205, 0.16)');
+  earthGrad.addColorStop(0.65, 'rgba(85, 95, 165, 0.11)');
+  earthGrad.addColorStop(1, 'rgba(185, 200, 250, 0.18)');
+  c.fillStyle = earthGrad;
+  c.fillRect(cx - R, cy - R, R * 2, R * 2);
+
+  c.fillStyle = 'rgba(30, 34, 70, 0.16)';
+  [
+    [-55, -45, 78, 52, 0.3],
+    [25, -75, 62, 42, -0.2],
+    [-75, 50, 68, 46, 0.4],
+    [-15, 25, 54, 48, 0.1]
+  ].forEach(([dx, dy, rx, ry, rot]) => {
+    c.beginPath(); c.ellipse(cx + dx, cy + dy, rx, ry, rot, 0, Math.PI * 2); c.fill();
+  });
+  c.restore();
+
+  const lit = document.createElement('canvas');
+  lit.width = lit.height = Math.round(size * DPR);
+  const lc = lit.getContext('2d');
+  lc.scale(DPR, DPR);
+
+  lc.save();
+  lc.beginPath();
+  lc.arc(cx, cy, R, 0, Math.PI * 2);
+  lc.clip();
+
+  const surfGrad = lc.createRadialGradient(cx + R * 0.48, cy + R * 0.14, R * 0.05, cx, cy, R * 1.15);
+  surfGrad.addColorStop(0, '#ffffff');
+  surfGrad.addColorStop(0.34, '#fff6db');
+  surfGrad.addColorStop(0.70, '#f2d388');
+  surfGrad.addColorStop(1, '#c9a35b');
+  lc.fillStyle = surfGrad;
+  lc.fillRect(cx - R, cy - R, R * 2, R * 2);
+
+  const maria = [
+    { x: 76, y: -58, rx: 68, ry: 48, rot: 0.4, a: 0.16 },
+    { x: 112, y: 26, rx: 62, ry: 76, rot: -0.2, a: 0.18 },
+    { x: 52, y: 104, rx: 52, ry: 38, rot: 0.3, a: 0.14 },
+    { x: 132, y: -112, rx: 44, ry: 30, rot: 0.6, a: 0.13 },
+    { x: 28, y: -10, rx: 58, ry: 58, rot: 0, a: 0.12 }
+  ];
+  maria.forEach(m => {
+    const mg = lc.createRadialGradient(cx + m.x, cy + m.y, 4, cx + m.x, cy + m.y, Math.max(m.rx, m.ry));
+    mg.addColorStop(0, `rgba(122, 98, 68, ${m.a})`);
+    mg.addColorStop(0.7, `rgba(138, 112, 78, ${m.a * 0.5})`);
+    mg.addColorStop(1, 'rgba(138, 112, 78, 0)');
+    lc.fillStyle = mg;
+    lc.beginPath();
+    lc.ellipse(cx + m.x, cy + m.y, m.rx, m.ry, m.rot, 0, Math.PI * 2);
+    lc.fill();
+  });
+
+  const rnd = mul(123);
+  for (let i = 0; i < 42; i++) {
+    const ang = -1.32 + rnd() * 2.64;
+    const dist = R * (0.35 + rnd() * 0.58);
+    const crX = cx + Math.cos(ang) * dist;
+    const crY = cy + Math.sin(ang) * dist;
+    const crR = 5 + rnd() * 22;
+
+    lc.strokeStyle = 'rgba(128, 102, 68, 0.26)';
+    lc.lineWidth = Math.max(1.2, crR * 0.18);
+    lc.beginPath();
+    lc.arc(crX, crY, crR, 0, Math.PI * 2);
+    lc.stroke();
+
+    lc.strokeStyle = 'rgba(255, 255, 250, 0.52)';
+    lc.beginPath();
+    lc.arc(crX + 1.5, crY + 0.8, crR * 0.92, -0.9, 1.2);
+    lc.stroke();
+  }
+
+  lc.strokeStyle = 'rgba(255, 255, 255, 0.92)';
+  lc.lineWidth = 4.5;
+  lc.beginPath();
+  lc.arc(cx, cy, R - 2, -1.28, 1.28);
+  lc.stroke();
+
+  lc.restore();
+
+  lc.save();
+  lc.globalCompositeOperation = 'destination-out';
+  const shX = cx - R * 0.44;
+  const shY = cy - R * 0.16;
+  const shR = R * 0.97;
+  const cutGrad = lc.createRadialGradient(shX, shY, shR * 0.78, shX, shY, shR * 1.05);
+  cutGrad.addColorStop(0, 'rgba(0, 0, 0, 1)');
+  cutGrad.addColorStop(0.84, 'rgba(0, 0, 0, 0.98)');
+  cutGrad.addColorStop(0.95, 'rgba(0, 0, 0, 0.45)');
+  cutGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+  lc.fillStyle = cutGrad;
+  lc.beginPath();
+  lc.arc(shX, shY, shR * 1.05, 0, Math.PI * 2);
+  lc.fill();
+  lc.restore();
+
+  c.drawImage(lit, 0, 0, size, size);
+  moonSprite = off;
+}
+
+function updateMoonWorldCoords() {
+  moonWorld.x = mobile ? W * 0.62 : W - Math.min(Math.max(W * 0.22, 185), 270);
+  moonWorld.y = mobile ? Math.max(155, H * 0.22) : Math.max(115, H * 0.165);
+  moonWorld.r = mobile ? 50 : 76;
+}
+
+function drawRealisticMoon(dt, t) {
+  if (!moonSprite) buildMoonSprite();
+  if (moonPulseBoost > 0) moonPulseBoost = Math.max(0, moonPulseBoost - dt * 1.2);
+
+  const mx = moonWorld.x - parallax.x * 16;
+  const my = moonWorld.y - parallax.y * 12;
+  const renderScale = moonWorld.r / 240;
+  const pulse = 0.96 + 0.04 * Math.sin(t * 1.4) + moonPulseBoost * 0.25;
+
+  ctx.save();
+  ctx.translate(mx, my);
+  ctx.scale(renderScale, renderScale);
+
+  const glowR = 520 * pulse;
+  const corona = ctx.createRadialGradient(45, 15, 25, 20, 8, glowR);
+  corona.addColorStop(0, `rgba(255, 245, 200, ${0.42 + moonPulseBoost * 0.25})`);
+  corona.addColorStop(0.32, `rgba(255, 210, 165, ${0.22 + moonPulseBoost * 0.15})`);
+  corona.addColorStop(0.65, 'rgba(205, 150, 245, 0.09)');
+  corona.addColorStop(1, 'rgba(160, 140, 230, 0)');
+  ctx.fillStyle = corona;
+  ctx.beginPath();
+  ctx.arc(20, 8, glowR, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.drawImage(moonSprite, -340, -340, 680, 680);
+  ctx.restore();
+}
+
+/* ==========================================================================
+   Chòm Sao Cự Giải 24/6 (Cancer Constellation - Hình Con Cua Lấp Lánh Trên Trời)
+   ========================================================================== */
+let cancerPulseBoost = 0;
+let cancerWorldCenter = { x: 0, y: 0, r: 70 };
+
+const CANCER_STARS = [
+  { dx: -26, dy: -6,  r: 2.5, name: 'Asellus Borealis' },
+  { dx:  26, dy: -6,  r: 2.5, name: 'Asellus Australis' },
+  { dx:  36, dy:  12, r: 2.3 },
+  { dx:  14, dy:  24, r: 2.1 },
+  { dx: -14, dy:  24, r: 2.1 },
+  { dx: -36, dy:  12, r: 2.3 },
+  { dx: -44, dy: -20, r: 2.2 },
+  { dx: -52, dy: -40, r: 2.8, major: true },
+  { dx: -34, dy: -45, r: 2.5, major: true },
+  { dx: -28, dy: -28, r: 2.0 },
+  { dx:  44, dy: -20, r: 2.2 },
+  { dx:  52, dy: -40, r: 2.8, major: true },
+  { dx:  34, dy: -45, r: 2.5, major: true },
+  { dx:  28, dy: -28, r: 2.0 },
+  { dx: -56, dy:  8,  r: 1.9 },
+  { dx: -48, dy:  28, r: 2.1, name: 'Acubens' },
+  { dx:  56, dy:  8,  r: 1.9 },
+  { dx:  48, dy:  28, r: 2.2, name: 'Al Tarf' },
+  { dx:   0, dy:  6,  r: 3.0, major: true }
+];
+
+const CANCER_LINES = [
+  [0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 0],
+  [0, 18], [1, 18], [3, 18], [4, 18],
+  [0, 6], [6, 7], [7, 8], [8, 9], [9, 6],
+  [1, 10], [10, 11], [11, 12], [12, 13], [13, 10],
+  [5, 14], [5, 15],
+  [2, 16], [2, 17]
+];
+
+function drawCancerConstellation(dt, t) {
+  if (cancerPulseBoost > 0) cancerPulseBoost = Math.max(0, cancerPulseBoost - dt * 1.1);
+
+  const cx = (mobile ? W * 0.36 : W * 0.53) - parallax.x * 12;
+  const cy = (mobile ? H * 0.30 : H * 0.21) - parallax.y * 8;
+  const sc = mobile ? 0.74 : 1.08;
+
+  cancerWorldCenter = { x: cx, y: cy, r: 68 * sc };
+
+  const shimmer = 0.65 + 0.35 * Math.sin(t * 1.8) + cancerPulseBoost * 0.6;
+
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.scale(sc, sc);
+
+  const nebG = ctx.createRadialGradient(0, -6, 4, 0, -6, 82);
+  nebG.addColorStop(0, `rgba(255, 165, 220, ${0.20 + cancerPulseBoost * 0.18})`);
+  nebG.addColorStop(0.55, `rgba(175, 115, 255, ${0.10 + cancerPulseBoost * 0.10})`);
+  nebG.addColorStop(1, 'rgba(170, 130, 250, 0)');
+  ctx.fillStyle = nebG;
+  ctx.beginPath(); ctx.arc(0, -6, 82, 0, Math.PI * 2); ctx.fill();
+
+  ctx.strokeStyle = `rgba(255, 215, 242, ${clamp(0.45 * shimmer + cancerPulseBoost * 0.4, 0.25, 0.95)})`;
+  ctx.lineWidth = 1.3 + cancerPulseBoost * 0.8;
+  ctx.beginPath();
+  CANCER_LINES.forEach(([i, j]) => {
+    const a = CANCER_STARS[i], b = CANCER_STARS[j];
+    ctx.moveTo(a.dx, a.dy);
+    ctx.lineTo(b.dx, b.dy);
+  });
+  ctx.stroke();
+
+  ctx.fillStyle = `rgba(255, 245, 200, ${0.88 * shimmer})`;
+  ctx.beginPath();
+  ctx.arc(-9, -12, 1.5, 0, 6.2832);
+  ctx.arc(9, -12, 1.5, 0, 6.2832);
+  ctx.fill();
+
+  CANCER_STARS.forEach((st, idx) => {
+    const tw = 0.65 + 0.35 * Math.sin(t * 2.8 + idx * 0.9);
+    const sr = st.r * tw * (1 + cancerPulseBoost * 0.35);
+
+    ctx.fillStyle = st.major ? `rgba(255, 225, 160, ${0.42 * tw})` : `rgba(255, 195, 235, ${0.34 * tw})`;
+    ctx.beginPath();
+    ctx.arc(st.dx, st.dy, sr * 2.6, 0, 6.2832);
+    ctx.fill();
+
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.arc(st.dx, st.dy, sr, 0, 6.2832);
+    ctx.fill();
+
+    if (st.major) {
+      const flare = sr * 3.2;
+      ctx.fillStyle = `rgba(255, 240, 200, ${0.88 * tw})`;
+      ctx.beginPath();
+      ctx.moveTo(st.dx, st.dy - flare);
+      ctx.lineTo(st.dx + sr * 0.35, st.dy);
+      ctx.lineTo(st.dx, st.dy + flare);
+      ctx.lineTo(st.dx - sr * 0.35, st.dy);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(st.dx - flare, st.dy);
+      ctx.lineTo(st.dx, st.dy + sr * 0.35);
+      ctx.lineTo(st.dx + flare, st.dy);
+      ctx.lineTo(st.dx, st.dy - sr * 0.35);
+      ctx.fill();
+    }
+  });
+
+  ctx.font = 'italic 600 12.5px "Cormorant Garamond", Georgia, serif';
+  ctx.textAlign = 'center';
+  ctx.fillStyle = `rgba(255, 225, 242, ${clamp(0.80 * shimmer + cancerPulseBoost * 0.3, 0.55, 1)})`;
+  ctx.shadowColor = 'rgba(255, 120, 190, 0.85)';
+  ctx.shadowBlur = 8;
+  ctx.fillText('♋ Cự Giải · 24/06', 0, 44);
+  ctx.shadowBlur = 0;
+
+  ctx.restore();
+}
+
+function drawSeamlessGalaxySky(dt, t) {
+  const px = -parallax.x * 10, py = -parallax.y * 7;
+  const nebulae = [
+    { x: W * 0.28, y: H * 0.32, rx: W * 0.48, ry: H * 0.34, col: '160, 70, 245', a: 0.22, drift: 0.06 },
+    { x: W * 0.55, y: H * 0.22, rx: W * 0.52, ry: H * 0.32, col: '235, 85, 180', a: 0.20, drift: -0.05 },
+    { x: W * 0.78, y: H * 0.16, rx: W * 0.44, ry: H * 0.30, col: '55, 175, 245', a: 0.18, drift: 0.07 },
+    { x: W * 0.42, y: H * 0.48, rx: W * 0.55, ry: H * 0.32, col: '195, 75, 225', a: 0.17, drift: 0.04 }
+  ];
+
+  ctx.save();
+  nebulae.forEach(n => {
+    const nx = n.x + Math.sin(t * n.drift) * 20 + px;
+    const ny = n.y + Math.cos(t * n.drift * 0.8) * 14 + py;
+
+    ctx.save();
+    ctx.translate(nx, ny);
+    ctx.scale(1, n.ry / n.rx);
+    const grad = ctx.createRadialGradient(0, 0, 8, 0, 0, n.rx);
+    grad.addColorStop(0, `rgba(${n.col}, ${n.a})`);
+    grad.addColorStop(0.5, `rgba(${n.col}, ${n.a * 0.45})`);
+    grad.addColorStop(1, `rgba(${n.col}, 0)`);
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(0, 0, n.rx, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  });
+
+  galaxyDust.forEach(gd => {
+    const dx = gd.nx * W + px;
+    const dy = gd.ny * H + py;
+    ctx.fillStyle = gd.col;
+    ctx.globalAlpha = gd.a * (0.65 + 0.35 * Math.sin(t * gd.sp + gd.ph));
+    ctx.beginPath();
+    ctx.arc(dx, dy, gd.r, 0, 6.2832);
+    ctx.fill();
+  });
+  ctx.globalAlpha = 1;
+  ctx.restore();
+
+  drawCancerConstellation(dt, t);
+}
+
+let stars = [], galaxyDust = [], shootingStars = [], starSparks = [], lastShootingTime = 0;
+
+function initStars() {
+  stars = [];
+  galaxyDust = [];
+  const count = mobile ? 110 : 210;
+  for (let i = 0; i < count; i++) {
+    const isMajor = Math.random() < 0.16;
+    stars.push({
+      nx: rr(-0.15, 1.15),
+      ny: rr(-0.15, 0.88),
+      r: isMajor ? rr(1.5, 2.8) : rr(0.5, 1.4),
+      ph: rr(0, 6.28),
+      sp: rr(1.2, 3.6),
+      sparkle: isMajor || Math.random() < 0.24,
+      isMajor: isMajor,
+      hue: Math.random() < 0.35 ? '255, 205, 235' : (Math.random() < 0.6 ? '175, 225, 255' : (Math.random() < 0.85 ? '255, 235, 170' : '220, 185, 255'))
+    });
+  }
+
+  const dustCount = mobile ? 190 : 380;
+  const dCols = ['#ffffff', '#ffd6ed', '#c7e8ff', '#ffecb3', '#e2c7ff'];
+  for (let i = 0; i < dustCount; i++) {
+    const uLine = Math.random();
+    const spread = (Math.random() - 0.5 + (Math.random() - 0.5)) * 0.24;
+    galaxyDust.push({
+      nx: clamp(uLine + spread * 0.5, -0.1, 1.1),
+      ny: (1 - uLine) * 0.72 + spread,
+      r: rr(0.4, 1.15),
+      a: rr(0.24, 0.70),
+      ph: rr(0, 6.28),
+      sp: rr(0.8, 2.2),
+      col: dCols[i % dCols.length]
+    });
+  }
+}
+
+const STAR_PALETTES = [
+  { core: '255, 230, 150', mid: '255, 170, 85', tail: '255, 105, 175', spark: '#ffe082' },
+  { core: '255, 195, 230', mid: '245, 110, 180', tail: '160, 80, 245', spark: '#ffa6d2' },
+  { core: '190, 240, 255', mid: '110, 185, 255', tail: '180, 100, 250', spark: '#a6edff' }
+];
+
+function spawnShootingStar() {
+  const roll = Math.random();
+  const count = roll < 0.32 ? 3 : (roll < 0.75 ? 2 : 1);
+
+  for (let k = 0; k < count; k++) {
+    const isForeground = Math.random() < 0.42;
+    const pal = STAR_PALETTES[(Math.floor(Math.random() * 3) + k) % 3];
+    const speed = (isForeground ? rr(420, 620) : rr(290, 430)) / Math.sqrt(camS);
+    const angle = rr(2.50, 2.70);
+    const [viewLeft, viewTop] = s2c(W * 0.1, -20);
+    const [viewRight, viewBot] = s2c(W * 1.15, H * 0.38);
+
+    shootingStars.push({
+      x: rr(viewLeft, viewRight),
+      y: rr(viewTop, viewBot),
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      len: (isForeground ? rr(155, 260) : rr(85, 145)) / camS,
+      size: (isForeground ? rr(2.8, 4.4) : rr(1.5, 2.5)) / Math.sqrt(camS),
+      life: 1.0,
+      decay: isForeground ? rr(0.55, 0.85) : rr(0.75, 1.15),
+      delay: k * rr(0.07, 0.18),
+      pal: pal,
+      isForeground: isForeground,
+      sparkTimer: 0
+    });
+  }
+}
+
+function updateAndDrawStars(dt, t, d) {
+  drawSeamlessGalaxySky(dt, t);
+
+  const px = -parallax.x * 10, py = -parallax.y * 7;
+  stars.forEach(st => {
+    const twinkle = 0.32 + 0.68 * (0.5 + 0.5 * Math.sin(t * st.sp + st.ph));
+    const alpha = (d ? 0.94 : 0.85) * twinkle;
+    const sx = st.nx * W + px, sy = st.ny * H + py;
+
+    if (st.sparkle && twinkle > 0.60) {
+      ctx.save();
+      ctx.translate(sx, sy);
+      ctx.fillStyle = `rgba(${st.hue}, ${alpha * 0.25})`;
+      ctx.beginPath(); ctx.arc(0, 0, st.r * 2.4, 0, 6.2832); ctx.fill();
+
+      ctx.fillStyle = `rgba(${st.hue}, ${alpha})`;
+      const len = st.r * (st.isMajor ? 3.2 : 2.3) * twinkle;
+      ctx.beginPath();
+      ctx.moveTo(0, -len); ctx.lineTo(len * 0.20, 0); ctx.lineTo(0, len); ctx.lineTo(-len * 0.20, 0);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(-len, 0); ctx.lineTo(0, len * 0.20); ctx.lineTo(len, 0); ctx.lineTo(0, -len * 0.20);
+      ctx.fill();
+      ctx.restore();
+    } else {
+      ctx.fillStyle = `rgba(${st.hue}, ${alpha * 0.35})`;
+      ctx.beginPath(); ctx.arc(sx, sy, st.r * 1.7, 0, 6.2832); ctx.fill();
+      ctx.fillStyle = `rgba(${st.hue}, ${alpha})`;
+      ctx.beginPath(); ctx.arc(sx, sy, st.r, 0, 6.2832); ctx.fill();
+    }
+  });
+
+  drawRealisticMoon(dt, t);
+
+  if (t - lastShootingTime > rr(0.22, 0.48) && shootingStars.length < 16) {
+    lastShootingTime = t;
+    spawnShootingStar();
+  }
+
+  ctx.save();
+  ctx.globalCompositeOperation = 'lighter';
+  for (let i = shootingStars.length - 1; i >= 0; i--) {
+    const ss = shootingStars[i];
+    if (ss.delay > 0) {
+      ss.delay -= dt;
+      continue;
+    }
+
+    ss.x += ss.vx * dt;
+    ss.y += ss.vy * dt;
+    ss.life -= ss.decay * dt;
+
+    if (ss.life <= 0) {
+      shootingStars.splice(i, 1);
+      continue;
+    }
+
+    if (ss.isForeground) {
+      ss.sparkTimer -= dt;
+      if (ss.sparkTimer <= 0) {
+        ss.sparkTimer = 0.032;
+        starSparks.push({
+          x: ss.x + rr(-4, 4),
+          y: ss.y + rr(-4, 4),
+          vx: ss.vx * 0.07 + rr(-15, 15),
+          vy: ss.vy * 0.07 + rr(-10, 22),
+          r: rr(0.9, 1.9),
+          life: 1.0,
+          decay: rr(1.4, 2.3),
+          col: ss.pal.spark
+        });
+      }
+    }
+
+    const ang = Math.atan2(ss.vy, ss.vx);
+    const curLen = ss.len * (0.5 + 0.5 * ss.life);
+    const tailX = ss.x - Math.cos(ang) * curLen;
+    const tailY = ss.y - Math.sin(ang) * curLen;
+
+    const gGlow = ctx.createLinearGradient(ss.x, ss.y, tailX, tailY);
+    gGlow.addColorStop(0, `rgba(${ss.pal.core}, ${ss.life * 0.46})`);
+    gGlow.addColorStop(0.4, `rgba(${ss.pal.mid}, ${ss.life * 0.25})`);
+    gGlow.addColorStop(1, `rgba(${ss.pal.tail}, 0)`);
+    ctx.strokeStyle = gGlow;
+    ctx.lineWidth = ss.size * 2.5 * ss.life;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(tailX, tailY);
+    ctx.lineTo(ss.x, ss.y);
+    ctx.stroke();
+
+    const g = ctx.createLinearGradient(ss.x, ss.y, tailX, tailY);
+    g.addColorStop(0, `rgba(255, 255, 255, ${ss.life * 0.95})`);
+    g.addColorStop(0.18, `rgba(${ss.pal.core}, ${ss.life * 0.90})`);
+    g.addColorStop(0.55, `rgba(${ss.pal.mid}, ${ss.life * 0.58})`);
+    g.addColorStop(1, `rgba(${ss.pal.tail}, 0)`);
+    ctx.strokeStyle = g;
+    ctx.lineWidth = ss.size * (0.6 + 0.35 * ss.life);
+    ctx.beginPath();
+    ctx.moveTo(tailX, tailY);
+    ctx.lineTo(ss.x, ss.y);
+    ctx.stroke();
+
+    const flareR = ss.size * 2.8 * ss.life;
+    ctx.save();
+    ctx.translate(ss.x, ss.y);
+    ctx.rotate(ang);
+
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath(); ctx.arc(0, 0, ss.size * 1.2, 0, 6.2832); ctx.fill();
+
+    ctx.fillStyle = `rgba(${ss.pal.core}, ${ss.life * 0.92})`;
+    ctx.beginPath();
+    ctx.moveTo(0, -flareR * 1.4); ctx.lineTo(flareR * 0.20, 0); ctx.lineTo(0, flareR * 1.4); ctx.lineTo(-flareR * 0.20, 0);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(-flareR * 2.2, 0); ctx.lineTo(0, flareR * 0.20); ctx.lineTo(flareR * 2.2, 0); ctx.lineTo(0, -flareR * 0.20);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  for (let i = starSparks.length - 1; i >= 0; i--) {
+    const sp = starSparks[i];
+    sp.x += sp.vx * dt;
+    sp.y += sp.vy * dt;
+    sp.life -= sp.decay * dt;
+    if (sp.life <= 0) {
+      starSparks.splice(i, 1);
+      continue;
+    }
+    ctx.globalAlpha = sp.life * 0.85;
+    ctx.fillStyle = sp.col;
+    ctx.beginPath();
+    ctx.arc(sp.x, sp.y, sp.r * sp.life, 0, 6.2832);
+    ctx.fill();
+  }
+  ctx.restore();
+}
+
+/* ==========================================================================
+   Grand Japanese Weeping Cherry Blossom Tree
+   ========================================================================== */
+let sakuraCanopyCanvas = null;
+let sakuraCanopyW = 0, sakuraCanopyH = 0;
+let sakuraCanopyPad = 80;
+let sakuraPetals = [];
+let gustPetals = [];
+let windLines = [];
+
+function drawSingleSakuraFlower(c, x, y, size, angle) {
+  c.save();
+  c.translate(x, y);
+  c.rotate(angle);
+  const petalR = size;
+  for (let i = 0; i < 5; i++) {
+    const a = i * (Math.PI * 2 / 5);
+    c.save();
+    c.rotate(a);
+    c.beginPath();
+    c.moveTo(0, 0);
+    c.bezierCurveTo(-petalR * 0.5, -petalR * 0.5, -petalR * 0.45, -petalR * 1.1, -petalR * 0.12, -petalR * 1.15);
+    c.quadraticCurveTo(0, -petalR * 0.98, petalR * 0.12, -petalR * 1.15);
+    c.bezierCurveTo(petalR * 0.45, -petalR * 1.1, petalR * 0.5, -petalR * 0.5, 0, 0);
+
+    const grad = c.createRadialGradient(0, -petalR * 0.3, petalR * 0.1, 0, -petalR * 0.6, petalR * 1.2);
+    grad.addColorStop(0, '#ffeef4');
+    grad.addColorStop(0.48, '#ff9ebb');
+    grad.addColorStop(1, '#de4e7b');
+    c.fillStyle = grad;
+    c.fill();
+    c.restore();
+  }
+  c.fillStyle = '#ffbe3d';
+  c.beginPath(); c.arc(0, 0, Math.max(1.2, size * 0.17), 0, 6.2832); c.fill();
+  c.restore();
+}
+
+function buildSakuraCanopy() {
+  const scale = mobile ? clamp(W / 400, 0.75, 0.95) : clamp(W / 1100, 0.9, 1.25);
+
+  const baseW = 720 * scale;
+  const baseH = 560 * scale;
+  const pad = 110;
+  sakuraCanopyPad = pad;
+  sakuraCanopyW = Math.ceil(baseW + pad * 2);
+  sakuraCanopyH = Math.ceil(baseH + pad * 2);
+
+  const off = document.createElement('canvas');
+  off.width = Math.round(sakuraCanopyW * DPR);
+  off.height = Math.round(sakuraCanopyH * DPR);
+  const c = off.getContext('2d');
+  c.scale(DPR, DPR);
+  c.translate(pad, pad);
+
+  c.lineCap = 'round';
+  c.lineJoin = 'round';
+
+  const branches = [
+    { p0: [-40, -30], p1: [70, 18], p2: [180, 30], p3: [300, 38], w: 20 * scale },
+    { p0: [300, 38], p1: [390, 46], p2: [460, 68], p3: [500, 102], w: 12 * scale },
+    { p0: [500, 102], p1: [530, 148], p2: [538, 210], p3: [520, 285], w: 6.5 * scale },
+    { p0: [520, 285], p1: [508, 340], p2: [492, 390], p3: [475, 435], w: 3.5 * scale },
+    { p0: [320, 40], p1: [365, 108], p2: [388, 182], p3: [400, 265], w: 9 * scale },
+    { p0: [400, 265], p1: [408, 330], p2: [408, 390], p3: [402, 440], w: 4.2 * scale },
+    { p0: [190, 32], p1: [225, 96], p2: [246, 172], p3: [255, 255], w: 8.5 * scale },
+    { p0: [255, 255], p1: [260, 320], p2: [260, 375], p3: [255, 420], w: 4.0 * scale },
+    { p0: [65, 16], p1: [88, 82], p2: [102, 158], p3: [108, 238], w: 7.5 * scale },
+    { p0: [108, 238], p1: [112, 300], p2: [112, 355], p3: [108, 400], w: 3.8 * scale }
+  ];
+
+  branches.forEach(b => {
+    c.strokeStyle = '#24130c';
+    c.lineWidth = b.w;
+    c.beginPath();
+    c.moveTo(b.p0[0] * scale, b.p0[1] * scale);
+    c.bezierCurveTo(b.p1[0] * scale, b.p1[1] * scale, b.p2[0] * scale, b.p2[1] * scale, b.p3[0] * scale, b.p3[1] * scale);
+    c.stroke();
+
+    c.strokeStyle = '#47281b';
+    c.lineWidth = b.w * 0.52;
+    c.stroke();
+  });
+
+  const rnd = mul(42);
+  const floretClusters = [];
+
+  branches.forEach(b => {
+    const steps = 13;
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const pt = bez(
+        { x: b.p0[0] * scale, y: b.p0[1] * scale },
+        { x: b.p1[0] * scale, y: b.p1[1] * scale },
+        { x: b.p2[0] * scale, y: b.p2[1] * scale },
+        { x: b.p3[0] * scale, y: b.p3[1] * scale },
+        t
+      );
+      for (let k = 0; k < 5; k++) {
+        floretClusters.push({
+          x: pt.x + (rnd() - 0.5) * (52 * scale),
+          y: pt.y + (rnd() - 0.45) * (46 * scale),
+          r: (7 + rnd() * 10) * scale
+        });
+      }
+    }
+  });
+
+  floretClusters.forEach(cl => {
+    const g = c.createRadialGradient(cl.x, cl.y, 1, cl.x, cl.y, cl.r * 1.25);
+    g.addColorStop(0, 'rgba(255, 140, 185, 0.34)');
+    g.addColorStop(0.55, 'rgba(230, 85, 140, 0.18)');
+    g.addColorStop(1, 'rgba(230, 85, 140, 0)');
+    c.fillStyle = g;
+    c.beginPath(); c.arc(cl.x, cl.y, cl.r * 1.25, 0, 6.2832); c.fill();
+  });
+
+  floretClusters.forEach(cl => {
+    if (rnd() < 0.62) {
+      const fx = cl.x + (rnd() - 0.5) * cl.r * 0.9;
+      const fy = cl.y + (rnd() - 0.5) * cl.r * 0.9;
+      drawSingleSakuraFlower(c, fx, fy, (5.2 + rnd() * 4.5) * scale, rnd() * 6.28);
+    }
+  });
+
+  sakuraCanopyCanvas = off;
+}
+
+function initSakuraPetals() {
+  sakuraPetals = [];
+  const count = mobile ? 28 : 48;
+  for (let i = 0; i < count; i++) {
+    sakuraPetals.push({
+      x: rr(-20, W * 0.95),
+      y: rr(-20, H),
+      vx: rr(22, 58),
+      vy: rr(32, 68),
+      rot: rr(0, 6.28),
+      rotSp: rr(0.02, 0.05),
+      flip: rr(0, 6.28),
+      size: rr(5.2, 9.8),
+      alpha: rr(0.68, 0.92),
+      turbPh: rr(0, 6.28),
+      turbSp: rr(4, 9),
+      chaosX: rr(0.7, 1.45),
+      chaosY: rr(-0.65, 0.85)
+    });
+  }
+}
+
+const PETAL_COLORS = [
+  ['#ffeef4', '#ff9ebb', '#de4778'],
+  ['#fff0e6', '#ffb899', '#de6847'],
+  ['#f5ebff', '#cca6fa', '#8f55d9']
+];
+
+function triggerWindChaos(dir, vyBias) {
+  if (state !== 'intro') {
+    playWindChimeArpeggio(dir);
+  }
+
+  const burstCount = mobile ? 26 : 44;
+  for (let i = 0; i < burstCount; i++) {
+    const startFromSide = Math.random() < 0.55;
+    const px = startFromSide
+      ? (dir > 0 ? rr(-80, W * 0.25) : rr(W * 0.75, W + 80))
+      : rr(0, W);
+    const py = rr(H * 0.05, H * 0.92);
+    const speed = rr(220, 460);
+    const angle = (dir > 0 ? 0 : Math.PI) + rr(-0.55, 0.55) + vyBias * 0.3;
+
+    gustPetals.push({
+      x: px,
+      y: py,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed + rr(-85, 85),
+      swirlPh: rr(0, 6.28),
+      swirlSp: rr(6, 13),
+      swirlAmp: rr(40, 120),
+      rot: rr(0, 6.28),
+      rotSp: rr(-0.15, 0.15),
+      flip: rr(0, 6.28),
+      flipSp: rr(0.08, 0.20),
+      size: rr(5.5, 11.5),
+      life: 1.0,
+      decay: rr(0.32, 0.55),
+      cols: PETAL_COLORS[i % PETAL_COLORS.length]
+    });
+  }
+
+  const lineCount = mobile ? 5 : 8;
+  for (let i = 0; i < lineCount; i++) {
+    windLines.push({
+      x: dir > 0 ? rr(-120, W * 0.4) : rr(W * 0.6, W + 120),
+      y: rr(H * 0.15, H * 0.88),
+      vx: dir * rr(420, 660),
+      vy: vyBias * rr(60, 130) + rr(-30, 30),
+      len: rr(110, 230),
+      amp: rr(8, 20),
+      ph: rr(0, 6.28),
+      life: 1.0,
+      decay: rr(0.45, 0.75)
+    });
+  }
+}
+
+function updateAndDrawSakuraPetals(dt, t, gustOffset = 0) {
+  const gustActive = windGust.active ? windGust.env : 0;
+
+  sakuraPetals.forEach(p => {
+    const chaosVx = gustOffset * 14 * p.chaosX + (gustActive ? Math.sin(t * p.turbSp + p.turbPh) * 135 : 0);
+    const chaosVy = gustActive ? (Math.cos(t * p.turbSp * 1.1 + p.turbPh) * 110 + Math.abs(gustOffset) * 3.2 * p.chaosY) : 0;
+
+    p.x += (p.vx + chaosVx) * dt;
+    p.y += (p.vy + chaosVy) * dt;
+    p.rot += p.rotSp * (1 + gustActive * 2.6);
+    p.flip += 0.04 * (1 + gustActive * 2.4);
+
+    if (p.x > W + 60) p.x = -40;
+    else if (p.x < -60) p.x = W + 40;
+    if (p.y > H + 50) {
+      p.x = rr(-30, W * 0.85);
+      p.y = rr(-40, 30);
+    } else if (p.y < -60) {
+      p.y = H + 20;
+    }
+
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rot);
+    ctx.scale(Math.cos(p.flip), 1);
+
+    const grad = ctx.createRadialGradient(0, 0, 1, 0, 0, p.size);
+    grad.addColorStop(0, '#ffeef4');
+    grad.addColorStop(0.45, '#ff9ebb');
+    grad.addColorStop(1, '#de4778');
+
+    ctx.fillStyle = grad;
+    ctx.globalAlpha = p.alpha;
+    ctx.beginPath();
+    ctx.ellipse(0, 0, p.size, p.size * 0.58, 0, 0, 6.2832);
+    ctx.fill();
+    ctx.restore();
+  });
+
+  for (let i = gustPetals.length - 1; i >= 0; i--) {
+    const gp = gustPetals[i];
+    gp.swirlPh += gp.swirlSp * dt;
+    const swirlX = Math.cos(gp.swirlPh) * gp.swirlAmp;
+    const swirlY = Math.sin(gp.swirlPh * 1.3) * gp.swirlAmp;
+
+    gp.x += (gp.vx + swirlX) * dt;
+    gp.y += (gp.vy + swirlY) * dt;
+    gp.rot += gp.rotSp;
+    gp.flip += gp.flipSp;
+    gp.life -= gp.decay * dt;
+
+    if (gp.life <= 0) {
+      gustPetals.splice(i, 1);
+      continue;
+    }
+
+    ctx.save();
+    ctx.translate(gp.x, gp.y);
+    ctx.rotate(gp.rot);
+    ctx.scale(Math.cos(gp.flip), Math.sin(gp.flip * 0.7) * 0.3 + 0.7);
+
+    const grad = ctx.createRadialGradient(0, 0, 1, 0, 0, gp.size);
+    grad.addColorStop(0, gp.cols[0]);
+    grad.addColorStop(0.45, gp.cols[1]);
+    grad.addColorStop(1, gp.cols[2]);
+
+    ctx.fillStyle = grad;
+    ctx.globalAlpha = Math.min(1, gp.life * 1.4) * 0.90;
+    ctx.beginPath();
+    ctx.moveTo(0, -gp.size * 0.6);
+    ctx.bezierCurveTo(gp.size * 0.8, -gp.size * 0.5, gp.size * 0.9, gp.size * 0.4, 0, gp.size * 0.7);
+    ctx.bezierCurveTo(-gp.size * 0.9, gp.size * 0.4, -gp.size * 0.8, -gp.size * 0.5, 0, -gp.size * 0.6);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  for (let i = windLines.length - 1; i >= 0; i--) {
+    const wl = windLines[i];
+    wl.x += wl.vx * dt;
+    wl.y += wl.vy * dt;
+    wl.life -= wl.decay * dt;
+    if (wl.life <= 0) {
+      windLines.splice(i, 1);
+      continue;
+    }
+    const dir = Math.sign(wl.vx) || 1;
+    ctx.save();
+    ctx.globalAlpha = Math.sin(wl.life * Math.PI) * 0.24;
+    const wg = ctx.createLinearGradient(wl.x, wl.y, wl.x - dir * wl.len, wl.y);
+    wg.addColorStop(0, 'rgba(255, 240, 248, 0)');
+    wg.addColorStop(0.5, 'rgba(255, 225, 242, 0.88)');
+    wg.addColorStop(1, 'rgba(255, 240, 248, 0)');
+    ctx.strokeStyle = wg;
+    ctx.lineWidth = 1.5;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    for (let s = 0; s <= 16; s++) {
+      const uStep = s / 16;
+      const lx = wl.x - dir * wl.len * uStep;
+      const ly = wl.y + Math.sin(uStep * Math.PI * 2 + wl.ph + t * 8) * wl.amp;
+      if (s === 0) ctx.moveTo(lx, ly);
+      else ctx.lineTo(lx, ly);
+    }
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  ctx.globalAlpha = 1;
+}
+
+/* ==========================================================================
+   5-Second Random-Direction Strong Wind Gust System
+   ========================================================================== */
+let windGust = { active: false, t0: 0, dur: 2.5, strength: 0, dir: 1, vyBias: 0, env: 0 };
+let lastGustTime = 0.5;
+const loafEyesNormal = $('loafEyesNormal');
+const loafEyesWindy = $('loafEyesWindy');
+const catLoafBox = $('catLoafBox');
+
+function updateWind(dt, t) {
+  if (!windGust.active && t - lastGustTime >= 5.0) {
+    windGust.active = true;
+    windGust.t0 = t;
+    windGust.dur = rr(2.3, 2.7);
+    windGust.dir = Math.random() < 0.5 ? 1 : -1;
+    windGust.vyBias = rr(-0.45, 0.45);
+    windGust.strength = rr(18, 25);
+    windGust.env = 0;
+    lastGustTime = t;
+
+    triggerWindChaos(windGust.dir, windGust.vyBias);
+
+    if (loafEyesNormal && loafEyesWindy) {
+      loafEyesNormal.style.display = 'none';
+      loafEyesWindy.style.display = 'block';
+      catLoafBox.classList.add('wind-happy');
+    }
+  }
+
+  let gustOffset = 0;
+  if (windGust.active) {
+    const prog = (t - windGust.t0) / windGust.dur;
+    if (prog >= 1) {
+      windGust.active = false;
+      windGust.env = 0;
+      if (loafEyesNormal && loafEyesWindy) {
+        loafEyesNormal.style.display = 'block';
+        loafEyesWindy.style.display = 'none';
+        catLoafBox.classList.remove('wind-happy');
+      }
+    } else {
+      windGust.env = Math.sin(prog * Math.PI);
+      const flutter = Math.sin(t * 9.5) * 3.5 * windGust.env;
+      gustOffset = windGust.env * windGust.strength * windGust.dir + flutter;
+    }
+  }
+  return gustOffset;
+}
+
+/* ==========================================================================
+   Hiệu ứng Lướt Tay Như Làn Gió Thổi Qua Đồng Hoa + Tiếng Kalimba Trong Trẻo
+   ========================================================================== */
+let ptr = {
+  tx: -1000, ty: -1000,
+  x: -1000, y: -1000,
+  vx: 0, vy: 0,
+  active: false,
+  lastMoveT: 0,
+  lastWaveT: 0
+};
+let breezeWaves = [];
+let cursorTrail = [];
+
+function onPointerMove(px, py) {
+  if (!parallax.gyroActive && W > 0 && H > 0) {
+    parallax.tx = ((px / W) - 0.5) * 1.4;
+    parallax.ty = ((py / H) - 0.5) * 1.4;
+  }
+
+  const [cx, cy] = s2c(px, py);
+  const nowS = performance.now() / 1000;
+  if (!ptr.active || nowS - ptr.lastMoveT > 0.25) {
+    ptr.x = cx;
+    ptr.y = cy;
+  }
+  const dx = cx - ptr.tx;
+  const dy = cy - ptr.ty;
+  ptr.tx = cx;
+  ptr.ty = cy;
+  ptr.active = true;
+  ptr.lastMoveT = nowS;
+
+  if (state !== 'intro' && nowS - ptr.lastWaveT > 0.035 && Math.hypot(dx, dy) > 2) {
+    ptr.lastWaveT = nowS;
+    const dir = Math.abs(dx) > 0.5 ? Math.sign(dx) : 1;
+    const str = clamp(Math.hypot(dx, dy) * 1.4, 8, 34) * dir;
+    breezeWaves.push({
+      x: cx,
+      y: cy,
+      vx: clamp(dx * 16, -320, 320),
+      vy: clamp(dy * 10, -160, 160),
+      r: mobile ? 145 : 195,
+      strength: str,
+      life: 1.0,
+      decay: 1.15
+    });
+
+    if (py > H * 0.35 && Math.hypot(dx, dy) > 5) {
+      playSwipeKalimba(clamp(px / Math.max(1, W), 0, 1));
+    }
+
+    if (Math.random() < 0.32 && gustPetals.length < 60) {
+      gustPetals.push({
+        x: cx + rr(-20, 20),
+        y: cy + rr(-20, 20),
+        vx: dir * rr(90, 210),
+        vy: rr(-85, -20),
+        swirlPh: rr(0, 6.28),
+        swirlSp: rr(5, 10),
+        swirlAmp: rr(25, 65),
+        rot: rr(0, 6.28),
+        rotSp: rr(-0.12, 0.12),
+        flip: rr(0, 6.28),
+        flipSp: rr(0.08, 0.16),
+        size: rr(5, 9.5),
+        life: 0.85,
+        decay: rr(0.55, 0.85),
+        cols: PETAL_COLORS[Math.floor(Math.random() * PETAL_COLORS.length)]
+      });
+    }
+  }
+
+  if (Math.random() < 0.55) {
+    cursorTrail.push({
+      x: cx + rr(-6, 6),
+      y: cy + rr(-6, 6),
+      vx: rr(-18, 18),
+      vy: rr(-28, 8),
+      r: rr(1.5, 2.8) / Math.sqrt(camS),
+      isHeart: Math.random() < 0.28,
+      life: 1.0,
+      decay: rr(1.2, 1.9),
+      col: Math.random() < 0.5 ? '#ff9ec4' : (Math.random() < 0.8 ? '#ffe082' : '#ffffff')
+    });
+  }
+}
+
+window.addEventListener('pointermove', e => onPointerMove(e.clientX, e.clientY));
+window.addEventListener('touchmove', e => {
+  if (e.touches && e.touches[0]) {
+    onPointerMove(e.touches[0].clientX, e.touches[0].clientY);
+  }
+}, { passive: true });
+
+function updateFlowerPhysics(dt, t) {
+  for (let i = breezeWaves.length - 1; i >= 0; i--) {
+    const bw = breezeWaves[i];
+    bw.x += bw.vx * dt;
+    bw.y += bw.vy * dt;
+    bw.r += 45 * dt;
+    bw.life -= bw.decay * dt;
+    if (bw.life <= 0) breezeWaves.splice(i, 1);
+  }
+
+  const allFlowers = state === 'intro' ? [] : [...flowers, hero];
+
+  allFlowers.forEach(f => {
+    f.physX = f.physX || 0;
+    f.windTarget = f.windTarget || 0;
+
+    let breezeForce = 0;
+    if (f.currX !== undefined && f.currY !== undefined) {
+      for (let i = 0; i < breezeWaves.length; i++) {
+        const bw = breezeWaves[i];
+        const dx = f.currX - bw.x;
+        const dy = (f.currY - bw.y) * 0.75;
+        const dist = Math.hypot(dx, dy);
+        if (dist < bw.r) {
+          const uDist = dist / bw.r;
+          const smoothWave = 0.5 * (1 + Math.cos(uDist * Math.PI)) * bw.life;
+          breezeForce += bw.strength * smoothWave;
+        }
+      }
+    }
+
+    breezeForce = clamp(breezeForce, -42, 42);
+
+    if (Math.abs(breezeForce) > Math.abs(f.windTarget)) {
+      f.windTarget += (breezeForce - f.windTarget) * Math.min(1, dt * 10);
+    } else {
+      f.windTarget *= Math.exp(-2.2 * dt);
+    }
+
+    const breezeFlutter = Math.abs(f.windTarget) > 0.8
+      ? Math.sin(t * 6.5 + f.ph * 2.3) * (f.windTarget * 0.18)
+      : 0;
+
+    const desiredX = f.windTarget + breezeFlutter;
+    f.physX += (desiredX - f.physX) * Math.min(1, dt * 7.5);
+  });
+}
+
+function updateAndDrawCursorTrail(dt) {
+  if (!cursorTrail.length) return;
+  ctx.save();
+  ctx.globalCompositeOperation = 'lighter';
+  for (let i = cursorTrail.length - 1; i >= 0; i--) {
+    const p = cursorTrail[i];
+    p.x += p.vx * dt;
+    p.y += p.vy * dt;
+    p.life -= p.decay * dt;
+    if (p.life <= 0) {
+      cursorTrail.splice(i, 1);
+      continue;
+    }
+    ctx.globalAlpha = p.life * 0.85;
+    ctx.fillStyle = p.col;
+    if (p.isHeart) {
+      heartPath(ctx, p.x, p.y, p.r * 1.4 * p.life);
+      ctx.fill();
+    } else {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r * p.life, 0, 6.2832);
+      ctx.fill();
+    }
+  }
+  ctx.restore();
+}
+
+/* ==========================================================================
+   Celestial Wish Star & Wish Burst Particles
+   ========================================================================== */
+let wishParticles = [];
+let starSpin = 0;
+
+function spawnWishBurst(x, y) {
+  for (let i = 0; i < 54; i++) {
+    const ang = (i / 54) * 6.2832 + (Math.random() - 0.5) * 0.25;
+    const sp = rr(70, 260);
+    wishParticles.push({
+      x: x,
+      y: y,
+      vx: Math.cos(ang) * sp,
+      vy: Math.sin(ang) * sp,
+      r: rr(1.8, 3.8),
+      life: 1.0,
+      decay: rr(0.7, 1.2),
+      color: Math.random() < 0.4 ? '#ffffff' : (Math.random() < 0.7 ? '#ffe28a' : '#ff85b3')
+    });
+  }
+}
+
+function updateAndDrawWishParticles(dt) {
+  for (let i = wishParticles.length - 1; i >= 0; i--) {
+    const p = wishParticles[i];
+    p.x += p.vx * dt;
+    p.y += p.vy * dt;
+    p.vx *= 0.95;
+    p.vy *= 0.95;
+    p.life -= p.decay * dt;
+    if (p.life <= 0) {
+      wishParticles.splice(i, 1);
+      continue;
+    }
+    ctx.save();
+    ctx.globalAlpha = p.life;
+    ctx.fillStyle = p.color;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r * p.life, 0, 6.2832);
+    ctx.fill();
+    ctx.restore();
+  }
+}
+
+function drawWishStar(c, x, y, size, t, sway) {
+  c.save();
+  c.translate(x + sway, y);
+
+  const pulse = 0.5 + 0.5 * Math.sin(t * 3.0);
+
+  const haloR = size * (2.6 + 0.35 * pulse);
+  const halo = c.createRadialGradient(0, 0, 1, 0, 0, haloR);
+  halo.addColorStop(0, 'rgba(255, 255, 255, 0.95)');
+  halo.addColorStop(0.22, 'rgba(255, 230, 155, 0.75)');
+  halo.addColorStop(0.50, 'rgba(255, 130, 190, 0.38)');
+  halo.addColorStop(1, 'rgba(160, 120, 240, 0)');
+  c.fillStyle = halo;
+  c.beginPath(); c.arc(0, 0, haloR, 0, 6.2832); c.fill();
+
+  const rayAngle = t * 0.45 + starSpin;
+  c.save();
+  c.rotate(rayAngle);
+  const mainRay = size * (2.2 + 0.3 * pulse);
+  const thinRay = size * 0.22;
+  const rayGrad = c.createRadialGradient(0, 0, 0, 0, 0, mainRay);
+  rayGrad.addColorStop(0, '#ffffff');
+  rayGrad.addColorStop(0.4, '#ffe28a');
+  rayGrad.addColorStop(0.85, 'rgba(255, 165, 205, 0.55)');
+  rayGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+  c.fillStyle = rayGrad;
+
+  c.beginPath();
+  c.moveTo(0, -mainRay);
+  c.quadraticCurveTo(thinRay * 0.15, -thinRay * 0.8, thinRay, 0);
+  c.quadraticCurveTo(thinRay * 0.15, thinRay * 0.8, 0, mainRay);
+  c.quadraticCurveTo(-thinRay * 0.15, thinRay * 0.8, -thinRay, 0);
+  c.quadraticCurveTo(-thinRay * 0.15, -thinRay * 0.8, 0, -mainRay);
+  c.fill();
+
+  c.beginPath();
+  c.moveTo(-mainRay, 0);
+  c.quadraticCurveTo(-thinRay * 0.8, thinRay * 0.15, 0, thinRay);
+  c.quadraticCurveTo(thinRay * 0.8, thinRay * 0.15, mainRay, 0);
+  c.quadraticCurveTo(thinRay * 0.8, -thinRay * 0.15, 0, -thinRay);
+  c.quadraticCurveTo(-thinRay * 0.8, -thinRay * 0.15, -mainRay, 0);
+  c.fill();
+  c.restore();
+
+  c.save();
+  c.rotate(rayAngle + Math.PI / 4);
+  const subRay = mainRay * 0.55;
+  const subThin = thinRay * 0.65;
+  c.fillStyle = 'rgba(255, 255, 255, 0.78)';
+  c.beginPath();
+  c.moveTo(0, -subRay); c.lineTo(subThin, 0); c.lineTo(0, subRay); c.lineTo(-subThin, 0);
+  c.fill();
+  c.beginPath();
+  c.moveTo(-subRay, 0); c.lineTo(0, subThin); c.lineTo(subRay, 0); c.lineTo(0, -subThin);
+  c.fill();
+  c.restore();
+
+  const specks = 5;
+  for (let i = 0; i < specks; i++) {
+    const orbitAng = t * 1.8 + (i * Math.PI * 2 / specks);
+    const orbitR = size * (1.2 + 0.3 * Math.sin(t * 2 + i));
+    const sx = Math.cos(orbitAng) * orbitR;
+    const sy = Math.sin(orbitAng) * (orbitR * 0.65);
+    const spSize = (1.6 + 1.2 * Math.sin(t * 3 + i)) * (size / 26);
+    c.fillStyle = i % 2 === 0 ? '#ffffff' : '#ffd580';
+    c.beginPath(); c.arc(sx, sy, spSize, 0, 6.2832); c.fill();
+  }
+
+  const coreGrad = c.createRadialGradient(0, 0, 0, 0, 0, size * 0.55);
+  coreGrad.addColorStop(0, '#ffffff');
+  coreGrad.addColorStop(0.5, '#fff6d6');
+  coreGrad.addColorStop(1, 'rgba(255, 220, 160, 0.85)');
+  c.fillStyle = coreGrad;
+  c.beginPath(); c.arc(0, 0, size * 0.55, 0, 6.2832); c.fill();
+
+  c.restore();
+}
+
+/* ==========================================================================
+   Lush Rolling Flower Meadow (Thảm cỏ xanh đậm + Hoa mini sắc nét)
+   ========================================================================== */
+let grassTufts = [];
+let meadowMiniFlowers = [];
+
+const MINI_FLOWER_PALETTES = [
+  { petal: '#ff7aa8', center: '#ffe866' },
+  { petal: '#ffdb58', center: '#ff5c8a' },
+  { petal: '#70c4ff', center: '#fff099' },
+  { petal: '#c499ff', center: '#ffe066' },
+  { petal: '#ff9e75', center: '#fff2b3' },
+  { petal: '#ffffff', center: '#ffc233' },
+  { petal: '#ff5c93', center: '#ffffff' }
+];
+
+function initMeadowGrass() {
+  grassTufts = [];
+  meadowMiniFlowers = [];
+
+  const tuftCount = mobile ? 85 : 165;
+  const grassColors = ['#1f6e46', '#2e8c5b', '#42ab74', '#5ec98f', '#267a4e'];
+  for (let i = 0; i < tuftCount; i++) {
+    grassTufts.push({
+      nx: (i / tuftCount) + rr(-0.008, 0.008),
+      nyOffset: rr(-4, 64),
+      h: rr(14, 28),
+      spread: rr(5, 11),
+      ph: rr(0, 6.28),
+      sp: rr(1.4, 2.6),
+      col: grassColors[i % grassColors.length]
+    });
+  }
+
+  const miniCount = mobile ? 58 : 105;
+  for (let i = 0; i < miniCount; i++) {
+    const pal = MINI_FLOWER_PALETTES[i % MINI_FLOWER_PALETTES.length];
+    meadowMiniFlowers.push({
+      nx: rr(0.01, 0.99),
+      nyOffset: rr(-2, 62),
+      size: rr(3.4, 6.2),
+      type: i % 4 === 0 ? 'tulip' : 'daisy',
+      pal: pal,
+      rot: rr(0, 6.28),
+      ph: rr(0, 6.28),
+      sp: rr(1.5, 2.8),
+      stemH: rr(8, 18)
+    });
+  }
+}
+
+function getHillY(x, baseHillY) {
+  const uX = x / Math.max(1, W);
+  return baseHillY + Math.sin(uX * Math.PI * 2.2 + 0.4) * 8 + Math.cos(uX * Math.PI * 1.1) * 5;
+}
+
+function drawMiniMeadowBlossom(c, x, y, mf, sway) {
+  c.save();
+  c.strokeStyle = '#48ad78';
+  c.lineWidth = 1.15;
+  c.beginPath();
+  c.moveTo(x, y + mf.stemH);
+  c.quadraticCurveTo(x + sway * 0.4, y + mf.stemH * 0.4, x + sway, y);
+  c.stroke();
+
+  c.translate(x + sway, y);
+  c.rotate(sway * 0.04);
+
+  const s = mf.size;
+  if (mf.type === 'daisy') {
+    c.fillStyle = mf.pal.petal;
+    for (let k = 0; k < 5; k++) {
+      const a = mf.rot + (k * 6.2832) / 5;
+      c.beginPath();
+      c.arc(Math.cos(a) * s * 0.68, Math.sin(a) * s * 0.68, s * 0.52, 0, 6.2832);
+      c.fill();
+    }
+    c.fillStyle = mf.pal.center;
+    c.beginPath();
+    c.arc(0, 0, s * 0.42, 0, 6.2832);
+    c.fill();
+  } else {
+    c.fillStyle = mf.pal.petal;
+    c.beginPath();
+    c.arc(0, 0, s * 0.75, 0, Math.PI, false);
+    c.lineTo(-s * 0.75, -s * 0.55);
+    c.lineTo(-s * 0.25, -s * 0.15);
+    c.lineTo(0, -s * 0.68);
+    c.lineTo(s * 0.25, -s * 0.15);
+    c.lineTo(s * 0.75, -s * 0.55);
+    c.closePath();
+    c.fill();
+  }
+  c.restore();
+}
+
+function drawLushMeadowBack(t, baseHillY, growAlpha) {
+  if (growAlpha <= 0.01) return;
+  const px = parallax.x * 20, py = parallax.y * 10;
+
+  ctx.save();
+  ctx.globalAlpha = growAlpha;
+
+  const backY = baseHillY - 18 + py;
+  const backG = ctx.createLinearGradient(0, backY - 20, 0, H + 60);
+  backG.addColorStop(0, '#1f5940');
+  backG.addColorStop(0.45, '#143d2b');
+  backG.addColorStop(1, '#091f16');
+  ctx.fillStyle = backG;
+
+  ctx.beginPath();
+  ctx.moveTo(-60, H + 80);
+  for (let x = -60; x <= W + 60; x += 40) {
+    const uX = (x - px * 0.6) / Math.max(1, W);
+    const hy = backY + Math.sin(uX * Math.PI * 1.8 + 1.2) * 12;
+    ctx.lineTo(x, hy);
+  }
+  ctx.lineTo(W + 60, H + 80);
+  ctx.closePath();
+  ctx.fill();
+
+  ctx.restore();
+}
+
+function drawLushMeadowFront(t, baseHillY, gustOffset, growAlpha) {
+  if (growAlpha <= 0.01) return;
+  const px = parallax.x * 26, py = parallax.y * 13;
+  const hillY = baseHillY + py;
+
+  ctx.save();
+  ctx.globalAlpha = growAlpha;
+
+  const lawnG = ctx.createLinearGradient(0, hillY - 15, 0, H + 50);
+  lawnG.addColorStop(0, '#2e7d57');
+  lawnG.addColorStop(0.28, '#215e40');
+  lawnG.addColorStop(0.68, '#143d29');
+  lawnG.addColorStop(1, '#0a2417');
+  ctx.fillStyle = lawnG;
+
+  ctx.beginPath();
+  ctx.moveTo(-60, H + 80);
+  for (let x = -60; x <= W + 60; x += 28) {
+    const hy = getHillY(x - px, hillY);
+    ctx.lineTo(x, hy);
+  }
+  ctx.lineTo(W + 60, H + 80);
+  ctx.closePath();
+  ctx.fill();
+
+  ctx.strokeStyle = 'rgba(135, 235, 175, 0.42)';
+  ctx.lineWidth = 2.0;
+  ctx.beginPath();
+  for (let x = -40; x <= W + 40; x += 28) {
+    const hy = getHillY(x - px, hillY);
+    if (x === -40) ctx.moveTo(x, hy);
+    else ctx.lineTo(x, hy);
+  }
+  ctx.stroke();
+
+  ctx.lineCap = 'round';
+  grassTufts.forEach(gt => {
+    const gx = gt.nx * W + px;
+    const gy = getHillY(gt.nx * W, hillY) + gt.nyOffset;
+    const sway = Math.sin(t * gt.sp + gt.ph) * 3.8 + gustOffset * 0.42;
+
+    ctx.strokeStyle = gt.col;
+    ctx.lineWidth = 2.1;
+    [-1, 0, 1].forEach(dir => {
+      const tipX = gx + dir * gt.spread + sway * (1 + Math.abs(dir) * 0.2);
+      const tipY = gy - gt.h * (dir === 0 ? 1.0 : 0.82);
+      ctx.beginPath();
+      ctx.moveTo(gx, gy);
+      ctx.quadraticCurveTo(gx + dir * gt.spread * 0.35, gy - gt.h * 0.55, tipX, tipY);
+      ctx.stroke();
+    });
+  });
+
+  meadowMiniFlowers.forEach(mf => {
+    const fx = mf.nx * W + px;
+    const fy = getHillY(mf.nx * W, hillY) + mf.nyOffset;
+    const sway = Math.sin(t * mf.sp + mf.ph) * 3.0 + gustOffset * 0.35;
+    drawMiniMeadowBlossom(ctx, fx, fy, mf, sway);
+  });
+
+  ctx.restore();
+}
+
+function drawWindBlissBadge(c, x, y, t, gustEnv) {
+  if (gustEnv <= 0.15) return;
+  c.save();
+  const floatY = y - Math.sin(t * 6) * 3.8;
+  c.globalAlpha = clamp(gustEnv * 1.35, 0, 1);
+  c.font = '700 11px Quicksand, sans-serif';
+  c.fillStyle = '#ff9ebb';
+  c.fillText('♪', x - 16, floatY);
+  c.fillStyle = '#ffe596';
+  c.fillText('><', x - 3, floatY - 4);
+  c.fillStyle = '#ffc2d4';
+  c.fillText('~', x + 12, floatY - 1);
+  c.restore();
+}
+
+function drawMiniFlowerCrown(c, x, y, rot = 0) {
+  c.save();
+  c.translate(x, y);
+  c.rotate(rot);
+  for (let i = 0; i < 5; i++) {
+    const a = (i * Math.PI * 2) / 5;
+    c.fillStyle = '#ff9ec0';
+    c.beginPath();
+    c.arc(Math.cos(a) * 2.8, Math.sin(a) * 2.8, 2.2, 0, 6.2832);
+    c.fill();
+  }
+  c.fillStyle = '#ffe066';
+  c.beginPath(); c.arc(0, 0, 1.5, 0, 6.2832); c.fill();
+  c.restore();
+}
+
+/* ==========================================================================
+   Vẽ Bầy Mèo Ngồi Trên Thảm Cỏ (Bóng nằm chuẩn dưới đất!)
+   ========================================================================== */
+function drawCuteCat(c, x, y, type, t, sway, gustEnv = 0, windDir = 1, jumpOffset = 0) {
+  const isWindy = gustEnv > 0.18 || jumpOffset < -1;
+  const windLean = isWindy ? windDir * gustEnv * 0.08 : 0;
+  const happyBounce = (isWindy ? -Math.abs(Math.sin(t * 9.5)) * 2.5 * Math.max(0.4, gustEnv) : Math.sin(t * 2.6) * 0.8) + jumpOffset;
+  const s = mobile ? 1.05 : 1.22;
+
+  // 1. Vẽ bóng dưới đất trước tiên
+  c.save();
+  c.translate(x + sway, y);
+  c.scale(s, s);
+  const shadowScale = clamp(1 + jumpOffset * 0.012, 0.55, 1.05);
+  const shadowRx = (type === 'couple' ? 28 : 20) * shadowScale;
+  const shadowRy = 5.5 * shadowScale;
+  const shGrad = c.createRadialGradient(0, 14, 2, 0, 14, shadowRx * 1.2);
+  shGrad.addColorStop(0, 'rgba(6, 20, 12, 0.55)');
+  shGrad.addColorStop(0.65, 'rgba(6, 20, 12, 0.26)');
+  shGrad.addColorStop(1, 'rgba(6, 20, 12, 0)');
+  c.fillStyle = shGrad;
+  c.beginPath();
+  c.ellipse(0, 14, shadowRx * 1.2, shadowRy * 1.25, 0, 0, 6.2832);
+  c.fill();
+  c.restore();
+
+  // 2. Vẽ thân mèo đè lên trên bóng
+  c.save();
+  c.translate(x + sway, y + happyBounce);
+  c.rotate(windLean);
+  c.scale(s, s);
+
+  if (type === 'orange') {
+    c.fillStyle = '#f79e38';
+    c.beginPath(); c.ellipse(0, 2, 17.5, 14.5, 0, 0, 6.2832); c.fill();
+    c.strokeStyle = '#d97218'; c.lineWidth = 1.2; c.stroke();
+
+    c.fillStyle = '#fff6ed';
+    c.beginPath(); c.ellipse(0, 5, 10.5, 8.5, 0, 0, 6.2832); c.fill();
+
+    c.fillStyle = '#f79e38';
+    c.beginPath(); c.ellipse(0, -6, 15, 12.5, 0, 0, 6.2832); c.fill();
+    c.stroke();
+
+    const earTwitch = Math.sin(t * (isWindy ? 12 : 3.2)) * (isWindy ? 0.26 : 0.12);
+    c.save(); c.translate(-10, -14); c.rotate(earTwitch);
+    c.fillStyle = '#f79e38'; c.beginPath(); c.moveTo(0, 0); c.lineTo(-6, -10); c.lineTo(5, -6); c.closePath(); c.fill(); c.stroke();
+    c.fillStyle = '#ffb3c6'; c.beginPath(); c.moveTo(-0.5, -2); c.lineTo(-4, -7.5); c.lineTo(3, -5); c.closePath(); c.fill();
+    c.restore();
+
+    c.save(); c.translate(10, -14); c.rotate(-earTwitch);
+    c.fillStyle = '#f79e38'; c.beginPath(); c.moveTo(0, 0); c.lineTo(6, -10); c.lineTo(-5, -6); c.closePath(); c.fill(); c.stroke();
+    c.fillStyle = '#ffb3c6'; c.beginPath(); c.moveTo(0.5, -2); c.lineTo(4, -7.5); c.lineTo(-3, -5); c.closePath(); c.fill();
+    c.restore();
+
+    drawMiniFlowerCrown(c, 7, -17, t * 0.4);
+
+    if (isWindy) {
+      c.strokeStyle = '#3d2028'; c.lineWidth = 1.9; c.lineCap = 'round'; c.lineJoin = 'round';
+      c.beginPath(); c.moveTo(-8.5, -8.5); c.lineTo(-4, -6); c.lineTo(-8.5, -3.5); c.stroke();
+      c.beginPath(); c.moveTo(8.5, -8.5); c.lineTo(4, -6); c.lineTo(8.5, -3.5); c.stroke();
+
+      c.fillStyle = '#ff6b8b';
+      c.beginPath(); c.arc(0, -1.5, 2.8, 0, Math.PI); c.fill();
+      drawWindBlissBadge(c, 0, -27, t, Math.max(0.6, gustEnv));
+    } else {
+      c.fillStyle = '#2e1620';
+      c.beginPath(); c.arc(-5.5, -6.5, 2.7, 0, 6.2832); c.fill();
+      c.beginPath(); c.arc(5.5, -6.5, 2.7, 0, 6.2832); c.fill();
+      c.fillStyle = '#ffffff';
+      c.beginPath(); c.arc(-6.3, -7.4, 1.05, 0, 6.2832); c.fill();
+      c.beginPath(); c.arc(4.7, -7.4, 1.05, 0, 6.2832); c.fill();
+    }
+
+    c.fillStyle = 'rgba(255, 115, 155, 0.78)';
+    c.beginPath(); c.ellipse(-9.5, -3.2, 3.4, 2.0, 0, 0, 6.2832); c.fill();
+    c.beginPath(); c.ellipse(9.5, -3.2, 3.4, 2.0, 0, 0, 6.2832); c.fill();
+
+    c.fillStyle = '#ff7ca3'; c.beginPath(); c.ellipse(0, -3.8, 1.8, 1.2, 0, 0, 6.2832); c.fill();
+    c.strokeStyle = '#3d2028'; c.lineWidth = 1.4;
+    c.beginPath(); c.moveTo(-3, -2.2); c.quadraticCurveTo(-1.5, -0.4, 0, -2.2); c.quadraticCurveTo(1.5, -0.4, 3, -2.2); c.stroke();
+
+    const wave = Math.sin(t * 5) * 2.5;
+    c.fillStyle = '#fff6ed';
+    c.beginPath(); c.ellipse(-13, -4 + wave, 4.5, 3.6, -0.4, 0, 6.2832); c.fill();
+    c.fillStyle = '#ff9ebb';
+    c.beginPath(); c.arc(-13, -4 + wave, 1.5, 0, 6.2832); c.fill();
+    c.fillStyle = '#fff6ed';
+    c.beginPath(); c.ellipse(8, 12, 5, 3.8, 0.2, 0, 6.2832); c.fill();
+
+  } else if (type === 'white') {
+    c.fillStyle = '#ffffff';
+    c.beginPath(); c.ellipse(0, 4, 15.5, 15.5, 0.12, 0, 6.2832); c.fill();
+    c.strokeStyle = '#e6c8d4'; c.lineWidth = 1.1; c.stroke();
+
+    c.beginPath(); c.arc(1, -10, 12.5, 0, 6.2832); c.fill(); c.stroke();
+
+    const earWiggle = isWindy ? Math.sin(t * 14) * 2.0 : Math.sin(t * 2.5) * 0.6;
+    c.fillStyle = '#ffffff';
+    c.beginPath(); c.moveTo(-8, -19); c.lineTo(-4 + earWiggle, -29); c.lineTo(1, -20); c.closePath(); c.fill(); c.stroke();
+    c.fillStyle = '#ffb3c6';
+    c.beginPath(); c.moveTo(-6.5, -20); c.lineTo(-4 + earWiggle, -26.5); c.lineTo(0, -20.5); c.closePath(); c.fill();
+
+    c.fillStyle = '#ffffff';
+    c.beginPath(); c.moveTo(3, -20); c.lineTo(8 + earWiggle, -29); c.lineTo(12, -19); c.closePath(); c.fill(); c.stroke();
+    c.fillStyle = '#ffb3c6';
+    c.beginPath(); c.moveTo(4, -20.5); c.lineTo(8 + earWiggle, -26.5); c.lineTo(10.5, -20); c.closePath(); c.fill();
+
+    if (isWindy) {
+      c.strokeStyle = '#3a2028'; c.lineWidth = 1.9; c.lineCap = 'round'; c.lineJoin = 'round';
+      c.beginPath(); c.moveTo(-5.5, -14); c.lineTo(-1.5, -11.5); c.lineTo(-5.5, -9); c.stroke();
+      c.beginPath(); c.moveTo(7.5, -14); c.lineTo(3.5, -11.5); c.lineTo(7.5, -9); c.stroke();
+      drawWindBlissBadge(c, 1, -32, t, Math.max(0.6, gustEnv));
+    } else {
+      c.fillStyle = '#2d1622';
+      c.beginPath(); c.arc(-3.5, -11.5, 3.0, 0, 6.2832); c.fill();
+      c.beginPath(); c.arc(5.5, -11.5, 3.0, 0, 6.2832); c.fill();
+      c.fillStyle = '#ffffff';
+      c.beginPath(); c.arc(-4.5, -12.6, 1.2, 0, 6.2832); c.fill();
+      c.beginPath(); c.arc(4.5, -12.6, 1.2, 0, 6.2832); c.fill();
+    }
+
+    c.fillStyle = 'rgba(255, 130, 165, 0.8)';
+    c.beginPath(); c.ellipse(-7, -8.2, 3.2, 1.8, 0, 0, 6.2832); c.fill();
+    c.beginPath(); c.ellipse(9, -8.2, 3.2, 1.8, 0, 0, 6.2832); c.fill();
+
+    c.strokeStyle = '#3a2028'; c.lineWidth = 1.3;
+    c.beginPath(); c.moveTo(-1.5, -7.5); c.quadraticCurveTo(-0.2, -5.8, 1, -7.5); c.quadraticCurveTo(2.2, -5.8, 3.5, -7.5); c.stroke();
+
+    const hPulse = 1 + 0.14 * Math.sin(t * 4);
+    c.save();
+    c.translate(1, 3);
+    c.scale(hPulse, hPulse);
+    c.fillStyle = '#ff5286';
+    heartPath(c, 0, 0, 5.0);
+    c.fill();
+    c.restore();
+
+    const tailWag = Math.sin(t * (isWindy ? 7.5 : 2.8)) * (isWindy ? 0.55 : 0.32);
+    c.save(); c.translate(-13, 13); c.rotate(tailWag);
+    c.strokeStyle = '#ffffff'; c.lineWidth = 4.2; c.lineCap = 'round';
+    c.beginPath(); c.moveTo(0, 0); c.quadraticCurveTo(-14, -8, -10, -18); c.stroke();
+    c.restore();
+
+  } else if (type === 'calico') {
+    const breath = Math.sin(t * (isWindy ? 6 : 2.2)) * 1.0;
+    c.fillStyle = '#fcefdc';
+    c.beginPath(); c.ellipse(0, 2, 20, 13 + breath * 0.4, 0, 0, 6.2832); c.fill();
+
+    c.fillStyle = '#e57b32';
+    c.beginPath(); c.ellipse(-5, -1, 7.5, 6, 0.3, 0, 6.2832); c.fill();
+    c.fillStyle = '#4a3832';
+    c.beginPath(); c.ellipse(7, 0, 6.5, 5.5, -0.2, 0, 6.2832); c.fill();
+
+    const headLift = isWindy ? -3.2 * Math.max(0.5, gustEnv) : 0;
+    c.fillStyle = '#fcefdc';
+    c.beginPath(); c.arc(-13, 1 + headLift, 9.5, 0, 6.2832); c.fill();
+    c.fillStyle = '#e57b32';
+    c.beginPath(); c.moveTo(-17, -5 + headLift); c.lineTo(-20, -13 + headLift); c.lineTo(-13, -7 + headLift); c.closePath(); c.fill();
+    c.fillStyle = '#4a3832';
+    c.beginPath(); c.moveTo(-10, -5 + headLift); c.lineTo(-6, -13 + headLift); c.lineTo(-13, -7 + headLift); c.closePath(); c.fill();
+
+    c.save();
+    c.translate(-13, -8 + headLift);
+    c.rotate(Math.sin(t * 3) * 0.15);
+    c.strokeStyle = '#68c97a'; c.lineWidth = 1.5;
+    c.beginPath(); c.moveTo(0, 0); c.quadraticCurveTo(1, -5, 0, -7); c.stroke();
+    c.fillStyle = '#85e096';
+    c.beginPath(); c.ellipse(-3, -7, 3.2, 1.8, -0.4, 0, 6.2832); c.fill();
+    c.beginPath(); c.ellipse(3, -7, 3.2, 1.8, 0.4, 0, 6.2832); c.fill();
+    c.restore();
+
+    if (isWindy) {
+      c.strokeStyle = '#3d2028'; c.lineWidth = 1.7; c.lineCap = 'round'; c.lineJoin = 'round';
+      c.beginPath(); c.moveTo(-18, -1 + headLift); c.lineTo(-15, 1 + headLift); c.lineTo(-18, 3 + headLift); c.stroke();
+      c.beginPath(); c.moveTo(-8.5, -1 + headLift); c.lineTo(-11.5, 1 + headLift); c.lineTo(-8.5, 3 + headLift); c.stroke();
+      drawWindBlissBadge(c, -13, -18 + headLift, t, Math.max(0.6, gustEnv));
+    } else {
+      c.fillStyle = '#2d1622';
+      c.beginPath(); c.arc(-16.2, 0.5 + headLift, 2.1, 0, 6.2832); c.fill();
+      c.beginPath(); c.arc(-10.2, 0.5 + headLift, 2.1, 0, 6.2832); c.fill();
+      c.fillStyle = '#ffffff';
+      c.beginPath(); c.arc(-16.8, -0.2 + headLift, 0.8, 0, 6.2832); c.fill();
+      c.beginPath(); c.arc(-10.8, -0.2 + headLift, 0.8, 0, 6.2832); c.fill();
+    }
+
+    c.fillStyle = '#ff7ca3';
+    c.beginPath(); c.ellipse(-13.2, 4.4 + headLift, 1.6, 2.1, 0, 0, 6.2832); c.fill();
+    c.fillStyle = 'rgba(255, 120, 155, 0.78)';
+    c.beginPath(); c.ellipse(-18.5, 3 + headLift, 2.4, 1.4, 0, 0, 6.2832); c.fill();
+    c.beginPath(); c.ellipse(-8, 3 + headLift, 2.4, 1.4, 0, 0, 6.2832); c.fill();
+
+  } else if (type === 'couple') {
+    const cuddleSway = Math.sin(t * 2.0) * 1.1;
+    c.translate(cuddleSway, 0);
+
+    c.fillStyle = '#8d99ae';
+    c.beginPath(); c.ellipse(-9, 3, 11.5, 13, 0.18, 0, 6.2832); c.fill();
+    c.beginPath(); c.arc(-7, -7, 9.2, 0, 6.2832); c.fill();
+    c.beginPath(); c.moveTo(-14, -13); c.lineTo(-12, -20.5); c.lineTo(-6, -15); c.closePath(); c.fill();
+    c.beginPath(); c.moveTo(-5, -15); c.lineTo(0, -19.5); c.lineTo(1, -12); c.closePath(); c.fill();
+
+    c.fillStyle = '#ffe5d9';
+    c.beginPath(); c.ellipse(9, 3, 11, 12.5, -0.18, 0, 6.2832); c.fill();
+    c.beginPath(); c.arc(7, -6.5, 9.0, 0, 6.2832); c.fill();
+    c.beginPath(); c.moveTo(0, -12); c.lineTo(2, -19); c.lineTo(6, -14); c.closePath(); c.fill();
+    c.beginPath(); c.moveTo(7, -14); c.lineTo(13, -19.5); c.lineTo(14, -12); c.closePath(); c.fill();
+
+    c.strokeStyle = '#8d99ae'; c.lineWidth = 3.0; c.lineCap = 'round';
+    c.beginPath(); c.moveTo(-18, 12); c.quadraticCurveTo(-25, 1, -18, -4); c.stroke();
+    c.strokeStyle = '#ffe5d9';
+    c.beginPath(); c.moveTo(18, 12); c.quadraticCurveTo(25, 1, 18, -4); c.stroke();
+
+    c.strokeStyle = '#3a2028'; c.lineWidth = 1.5; c.lineCap = 'round';
+    if (isWindy) {
+      c.beginPath(); c.moveTo(-11, -8.5); c.lineTo(-8, -6.8); c.lineTo(-11, -5); c.stroke();
+      c.beginPath(); c.moveTo(11, -8); c.lineTo(8, -6.3); c.lineTo(11, -4.5); c.stroke();
+      drawWindBlissBadge(c, 0, -27, t, Math.max(0.6, gustEnv));
+    } else {
+      c.beginPath(); c.arc(-9.5, -6.5, 2.2, 3.4, 6.0); c.stroke();
+      c.beginPath(); c.arc(-3.5, -6.5, 2.2, 3.4, 6.0); c.stroke();
+      c.beginPath(); c.arc(4, -6, 2.1, 3.4, 6.0); c.stroke();
+      c.beginPath(); c.arc(10, -6, 2.1, 3.4, 6.0); c.stroke();
+    }
+
+    c.fillStyle = 'rgba(255, 120, 160, 0.78)';
+    c.beginPath(); c.ellipse(-11.5, -4, 2.4, 1.3, 0, 0, 6.2832); c.fill();
+    c.beginPath(); c.ellipse(12, -3.5, 2.4, 1.3, 0, 0, 6.2832); c.fill();
+
+    const heartY = -19 - Math.sin(t * 3.2) * 2.5;
+    const heartScale = 0.9 + 0.18 * Math.sin(t * 4.5);
+    c.save();
+    c.translate(0, heartY);
+    c.scale(heartScale, heartScale);
+    c.fillStyle = '#ff4d82';
+    heartPath(c, 0, 0, 4.5);
+    c.fill();
+    c.restore();
+  }
+
+  c.restore();
+}
+
+function drawAnimatedCat(c, cat, t, gustEnv = 0, windDir = 1) {
+  const { type, x, y, isRunning, facingRight, runCycle, jumpY } = cat;
+  c.save();
+  c.translate(x, y);
+  const catScale = mobile ? 1.05 : 1.22;
+
+  if (isRunning) {
+    c.scale(catScale * (facingRight ? 1 : -1), catScale);
+    const bounce = -Math.abs(Math.sin(runCycle)) * 5;
+    c.translate(0, bounce);
+
+    const bodyCol = type === 'white' ? '#ffffff' : (type === 'calico' ? '#fcefdc' : (type === 'couple' ? '#8d99ae' : '#f59e38'));
+    c.fillStyle = bodyCol;
+    c.beginPath(); c.ellipse(0, -6, 18, 11, 0.1, 0, 6.2832); c.fill();
+    c.beginPath(); c.arc(14, -12, 10, 0, 6.2832); c.fill();
+    c.beginPath(); c.moveTo(10, -20); c.lineTo(6, -27); c.lineTo(16, -21); c.closePath(); c.fill();
+
+    const leg1 = Math.sin(runCycle) * 9;
+    const leg2 = -leg1;
+    c.strokeStyle = bodyCol; c.lineWidth = 3.8; c.lineCap = 'round';
+    c.beginPath(); c.moveTo(10, 0); c.lineTo(10 + leg1, 7); c.stroke();
+    c.beginPath(); c.moveTo(14, 0); c.lineTo(14 + leg2, 7); c.stroke();
+    c.beginPath(); c.moveTo(-10, 0); c.lineTo(-10 + leg2, 7); c.stroke();
+    c.beginPath(); c.moveTo(-14, 0); c.lineTo(-14 + leg1, 7); c.stroke();
+  } else {
+    c.scale(facingRight ? 1 : -1, 1);
+    drawCuteCat(c, 0, 0, type, t, 0, gustEnv, facingRight ? windDir : -windDir, jumpY || 0);
+  }
+
+  c.restore();
+}
+
+let catSquad = [
+  { type: 'orange', startX: -100, targetXRatio: 0.12, facingRight: true,  currentX: -100, currentY: 0, isRunning: false, runCycle: 0, jumpY: 0, jumpV: 0 },
+  { type: 'couple', startX: -160, targetXRatio: 0.31, facingRight: true,  currentX: -160, currentY: 0, isRunning: false, runCycle: 0, jumpY: 0, jumpV: 0 },
+  { type: 'calico', startX: 1300, targetXRatio: 0.56, facingRight: true,  currentX: 1300, currentY: 0, isRunning: false, runCycle: 0, jumpY: 0, jumpV: 0 },
+  { type: 'white',  startX: 1200, targetXRatio: 0.75, facingRight: false, currentX: 1200, currentY: 0, isRunning: false, runCycle: 0, jumpY: 0, jumpV: 0 }
+];
+
+function updateAndDrawCats(dt, t, baseHillY, bloomTimeElapsed) {
+  if (state === 'intro') return;
+
+  const runStartTime = 1.3;
+  const runDuration = 2.1;
+  const runProg = clamp((bloomTimeElapsed - runStartTime) / runDuration, 0, 1);
+  const easeRun = 1 - Math.pow(1 - runProg, 3);
+  const px = parallax.x * 26, py = parallax.y * 13;
+
+  catSquad.forEach((cat, idx) => {
+    const ratio = mobile ? [0.11, 0.30, 0.50, 0.68][idx] : [0.13, 0.30, 0.66, 0.80][idx];
+    const targetX = ratio * W;
+    const fromX = (cat.type === 'white' || cat.type === 'calico') ? (W + 110) : cat.startX;
+
+    if (runProg <= 0) {
+      cat.currentX = fromX;
+      cat.isRunning = false;
+    } else if (runProg < 0.98) {
+      cat.currentX = fromX + (targetX - fromX) * easeRun;
+      cat.isRunning = true;
+      cat.runCycle = bloomTimeElapsed * 16;
+    } else {
+      cat.currentX = targetX;
+      cat.isRunning = false;
+    }
+
+    if (cat.jumpY < 0 || cat.jumpV !== 0) {
+      cat.jumpV += 260 * dt;
+      cat.jumpY += cat.jumpV * dt;
+      if (cat.jumpY >= 0) {
+        cat.jumpY = 0;
+        cat.jumpV = 0;
+      }
+    }
+
+    cat.x = cat.currentX + px;
+    cat.y = getHillY(cat.currentX, baseHillY + py) + 10;
+    drawAnimatedCat(ctx, cat, t, windGust.active ? windGust.env : 0, windGust.dir);
+  });
+}
+
+/* ==========================================================================
+   Cat Guide / Narrator Interactivity
+   ========================================================================== */
+const catGuide = $('catGuide');
+const catBubble = $('catBubble');
+
+const catSpeechList = [
+  'Meow~ Nàng thơ Minh Anh chạm vào vì sao lấp lánh kìa! ✨⭐',
+  'Lướt nhẹ tay qua hoa nghe tiếng hộp nhạc Kalimba ngân vang kìa~ 🎶🌸',
+  'Nhìn lên bầu trời kìa, có chòm sao Cự Giải 24/06 của Minh Anh đó! 🦀✨',
+  'Thiện Tâm chuẩn bị cả bầu trời ngân hà này dành tặng riêng Minh Anh đó! 😻💗'
+];
+let catSpeechIdx = 0;
+
+catGuide.addEventListener('click', e => {
+  e.stopPropagation();
+  autoStartMusic();
+  playKalimbaNote(KALIMBA_SCALE[Math.floor(rr(4, 9))], 0.08, 1.2);
+  catLoafBox.style.transform = 'scale(1.16) rotate(-4deg)';
+  setTimeout(() => catLoafBox.style.transform = '', 350);
+
+  catSpeechIdx = (catSpeechIdx + 1) % catSpeechList.length;
+  catBubble.innerHTML = catSpeechList[catSpeechIdx];
+
+  const heart = document.createElement('div');
+  heart.className = 'note-particle';
+  heart.textContent = '♥';
+  heart.style.color = '#ff4d79';
+  heart.style.fontSize = '20px';
+  const rect = catLoafBox.getBoundingClientRect();
+  heart.style.left = (rect.left + 35) + 'px';
+  heart.style.top = (rect.top - 10) + 'px';
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 2000);
+});
+
+/* ==========================================================================
+   True Camera Dolly Zoom-Out & Scene Layout
+   ========================================================================== */
+let W, H, u, mobile, state = 'intro', tb = 0, after = 'card', flowers = [], bgmid = [], fgs = [], clouds = [];
+let camX = 0, camY = 0, camS = 1;
+const T0 = performance.now(), now = () => (performance.now() - T0) / 1000;
+
+const s2c = (sx, sy) => [camX + (sx - W * 0.5) / camS, camY + (sy - H * 0.5) / camS];
+
+const hero = {
+  hero: true, nx: .5, ny: .54, pi: 0, layer: 1, a: 1, ph: 1, sp: .8, swk: .5, lean: 0, rot: 0,
+  dur: 2.2, start: 0, R: 102, physX: 0, windTarget: 0
+};
+
+function setState(s) {
+  state = s;
+  document.body.dataset.s = s;
+  cardEl.setAttribute('aria-hidden', s !== 'card');
+
+  if (s === 'blooming') {
+    catBubble.innerHTML = 'Oa... khung cảnh từ Mặt Trăng mở rộng ra cả khu vườn ngân hà vì Minh Anh kìa! 😻🌸';
+  } else if (s === 'card') {
+    startCardStaggerReveal();
+    catBubble.innerHTML = 'Bức thư ngọt ngào Thiện Tâm gửi riêng nàng thơ Minh Anh ♡';
+  } else if (s === 'garden') {
+    showFullCardInstantly();
+    catBubble.innerHTML = 'Lướt nhẹ tay qua hoa nghe tiếng hộp nhạc Kalimba ngân vang kìa~ 🎶🌸';
+  }
+}
+
+function build() {
+  flowers = [];
+  const n = mobile ? 38 : 72;
+  const spec = [
+    [.36, .46, .63, 20, 30, .74, .5],
+    [.36, .56, .74, 30, 42, .90, .75],
+    [.28, .66, .82, 40, 56, .98, .9]
+  ];
+
+  const catSpots = mobile ? [0.11, 0.30, 0.50, 0.68] : [0.13, 0.30, 0.66, 0.80];
+
+  spec.forEach(([fr, y0, y1, r0, r1, a, swk], layer) => {
+    const cnt = Math.round(n * fr);
+    for (let i = 0; i < cnt; i++) {
+      let nx = -.02 + 1.04 * (i + Math.random()) / cnt;
+      let ny = rr(y0, y1);
+
+      for (const spot of catSpots) {
+        if (Math.abs(nx - spot) < 0.06 && ny > 0.70) {
+          ny = rr(0.55, 0.67);
+        }
+      }
+
+      flowers.push({
+        nx,
+        ny,
+        r0: rr(r0, r1),
+        pi: Math.random() < .32 ? 0 : Math.floor(Math.random() * 7),
+        layer, a,
+        delay: Math.random() * 1.8,
+        dur: rr(1.1, 1.5),
+        ph: rr(0, 6.28),
+        sp: rr(.7, 1.2),
+        swk: rr(.5, .9) * swk,
+        lean: rr(-0.8, 0.8),
+        rot: rr(0, 6.28),
+        physX: 0,
+        windTarget: 0,
+        start: Infinity
+      });
+    }
+  });
+
+  bgmid = flowers.filter(f => f.layer < 2).sort((a, b) => a.ny - b.ny);
+  fgs = flowers.filter(f => f.layer === 2).sort((a, b) => a.ny - b.ny);
+
+  clouds = Array.from({ length: 4 }, () => ({ nx: Math.random(), ny: rr(.04, .42), s: rr(.6, 1.1), v: rr(4, 9) }));
+
+  initStars();
+  initSakuraPetals();
+  initMeadowGrass();
+  buildSakuraCanopy();
+  buildMoonSprite();
+}
+
+function layout() {
+  updateMoonWorldCoords();
+  hero.R = Math.min(W * .21, H * .17, 108);
+  hero.x = hero.nx * W;
+  hero.y = hero.ny * H;
+  hero.sw = hero.R * .32 * hero.swk;
+  flowers.forEach(f => {
+    f.x = f.nx * W;
+    f.y = f.ny * H;
+    f.R = f.r0 * u;
+    f.sw = f.R * .32 * f.swk;
+  });
+}
+
+function resize() {
+  W = innerWidth; H = innerHeight;
+  const d = Math.min(devicePixelRatio || 1, 2.0);
+  if (d !== DPR) { DPR = d; spr = {}; moonSprite = null; }
+  cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
+  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  u = clamp(W / 1100, .62, 1.15);
+  const m = W < 760;
+  if (!flowers.length || m !== mobile) { mobile = m; build(); }
+  layout();
+}
+
+const cloud = (() => {
+  const o = document.createElement('canvas'); o.width = 420; o.height = 160;
+  const c = o.getContext('2d');
+  [[110, 95, 70], [190, 70, 80], [270, 90, 72], [330, 100, 55], [200, 105, 75]].forEach(([x, y, r]) => {
+    const g = c.createRadialGradient(x, y, 0, x, y, r);
+    g.addColorStop(0, 'rgba(235, 200, 245, .24)');
+    g.addColorStop(1, 'rgba(235, 200, 245, 0)');
+    c.fillStyle = g; c.fillRect(0, 0, 420, 160);
+  });
+  return o;
+})();
+
+/* Draw Flower Relative to Meadow Hill */
+function drawFlower(f, t, windGustOffset = 0, stemRootY = H - 25) {
+  const g = clamp((t - f.start) / f.dur);
+  if (g <= 0) return;
+
+  const depthFactor = f.layer === 2 ? 1.0 : (f.layer === 1 ? 0.72 : 0.48);
+  const px = parallax.x * 22 * depthFactor;
+  const py = parallax.y * 11 * depthFactor;
+
+  const gs = eoc(clamp(g / .75)), b = clamp((g - .4) / .6);
+  const targetFlowerY = f.y + py;
+  const rootY = stemRootY + py;
+
+  const windSway = Math.sin(t * f.sp + f.ph) * f.sw + Math.sin(t * .5 + f.x * .004) * 4 * u;
+  const gustFlutter = windGust.active ? Math.sin(t * 8.5 + f.ph * 2) * (f.R * 0.13) * windGust.env : 0;
+  const flowerWindScale = 0.65 + 0.35 * f.swk;
+  const totalSway = (windSway + (f.physX || 0) + windGustOffset * flowerWindScale + gustFlutter) * gs;
+
+  const bendDip = Math.min(18, (totalSway * totalSway) * 0.0065);
+  const ty = rootY - (rootY - targetFlowerY) * gs + bendDip;
+  const h = rootY - ty;
+
+  const fxBase = f.x + px;
+  const tx = fxBase + totalSway;
+
+  f.currX = tx;
+  f.currY = ty;
+
+  const p0 = { x: fxBase, y: rootY };
+  const p1 = { x: fxBase + f.lean * f.R * .4 * gs + totalSway * 0.25, y: rootY - h * .35 };
+  const p2 = { x: tx - totalSway * .22, y: ty + h * .3 };
+  const p3 = { x: tx, y: ty };
+
+  ctx.globalAlpha = f.a;
+  drawStem(p0, p1, p2, p3, f, gs);
+
+  ctx.save();
+  ctx.translate(tx, ty);
+  ctx.rotate(f.rot + totalSway * 0.012);
+
+  const st = b < .5 ? 0 : (b < .85 ? 1 : 2);
+  const s = .28 + .72 * clamp(eob(b), 0, 1.08);
+  const size = SW * (f.R / SR) * s;
+  ctx.drawImage(sprite(f.pi, st), -size / 2, -size / 2, size, size);
+
+  ctx.restore();
+  ctx.globalAlpha = 1;
+}
+
+/* ==========================================================================
+   Ngôi sao ước nguyện bay từ GÓC TRÁI TRÊN xuống + Bướm Phát Sáng & Đom Đóm
+   ========================================================================== */
+const LOVE_START = ''; // ← điền ngày yêu nhau để hiện "đã bên nhau X ngày", ví dụ '2025-02-14'
+{
+  const days = LOVE_START ? Math.floor((Date.now() - new Date(LOVE_START)) / 864e5) : 0;
+  if (days > 0) { const el = $('loveDays'); el.hidden = false; el.innerHTML = `Chúng mình đã bên nhau <b>${days}</b> ngày ♡`; }
+}
+
+const FLY = 3.6;
+let starPos = { sx: 0, sy: 0, cx: 0, cy: 0, ready: false }, starTrail = [], introT0 = -1, arrived = false;
+
+function heartPath(c, x, y, s) {
+  c.beginPath(); c.moveTo(x, y + s * .9);
+  c.bezierCurveTo(x - s * 1.6, y - s * .2, x - s * .7, y - s * 1.3, x, y - s * .4);
+  c.bezierCurveTo(x + s * .7, y - s * 1.3, x + s * 1.6, y - s * .2, x, y + s * .9);
+  c.closePath();
+}
+
+function drawIntroStar(t) {
+  if (introT0 < 0) introT0 = t;
+  const tt = t - introT0, k = clamp(tt / FLY), p = 1 - Math.pow(1 - k, 3), q = 1 - p;
+  let sx = q * q * (-W * .12) + 2 * q * p * (W * .38) + p * p * (W * .46);
+  let sy = q * q * (-H * .10) + 2 * q * p * (H * .05) + p * p * (H * .48);
+  if (k >= 1) { sx += Math.sin(t * .9) * 4; sy += Math.sin(t * 1.4) * 7; }
+  const [x, y] = s2c(sx, sy);
+  const size = (Math.min(W * .10, 36) * (.55 + .45 * p)) / camS;
+  starPos = { sx, sy, cx: x, cy: y, ready: k >= 1 };
+  starSpin = p * 16;
+
+  if (k < 1) starTrail.push([x, y]); else starTrail.shift();
+  if (starTrail.length > 38) starTrail.shift();
+  ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.lineCap = 'round';
+  for (let i = 1; i < starTrail.length; i++) {
+    const f = i / starTrail.length;
+    ctx.strokeStyle = `rgba(255,195,225,${f * .65})`; ctx.lineWidth = size * .50 * f + (0.5 / camS);
+    ctx.beginPath(); ctx.moveTo(starTrail[i - 1][0], starTrail[i - 1][1]); ctx.lineTo(starTrail[i][0], starTrail[i][1]); ctx.stroke();
+  }
+  ctx.restore();
+
+  drawWishStar(ctx, x, y, size, t, 0);
+
+  if (k >= 1) {
+    if (!arrived) { arrived = true; catBubble.innerHTML = 'Meow~ <span class="spark-txt">Chạm vào vì sao lấp lánh</span> ở giữa kìa Minh Anh ơi! ✨'; }
+    const e = clamp((tt - FLY) / 1.2);
+    ctx.save(); ctx.translate(x, y);
+    ctx.strokeStyle = '#ffd1e4'; ctx.lineWidth = 1.5 / camS;
+    for (let i = 0; i < 2; i++) {
+      const ph = (t * .45 + i * .5) % 1;
+      ctx.globalAlpha = e * (1 - ph) * .48;
+      ctx.beginPath(); ctx.arc(0, 0, size * (1.6 + ph * 3.2), 0, 6.2832); ctx.stroke();
+    }
+    ctx.rotate(-.35); ctx.fillStyle = '#ff85b3';
+    for (let i = 0; i < 7; i++) {
+      const a = t * .9 + i * 6.2832 / 7, sn = Math.sin(a);
+      ctx.globalAlpha = e * (.55 + .45 * sn);
+      heartPath(ctx, Math.cos(a) * size * 3.1, sn * size * 1.1, size * .17 * (.8 + .25 * sn));
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+}
+
+let fireflies = [], butterflies = [], heartsUp = [], heartT = 0;
+const HC = ['#ff85b3', '#ffb3cc', '#ff5c93', '#ffd1e3'];
+
+function drawGlowingButterfly(c, x, y, size, flapPh, angle, col1, col2) {
+  c.save();
+  c.translate(x, y);
+  c.rotate(angle);
+  const wingScale = 0.25 + 0.75 * Math.abs(Math.cos(flapPh));
+
+  const bg = c.createRadialGradient(0, 0, 1, 0, 0, size * 1.8);
+  bg.addColorStop(0, col1);
+  bg.addColorStop(1, 'rgba(255, 160, 210, 0)');
+  c.fillStyle = bg;
+  c.globalAlpha = 0.36;
+  c.beginPath(); c.arc(0, 0, size * 1.8, 0, 6.2832); c.fill();
+
+  c.globalAlpha = 0.90;
+  [-1, 1].forEach(side => {
+    c.save();
+    c.scale(side * wingScale, 1);
+    const wg = c.createLinearGradient(0, -size, size * 1.3, size);
+    wg.addColorStop(0, '#ffffff');
+    wg.addColorStop(0.5, col1);
+    wg.addColorStop(1, col2);
+    c.fillStyle = wg;
+
+    c.beginPath();
+    c.moveTo(0, 0);
+    c.bezierCurveTo(size * 1.4, -size * 1.3, size * 1.5, size * 0.1, 0, size * 0.2);
+    c.fill();
+
+    c.beginPath();
+    c.moveTo(0, size * 0.1);
+    c.bezierCurveTo(size * 1.1, size * 0.2, size * 0.95, size * 1.15, 0, size * 0.75);
+    c.fill();
+    c.restore();
+  });
+  c.restore();
+}
+
+function updateAndDrawMagic(dt, t, gain) {
+  if (!fireflies.length) {
+    for (let i = 0; i < 32; i++) fireflies.push({ x: Math.random(), y: rr(.35, .90), ph: rr(0, 6.28), sp: rr(.3, .85), r: rr(1.3, 2.8) });
+    const bfCols = [['#ffa6d2', '#eb4d88'], ['#ffd685', '#ff7aa8'], ['#b3e0ff', '#a375ff'], ['#ffbad9', '#ff5c98']];
+    for (let i = 0; i < 4; i++) {
+      butterflies.push({
+        cx: rr(0.18, 0.82),
+        cy: rr(0.48, 0.74),
+        rx: rr(45, 105),
+        ry: rr(22, 50),
+        ph: rr(0, 6.28),
+        sp: rr(0.45, 0.72),
+        size: rr(7.0, 9.5),
+        cols: bfCols[i % bfCols.length]
+      });
+    }
+  }
+
+  ctx.save();
+  ctx.globalCompositeOperation = 'lighter';
+
+  for (const f of fireflies) {
+    const x = (f.x + Math.sin(t * f.sp + f.ph) * .03) * W + parallax.x * 18;
+    const y = (f.y + Math.cos(t * f.sp * .8 + f.ph) * .03) * H + parallax.y * 10;
+    const a = gain * (.30 + .58 * Math.max(0, Math.sin(t * 1.6 + f.ph * 3))), R = f.r * 6;
+    const g = ctx.createRadialGradient(x, y, 0, x, y, R);
+    g.addColorStop(0, `rgba(255,232,145,${a})`); g.addColorStop(1, 'rgba(255,190,100,0)');
+    ctx.fillStyle = g; ctx.fillRect(x - R, y - R, R * 2, R * 2);
+  }
+
+  if (gain > 0.2) {
+    ctx.globalAlpha = gain;
+    butterflies.forEach(bf => {
+      const ang = t * bf.sp + bf.ph;
+      const bx = bf.cx * W + Math.cos(ang) * bf.rx + windGust.env * windGust.dir * 25 + parallax.x * 20;
+      const by = bf.cy * H + Math.sin(ang * 2) * bf.ry + parallax.y * 10;
+      const dx = -Math.sin(ang) * bf.rx * bf.sp;
+      const dy = Math.cos(ang * 2) * bf.ry * bf.sp * 2;
+      const heading = Math.atan2(dy, dx) + Math.PI * 0.5;
+      drawGlowingButterfly(ctx, bx, by, bf.size, t * 13 + bf.ph, heading * 0.25, bf.cols[0], bf.cols[1]);
+    });
+  }
+
+  ctx.restore();
+
+  heartT -= dt;
+  if (heartT < 0 && gain > .4) {
+    heartT = rr(.75, 1.45);
+    heartsUp.push({ x: rr(.05, .95) * W, y: H + 10, vx: 0, vy: -rr(38, 72), s: rr(6, 12.5), life: 1, decay: .10, ph: rr(0, 6.28), c: HC[heartsUp.length % 4] });
+  }
+  for (let i = heartsUp.length - 1; i >= 0; i--) {
+    const p = heartsUp[i];
+    p.y += p.vy * dt; p.x += (p.vx + Math.sin(t * 1.5 + p.ph) * 18) * dt; p.vx *= .985; p.life -= p.decay * dt;
+    if (p.life <= 0) { heartsUp.splice(i, 1); continue; }
+    ctx.globalAlpha = Math.min(1, p.life * 1.6) * .82; ctx.fillStyle = p.c;
+    heartPath(ctx, p.x, p.y, p.s); ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+}
+
+const LOVES = [
+  'Thiện Tâm yêu Minh Anh ♡',
+  'Em là cả bầu trời của anh ✨',
+  'Nắng ấm trong tim anh',
+  'Mãi bên em nhé ♡',
+  'Em xinh nhất vườn hoa này 🌸',
+  'Cảm ơn em vì đã đến ✨',
+  'Thương Minh Anh nhiều lắm 💗',
+  'Em là điều đẹp nhất ♡'
+];
+const CAT_MEME_QUOTES = [
+  'Meow~ Thiện Tâm yêu Minh Anh 3000 ♡',
+  'Gừ gừ~ Thảm cỏ hoa mini êm mà thơm quá ><',
+  'Chọt tui là phải thương anh Thiện Tâm nhiều hơn nha 🐾',
+  'Tụi mèo chúc Minh Anh mãi hạnh phúc bên Thiện Tâm nha 😻✨'
+];
+const MOON_QUOTES = [
+  'Ánh trăng đêm nay cũng dịu dàng như Minh Anh vậy 🌙✨',
+  'Trăng gửi ngàn vì sao chúc Minh Anh luôn mỉm cười ♡',
+  'Dưới ánh trăng này, Thiện Tâm luôn thương em rất nhiều 🌕💗'
+];
+let loveIdx = 0, catQuoteIdx = 0, moonQuoteIdx = 0;
+
+function lovePop(x, y, customText = null) {
+  const el = document.createElement('div');
+  el.className = 'love-pop';
+  el.textContent = customText || LOVES[loveIdx++ % LOVES.length];
+  el.style.left = clamp(x, 110, W - 110) + 'px'; el.style.top = y + 'px';
+  document.body.appendChild(el); setTimeout(() => el.remove(), 2900);
+  const [wx, wy] = s2c(x, y);
+  for (let i = 0; i < 12; i++) heartsUp.push({ x: wx, y: wy, vx: rr(-80, 80), vy: -rr(70, 210), s: rr(5, 11.5), life: 1, decay: rr(.5, .8), ph: rr(0, 6.28), c: HC[i % 4] });
+}
+
+let lastT = performance.now();
+
+function frame(ts) {
+  try {
+    const dt = Math.min((ts - lastT) / 1000, 0.1);
+    lastT = ts;
+    const t = (ts - T0) / 1000, d = isDark();
+
+    updateParallax(dt);
+
+    let bloomElapsed = state === 'intro' ? 0 : (t - tb);
+    const camProg = state === 'intro' ? 0 : clamp(bloomElapsed / 3.0, 0, 1);
+    const easeCam = easeInOutCubic(camProg);
+
+    const introZoom = mobile ? 2.75 : 3.15;
+    camS = introZoom + (1.0 - introZoom) * easeCam;
+
+    const introMoonScreenX = mobile ? W * 0.68 : W * 0.72;
+    const introMoonScreenY = mobile ? H * 0.44 : H * 0.48;
+
+    const curMoonScreenX = introMoonScreenX + (moonWorld.x - introMoonScreenX) * easeCam;
+    const curMoonScreenY = introMoonScreenY + (moonWorld.y - introMoonScreenY) * easeCam;
+
+    camX = moonWorld.x - (curMoonScreenX - W * 0.5) / camS;
+    camY = moonWorld.y - (curMoonScreenY - H * 0.5) / camS;
+
+    ctx.clearRect(0, 0, W, H);
+
+    ctx.save();
+    ctx.translate(W * 0.5, H * 0.5);
+    ctx.scale(camS, camS);
+    ctx.translate(-camX, -camY);
+
+    // 1. Bầu trời Ngân Hà, Chòm Sao Cự Giải 24/06, Mặt Trăng & Mưa Sao Băng
+    updateAndDrawStars(dt, t, d);
+
+    // 2. Mây trôi dịu nhẹ
+    ctx.globalAlpha = d ? .14 : .45;
+    for (const c of clouds) {
+      const cy = c.ny * H - parallax.y * 8;
+      ctx.drawImage(cloud, ((c.nx * W + t * c.v) % (W + 520)) - 260 - parallax.x * 12, cy, 420 * c.s, 160 * c.s);
+    }
+    ctx.globalAlpha = 1;
+
+    // 3. Gió mạnh ngẫu nhiên mỗi 5s (kèm tiếng chuông gió Kalimba)
+    const gustOffset = updateWind(dt, t);
+
+    // 4. Đại thụ Hoa Anh Đào rủ xuống từ góc trái trên
+    if (state !== 'intro' && sakuraCanopyCanvas) {
+      const treeGrowth = clamp((bloomElapsed - 0.6) / 2.4, 0, 1);
+      const easeGrow = easeInOutCubic(treeGrowth);
+      ctx.save();
+      ctx.globalAlpha = easeGrow * 0.94;
+      const canopySway = Math.sin(t * 1.1) * 0.015 + gustOffset * 0.0012;
+      ctx.translate(parallax.x * 12, parallax.y * 6);
+      ctx.rotate(canopySway);
+      ctx.scale(0.85 + 0.15 * easeGrow, 0.85 + 0.15 * easeGrow);
+      ctx.drawImage(sakuraCanopyCanvas, -sakuraCanopyPad, -sakuraCanopyPad, sakuraCanopyW, sakuraCanopyH);
+      ctx.restore();
+    }
+
+    updateAndDrawSakuraPetals(dt, t, gustOffset);
+
+    // 5. Cập nhật vật lý làn gió khi lướt tay qua hoa
+    updateFlowerPhysics(dt, t);
+
+    if (state === 'blooming' && bloomElapsed > 4.2) setState(after);
+
+    const baseHillY = mobile ? (H - 86) : (H - 76);
+    const stemRootY = baseHillY + 32;
+    const meadowAlpha = state === 'intro' ? 0 : clamp((bloomElapsed - 0.5) / 1.6, 0, 1);
+
+    // 6. Vẽ lớp đồi cỏ phía xa + Hoa hậu cảnh & trung cảnh
+    if (state !== 'intro') {
+      drawLushMeadowBack(t, baseHillY, meadowAlpha);
+      for (const f of bgmid) drawFlower(f, t, gustOffset, stemRootY);
+    }
+
+    // 7. Ngôi sao ước nguyện (ở Intro) & Bông Hồng Lớn Chính Giữa (khi nở)
+    if (state === 'intro') {
+      drawIntroStar(t);
+    } else {
+      const pxHero = parallax.x * 18, pyHero = parallax.y * 9;
+      const heroFlutter = windGust.active ? Math.sin(t * 8.5 + 1.2) * (hero.R * 0.10) * windGust.env : 0;
+      const heroSway = Math.sin(t * hero.sp + hero.ph) * hero.sw + (hero.physX || 0) + gustOffset * 0.82 + heroFlutter;
+      const heroBendDip = Math.min(18, (heroSway * heroSway) * 0.0055);
+      const heroX = hero.x + pxHero + heroSway;
+      const heroY = hero.y + pyHero + heroBendDip;
+      const hRootY = stemRootY + pyHero;
+
+      hero.currX = heroX;
+      hero.currY = heroY;
+
+      const heroGrow = clamp((bloomElapsed - 1.0) / 2.0, 0, 1);
+      const gs = eoc(heroGrow);
+
+      if (gs > 0) {
+        const curHeroY = hRootY - (hRootY - heroY) * gs;
+        const hp0 = { x: hero.x + pxHero, y: hRootY };
+        const hp1 = { x: hero.x + pxHero + hero.lean * hero.R * 0.35 + heroSway * 0.22, y: hRootY - (hRootY - heroY) * 0.38 };
+        const hp2 = { x: heroX - heroSway * 0.24, y: curHeroY + (hRootY - heroY) * 0.32 };
+        const hp3 = { x: heroX, y: curHeroY };
+
+        drawStem(hp0, hp1, hp2, hp3, hero, gs);
+
+        const roseBloom = clamp((bloomElapsed - 1.6) / 2.0, 0, 1);
+        const roseR = hero.R * (0.35 + 0.65 * clamp(eob(roseBloom), 0, 1.08));
+        ctx.save();
+        ctx.translate(heroX, curHeroY);
+        ctx.rotate(hero.rot + heroSway * 0.012);
+        drawRose(ctx, 0, 0, roseR, PI, roseBloom, 3);
+        ctx.restore();
+      }
+    }
+
+    updateAndDrawWishParticles(dt);
+
+    // 8. Vẽ Hoa tiền cảnh + Đom đóm & Bướm phát sáng
+    if (state !== 'intro') {
+      for (const f of fgs) drawFlower(f, t, gustOffset, stemRootY);
+      updateAndDrawMagic(dt, t, clamp((bloomElapsed - 2.2) / 2));
+    }
+
+    // 9. Vẽ Thảm Cỏ Xanh Hoa Mini Đa Sắc & Bầy Mèo
+    if (state !== 'intro') {
+      drawLushMeadowFront(t, baseHillY, gustOffset, meadowAlpha);
+      updateAndDrawCats(dt, t, baseHillY, bloomElapsed);
+    }
+
+    // 10. Vệt bụi sao lấp lánh theo ngón tay
+    updateAndDrawCursorTrail(dt);
+
+    ctx.restore();
+
+  } catch (err) {
+    console.error("Frame render error:", err);
+  }
+
+  requestAnimationFrame(frame);
+}
+
+/* ==========================================================================
+   Interaction & State Controllers
+   ========================================================================== */
+function startBloom(next) {
+  after = next;
+  tb = now();
+  const bloomStart = tb + 1.2;
+  flowers.forEach(f => f.start = bloomStart + f.delay * 1.1);
+  hero.start = bloomStart;
+  setState('blooming');
+  autoStartMusic();
+  playWindChimeArpeggio(1);
+}
+
+cv.addEventListener('pointerdown', e => {
+  autoStartMusic();
+  onPointerMove(e.clientX, e.clientY);
+
+  if (state === 'garden') {
+    const [wx, wy] = s2c(e.clientX, e.clientY);
+
+    // 1. Kiểm tra chạm vào Chòm Sao Cự Giải 24/06 trên bầu trời
+    if (Math.hypot(wx - cancerWorldCenter.x, wy - cancerWorldCenter.y) < cancerWorldCenter.r) {
+      cancerPulseBoost = 1.0;
+      spawnWishBurst(cancerWorldCenter.x, cancerWorldCenter.y);
+      spawnShootingStar();
+      playWindChimeArpeggio(1);
+      catBubble.innerHTML = 'Chòm sao hộ mệnh Cự Giải 24/06 luôn tỏa sáng dịu dàng bên Minh Anh 🦀✨♡';
+      lovePop(e.clientX, e.clientY + 20, 'Cự Giải 24/06 của Thiện Tâm 🦀♡');
+      return;
+    }
+
+    // 2. Kiểm tra chạm vào Mặt Trăng
+    const mx = moonWorld.x - parallax.x * 16;
+    const my = moonWorld.y - parallax.y * 12;
+    if (Math.hypot(wx - mx, wy - my) < moonWorld.r * 1.2) {
+      moonPulseBoost = 1.0;
+      spawnWishBurst(mx, my);
+      spawnShootingStar();
+      playWindChimeArpeggio(-1);
+      const mQuote = MOON_QUOTES[moonQuoteIdx++ % MOON_QUOTES.length];
+      catBubble.innerHTML = mQuote;
+      lovePop(e.clientX, e.clientY + 25, 'Ánh trăng dịu dàng 🌙♡');
+      return;
+    }
+
+    // 3. Kiểm tra chạm vào các bé mèo trên thảm cỏ
+    let tappedCat = null;
+    catSquad.forEach(cat => {
+      if (Math.hypot(wx - cat.x, wy - cat.y) < 48) {
+        tappedCat = cat;
+      }
+    });
+
+    if (tappedCat) {
+      tappedCat.jumpV = -130;
+      tappedCat.jumpY = -2;
+      playKalimbaNote(KALIMBA_SCALE[7], 0.085, 1.1);
+      setTimeout(() => playKalimbaNote(KALIMBA_SCALE[9], 0.075, 1.2), 90);
+      const quote = CAT_MEME_QUOTES[catQuoteIdx++ % CAT_MEME_QUOTES.length];
+      catBubble.innerHTML = quote;
+      lovePop(e.clientX, e.clientY - 25, 'Meow~ ♥');
+    } else {
+      playSwipeKalimba(clamp(e.clientX / Math.max(1, W), 0, 1));
+      lovePop(e.clientX, e.clientY);
+    }
+  }
+
+  if (state !== 'intro' || !starPos.ready) return;
+  const nearStar = Math.hypot(e.clientX - starPos.sx, e.clientY - starPos.sy) < 190;
+  const centre = Math.abs(e.clientX - W / 2) < W * 0.45 && Math.abs(e.clientY - starPos.sy) < H * 0.4;
+  if (nearStar || centre) {
+    spawnWishBurst(starPos.cx, starPos.cy);
+    startBloom('card');
+  }
+});
+
+cardEl.addEventListener('click', e => {
+  e.stopPropagation();
+  autoStartMusic();
+  if (state === 'card' && isRevealingCard) {
+    showFullCardInstantly();
+    return;
+  }
+  if (state === 'garden') {
+    setState('card');
+  }
+});
+
+viewBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  showFullCardInstantly();
+  setState('garden');
+  autoStartMusic();
+});
+
+$('reread').addEventListener('click', e => {
+  e.stopPropagation();
+  setState('card');
+  autoStartMusic();
+});
+
+$('regrow').addEventListener('click', e => {
+  e.stopPropagation();
+  startBloom('garden');
+  autoStartMusic();
+});
+
+addEventListener('resize', resize);
+resize();
+setState('intro');
+requestAnimationFrame(frame);
+
+})();
+</script>
+</body>
+</html>
